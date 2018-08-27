@@ -34,7 +34,7 @@ Answers:
     - also good to have number of files total for file count comparisons. 
 
 
-Cron jobs:
+## Cron jobs:
 
 http://www.adminschoice.com/crontab-quick-reference
 
@@ -46,9 +46,55 @@ crontab -l    crontab list of cronjobs , display crontab file contents.
 crontab -r    Remove your crontab file.
 crontab -v    Display the last time you edited your crontab file. (This option is only available on a few systems.)
 
+Testing on CyberFlora
+
+```bash
+export EDITOR=vim
+sudo crontab -l
+
+0 1 * * * /bin/sh /var/www/protected/specify_export.sh
+40 0 * * * /bin/sh /var/www/protected/specify_update.sh
+8 1 * * * /usr/bin/php /var/www/protected/harvester_ga/harvester.php
+5 1 * * * /usr/bin/php /var/www/protected/harvester_lsu/harvester.php
+5 1 * * * /bin/sh /var/www/protected/download.sh
+10 1 * * * /bin/sh /var/www/html/silvercollection/admin/api/update_georgia_data.sh
+20 1 * * * /bin/sh /var/www/protected/checkforimages.sh
+30 1 * * * /bin/sh /var/www/protected/processimages.sh
+40 1 * * * /bin/sh /var/www/protected/sync_georgia_images.sh
+55 1 * * * /bin/sh /var/www/protected/link_georgia_images.sh
+
+sudo crontab -e
+# opens file to edit above text
+less /var/spool/cron/root
+# where this crontab file lives
+sudo crontab -u root -l
+# lists above info 
+crontab -l
+no crontab for gmount1
+```
+
+```bash
+*     *     *   *    *        command-to-be-executed file-to-execute
+-     -     -   -    -
+|     |     |   |    |
+|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
+|     |     |   +------- month (1 - 12)
+|     |     +--------- day of        month (1 - 31)
+|     +----------- hour (0 - 23)
++------------- min (0 - 59)
+```
+36 2 * * *
 
 
-Github account
+http://www.unixgeeks.org/security/newbie/unix/cron-1.html
+
+##### Current cron jobs
+
+wget -O /dev/null -o /dev/null  'http://images.cyberfloralouisiana.com/bis/resources/api/api.php?cmd=imageLoadFromIncoming&storageDeviceId=1';
+
+
+
+## Github account
 
 ```bash
 cd /Users/ChatNoir/Projects/HerbariumRA
@@ -57,6 +103,9 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/LizEve/HerbariumRA.git
 git push -u origin master
+git add *
+git commit -a -m "$message"
+git push
 ```
 
 https://www.quora.com/What-does-git-remote-and-origin-mean
