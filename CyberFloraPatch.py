@@ -38,7 +38,7 @@ def barcode2List(b):
         barcodeList = firstList + sixDList
         return barcodeList
     else:
-        print("Non LSU or NO barcode detected. These files will NOT be moved or listed")
+        print("Non LSU or NO barcode detected. This file will NOT be moved or listed: "+str(b))
     
 
 def bcList2folders(bcList,root_path):
@@ -122,7 +122,7 @@ for bcL in barcodeLists:
         root_path=noFolder
         x = moveFiles(bcL,root_path)
     else:
-        print("Barcode does not start with 0. There is probably an error. Has not been filed or listed.")
+        print("Barcode does not start with 0. There is probably an error. Has not been filed or listed: "+str(bcL))
         
     # Keep lists of: files moved to folders, paths to folders, barcodes
     for z in x[2]:
@@ -137,17 +137,22 @@ fileAfter= next(os.walk(incomingFolder))[2]
 #outFileName=str(datetime.date.today()).replace("-","_")+str("_movedimages.out")
 outFileName=str(datetime.datetime.now()).replace("-","_")+str(".out")
 outFilePath=os.path.join(outFileFolder,outFileName)
+
+# Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
+print("JOB STARTED - "+str(datetime.datetime.now()))
+
 print(outFilePath)
 
 
 outFile = open('%s' % outFilePath, 'wa')
+outFile.write("Date Time\n")
 outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
-outFile.write("Number of files moved:\n")
-outFile.write("Barcodes, Total Files\n")
-outFile.write(str(len(movedBarcodeList))+",          "+str(len(movedFileList))+"\n"+"\n")
-outFile.write("Files left in incoming: "+str(len(fileAfter))+"\n"+"\n")
+outFile.write("Number of files moved\n")
+outFile.write("Barcodes | Total Files\n")
+outFile.write(str(len(movedBarcodeList))+"  |  "+str(len(movedFileList))+"\n"+"\n")
+outFile.write("Number of files left in incoming folder: "+str(len(fileAfter))+"\n"+"\n")
 if len(fileAfter) != 0:
-    outFile.write("FILES LEFT IN INCOMING. PLEASE MOVE THESE MANUALLY\n")
+    outFile.write("PLEASE MOVE THESE MANUALLY\n")
     for i in fileAfter:
         outFile.write("%s\n" % i)
     outFile.write("\n")
@@ -155,3 +160,6 @@ outFile.write("Folders Created:\n\n")
 for p in folderPathList:
      outFile.write("%s\n" % p)
 outFile.close
+outFile.flush()
+print("JOB FINISHED - "+str(datetime.datetime.now()))
+

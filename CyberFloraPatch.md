@@ -71,6 +71,8 @@ sudo crontab -u root -l
 # lists above info 
 crontab -l
 no crontab for gmount1
+crontab -e 
+50 * * * * ./test.sh
 ```
 
 ```bash
