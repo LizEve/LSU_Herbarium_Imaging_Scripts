@@ -119,7 +119,8 @@ def main():
     #noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
     #### Set folder paths and output log files ######
-    incomingFolder = "/data_storage/cfla/incoming"
+    #incomingFolder = "/data_storage/cfla/incoming"
+    incomingFolder = "/data_storage/cfla/incomingTEST"
     outFileFolder = "/data_storage/cfla/incoming_logs_2018"
     lsuFolder="/data_storage/nfsshare/lsu/"
     noFolder="/data_storage/nfsshare/no/vasc_plants/"

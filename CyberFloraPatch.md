@@ -105,9 +105,17 @@ rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberF
 
 ###### Cyberflora patch testing
 
+Crontab 
+
 ```bash
-35 11 * * * /usr/bin/python /home/gmount1/ILOVECATS/CyberFloraPatch.py &>> /home/gmount1/TESTErrors.log
+35 11 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /home/gmount1/ILOVECATS/testErrors.log
 ```
+
+Small file list to test on
+```bash
+sudo cp /home/silverimageftp/incoming/LSU0019684* /data_storage/cfla/incomingTEST
+LSU00196965.JPG
+```ls
 
 ##### To DO
 
@@ -116,6 +124,9 @@ rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberF
     - add in check if file already exists
     - set up def main
     - figure out permissions issue 
+- test on small batch
+- figure out sym folder issue moving files - should all work fine for now 
+
 - number of files not matching what image station says are uploaded to incoming
 - images.cyberfloralouisiana.com
     - silverimageftp
