@@ -94,10 +94,35 @@ http://www.unixgeeks.org/security/newbie/unix/cron-1.html
 
 test script to only print files TO move, but not moved files. 
 
+
+rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberFloraPatch.py gmount1@cyberflora.lsu.edu:/home/gmount1/
+
+
+
+
 36 2 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/cfla/incoming_logs_2018/Errors.log
 
 
+###### Cyberflora patch testing
 
+```bash
+35 11 * * * /usr/bin/python /home/gmount1/ILOVECATS/CyberFloraPatch.py &>> /home/gmount1/TESTErrors.log
+```
+
+##### To DO
+
+- get working - use test to also print files that already have folders and what is in those folders
+    - run chron job to make sure logs are writing, and folders are appropriate. 
+    - add in check if file already exists
+    - set up def main
+    - figure out permissions issue 
+- number of files not matching what image station says are uploaded to incoming
+- images.cyberfloralouisiana.com
+    - silverimageftp
+- output locally F:\Liches\output\
+- blacked out files. 
+localhost:300/index-debug.html?host=http://local&siPort=300&lang=en
+- images not loading for lsu herbairum thinger online database. 
 
 ## Github account
 

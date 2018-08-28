@@ -55,7 +55,7 @@ def bcList2folders(bcList,root_path):
         if os.path.isdir(newDir):
             curDir=newDir
         else:
-            os.makedirs(newDir)
+            #os.makedirs(newDir)
             curDir=newDir
     return curDir
     
@@ -76,19 +76,22 @@ def moveFiles(bcL,root_path):
     # Move all files into their final resting place
     for oneFile in allFiles:
         #shutil.move(oneFile,folderPath)
-        #shutil.copy(oneFile,folderPath)
-        print(oneFile,folderPath)
+        if os.path.isdir(folderPath):
+            print(oneFile,folderPath)
+            print(os.listdir(folderPath))
     return barCode,folderPath,allFiles
         
         
-# Set path to incoming folder
+# Local testing
 #incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
 #outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
 #lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
 #noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
+# Set folder paths
 incomingFolder = "/data_storage/cfla/incoming"
-outFileFolder = "/data_storage/cfla/incoming_logs_2018"
+#outFileFolder = "/data_storage/cfla/incoming_logs_2018"
+outFileFolder = "/home/gmount1/ILOVECATS/"
 lsuFolder="/data_storage/nfsshare/lsu/"
 noFolder="/data_storage/nfsshare/no/vasc_plants/"
 
@@ -141,8 +144,6 @@ outFilePath=os.path.join(outFileFolder,outFileName)
 
 # Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
 print("PRINT ONLY TEST: JOB STARTED - "+str(datetime.datetime.now()))
-
-print(outFilePath)
 
 
 outFile = open('%s' % outFilePath, 'wa')
