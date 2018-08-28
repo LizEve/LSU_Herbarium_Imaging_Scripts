@@ -81,7 +81,7 @@ def moveFiles(bcL,root_path):
             print(os.listdir(folderPath))
     return barCode,folderPath,allFiles
 
-    def moveIncomingFiles(uniqueBarCodes,incomingFileList):
+def moveIncomingFiles(uniqueBarCodes,incomingFileList,lsuFolder,noFolder):
     '''
     Takes list of unique barcodes and list of files to be moves
     Calls on other scripts to transform barcodes into paths, make folders when needed, and then move files into appropriate folders
@@ -148,7 +148,7 @@ def main():
         uniqueBarCodes.add(b)
 
     # Make folders and move files, returns lists of what was moved and where
-    folderPathList,movedBarcodeList,movedFileList=moveIncomingFiles(uniqueBarCodes,incomingFileList)  
+    folderPathList,movedBarcodeList,movedFileList=moveIncomingFiles(uniqueBarCodes,incomingFileList,lsuFolder,noFolder)  
 
     # Count number of files in incoming folder after moving 
     fileAfter= next(os.walk(incomingFolder))[2]
