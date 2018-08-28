@@ -75,10 +75,7 @@ def moveFiles(bcL,root_path,incomingFolder):
     
     # Move all files into their final resting place
     for oneFile in allFiles:
-        #shutil.move(oneFile,folderPath)
-        if os.path.isdir(folderPath):
-            print(oneFile,folderPath)
-            print(os.listdir(folderPath))
+        shutil.move(oneFile,folderPath)
     return barCode,folderPath,allFiles
 
 def moveIncomingFiles(uniqueBarCodes,incomingFileList,incomingFolder,lsuFolder,noFolder):
