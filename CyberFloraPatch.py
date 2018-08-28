@@ -120,8 +120,7 @@ def main():
 
     #### Set folder paths and output log files ######
     incomingFolder = "/data_storage/cfla/incoming"
-    #outFileFolder = "/data_storage/cfla/incoming_logs_2018"
-    outFileFolder = "/home/gmount1/ILOVECATS/"
+    outFileFolder = "/data_storage/cfla/incoming_logs_2018"
     lsuFolder="/data_storage/nfsshare/lsu/"
     noFolder="/data_storage/nfsshare/no/vasc_plants/"
     # Make file name based on date
