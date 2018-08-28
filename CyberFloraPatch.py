@@ -80,88 +80,103 @@ def moveFiles(bcL,root_path):
             print(oneFile,folderPath)
             print(os.listdir(folderPath))
     return barCode,folderPath,allFiles
+
+    def moveIncomingFiles(uniqueBarCodes,incomingFileList):
+    '''
+    Takes list of unique barcodes and list of files to be moves
+    Calls on other scripts to transform barcodes into paths, make folders when needed, and then move files into appropriate folders
+    Returns lists of which files were moves and the paths they were moved to
+    '''
+    # Barcode strings into barcode lists, all numbers preserved
+    barcodeLists = []
+    for ub in uniqueBarCodes:
+        barcodeLists.append(barcode2List(ub))
+
+    # Make/traverse folders for each barcode and move files
+    folderPathList=[]
+    movedFileList=[]
+    movedBarcodeList=[]
+    for bcL in barcodeLists:
+        # Sort based on first set of digits into lsu and no(tulane) barcodes
+        if str(bcL[0]) == str("00"):
+            root_path=lsuFolder
+            x = moveFiles(bcL,root_path)
+        elif str(bcL[0]) == str("0"):
+            root_path=noFolder
+            x = moveFiles(bcL,root_path)
+        else:
+            print("Barcode does not start with 0. There is probably an error. Has not been filed or listed: "+str(bcL))
+            
+        # Keep lists of: files moved to folders, paths to folders, barcodes
+        for z in x[2]:
+            movedFileList.append(os.path.basename(z))
+        folderPathList.append(x[1])
+        movedBarcodeList.append(x[0])
+    return folderPathList,movedBarcodeList,movedFileList
         
-        
-# Local testing
-#incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
-#outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
-#lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
-#noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
+def main():      
+    # Local testing
+    #incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
+    #outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
+    #lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
+    #noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
-# Set folder paths
-incomingFolder = "/data_storage/cfla/incoming"
-#outFileFolder = "/data_storage/cfla/incoming_logs_2018"
-outFileFolder = "/home/gmount1/ILOVECATS/"
-lsuFolder="/data_storage/nfsshare/lsu/"
-noFolder="/data_storage/nfsshare/no/vasc_plants/"
+    #### Set folder paths and output log files ######
+    incomingFolder = "/data_storage/cfla/incoming"
+    #outFileFolder = "/data_storage/cfla/incoming_logs_2018"
+    outFileFolder = "/home/gmount1/ILOVECATS/"
+    lsuFolder="/data_storage/nfsshare/lsu/"
+    noFolder="/data_storage/nfsshare/no/vasc_plants/"
+    # Make file name based on date
+    outFileName=str(datetime.date.today()).replace("-","_")+str("_movedimages.out")
+    outFilePath=os.path.join(outFileFolder,outFileName)
 
-# Count number of files in incoming folder before moving 
-fileBefore = next(os.walk(incomingFolder))[2] 
 
-# List of all jpg files
-incomingFileList=findfiles("*jpg",incomingFolder)
+    ##### Working with incoming files ###### 
 
-# Set of unique barcodes
-uniqueBarCodes=set()
-for f in incomingFileList:
-    # Strip _ from files
-    b=re.split("_|\.",f)[0]
-    uniqueBarCodes.add(b)
+    # Count number of files in incoming folder before moving 
+    fileBefore = next(os.walk(incomingFolder))[2] 
 
-# Barcode strings into barcode lists, all numbers preserved
-barcodeLists = []
-for ub in uniqueBarCodes:
-    barcodeLists.append(barcode2List(ub))
+    # List of all jpg files in incoming folder
+    incomingFileList=findfiles("*jpg",incomingFolder)
 
-# Make/traverse folders for each barcode and move files
-folderPathList=[]
-movedFileList=[]
-movedBarcodeList=[]
-for bcL in barcodeLists:
-    # Sort based on first set of digits into lsu and no barcodes
-    if str(bcL[0]) == str("00"):
-        root_path=lsuFolder
-        x = moveFiles(bcL,root_path)
-    elif str(bcL[0]) == str("0"):
-        root_path=noFolder
-        x = moveFiles(bcL,root_path)
-    else:
-        print("Barcode does not start with 0. There is probably an error. Has not been filed or listed: "+str(bcL))
-        
-    # Keep lists of: files moved to folders, paths to folders, barcodes
-    for z in x[2]:
-        movedFileList.append(os.path.basename(z))
-    folderPathList.append(x[1])
-    movedBarcodeList.append(x[0])
+    # Get set of unique barcodes
+    uniqueBarCodes=set()
+    for f in incomingFileList:
+        # Strip _ from files
+        b=re.split("_|\.",f)[0]
+        uniqueBarCodes.add(b)
+
+    # Make folders and move files, returns lists of what was moved and where
+    folderPathList,movedBarcodeList,movedFileList=moveIncomingFiles(uniqueBarCodes,incomingFileList)  
+
+    # Count number of files in incoming folder after moving 
+    fileAfter= next(os.walk(incomingFolder))[2]
+
+    ##### Write info to file ##### 
     
-# Count number of files in incoming folder after moving 
-fileAfter= next(os.walk(incomingFolder))[2]
+    # Open file, then write a bunch of stuff. 
+    outFile = open('%s' % outFilePath, 'wa')
+    outFile.write("PRINT ONLY TEST: Date Time\n")
+    outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
+    outFile.write("Number of files moved\n")
+    outFile.write("Barcodes | Total Files\n")
+    outFile.write(str(len(movedBarcodeList))+"  |  "+str(len(movedFileList))+"\n"+"\n")
+    outFile.write("Number of files left in incoming folder: "+str(len(fileAfter))+"\n"+"\n")
+    if len(fileAfter) != 0:
+        outFile.write("PLEASE MOVE THESE MANUALLY\n")
+        for i in fileAfter:
+            outFile.write("%s\n" % i)
+        outFile.write("\n")
+    outFile.write("Folders Created:\n\n")
+    for p in folderPathList:
+        outFile.write("%s\n" % p)
+    outFile.close
+    outFile.flush()
+    
 
-# Make file name based on date
-#outFileName=str(datetime.date.today()).replace("-","_")+str("_movedimages.out")
-outFileName=str(datetime.datetime.now()).replace("-","_")+str(".out")
-outFilePath=os.path.join(outFileFolder,outFileName)
-
-# Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
-print("PRINT ONLY TEST: JOB STARTED - "+str(datetime.datetime.now()))
-
-
-outFile = open('%s' % outFilePath, 'wa')
-outFile.write("PRINT ONLY TEST: Date Time\n")
-outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
-outFile.write("Number of files moved\n")
-outFile.write("Barcodes | Total Files\n")
-outFile.write(str(len(movedBarcodeList))+"  |  "+str(len(movedFileList))+"\n"+"\n")
-outFile.write("Number of files left in incoming folder: "+str(len(fileAfter))+"\n"+"\n")
-if len(fileAfter) != 0:
-    outFile.write("PLEASE MOVE THESE MANUALLY\n")
-    for i in fileAfter:
-        outFile.write("%s\n" % i)
-    outFile.write("\n")
-outFile.write("Folders Created:\n\n")
-for p in folderPathList:
-     outFile.write("%s\n" % p)
-outFile.close
-outFile.flush()
-print("PRINT ONLY TEST: JOB FINISHED - "+str(datetime.datetime.now()))
-
+if __name__=='__main__':
+    # Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
+    print("PRINT ONLY TEST: JOB STARTED - "+str(datetime.datetime.now()))
+    main()
+    print("PRINT ONLY TEST: JOB FINISHED - "+str(datetime.datetime.now()))
