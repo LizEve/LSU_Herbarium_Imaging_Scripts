@@ -85,14 +85,17 @@ crontab -e
 |     +----------- hour (0 - 23)
 +------------- min (0 - 59)
 ```
-36 2 * * *
+
 
 
 http://www.unixgeeks.org/security/newbie/unix/cron-1.html
 
-##### Current cron jobs
+##### Cron to do
 
-wget -O /dev/null -o /dev/null  'http://images.cyberfloralouisiana.com/bis/resources/api/api.php?cmd=imageLoadFromIncoming&storageDeviceId=1';
+test script to only print files TO move, but not moved files. 
+
+36 2 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/cfla/incoming_logs_2018/Errors.log
+
 
 
 

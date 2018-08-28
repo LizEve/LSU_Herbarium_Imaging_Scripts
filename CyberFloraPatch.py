@@ -76,20 +76,21 @@ def moveFiles(bcL,root_path):
     # Move all files into their final resting place
     for oneFile in allFiles:
         #shutil.move(oneFile,folderPath)
-        shutil.copy(oneFile,folderPath)
+        #shutil.copy(oneFile,folderPath)
+        print(oneFile,folderPath)
     return barCode,folderPath,allFiles
         
         
 # Set path to incoming folder
-incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
-outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
-lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
-noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
+#incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
+#outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
+#lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
+#noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
-#incomingFolder = "/data_storage/cfla/incoming"
-#outFileFolder = "/data_storage/cfla/incoming_records2018"
-#lsuFolder="/data_storage/nfsshare/lsu/"
-#noFolder="/data_storage/nfsshare/no/vasc_plants/"
+incomingFolder = "/data_storage/cfla/incoming"
+outFileFolder = "/data_storage/cfla/incoming_logs_2018"
+lsuFolder="/data_storage/nfsshare/lsu/"
+noFolder="/data_storage/nfsshare/no/vasc_plants/"
 
 # Count number of files in incoming folder before moving 
 fileBefore = next(os.walk(incomingFolder))[2] 
@@ -139,13 +140,13 @@ outFileName=str(datetime.datetime.now()).replace("-","_")+str(".out")
 outFilePath=os.path.join(outFileFolder,outFileName)
 
 # Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
-print("JOB STARTED - "+str(datetime.datetime.now()))
+print("PRINT ONLY TEST: JOB STARTED - "+str(datetime.datetime.now()))
 
 print(outFilePath)
 
 
 outFile = open('%s' % outFilePath, 'wa')
-outFile.write("Date Time\n")
+outFile.write("PRINT ONLY TEST: Date Time\n")
 outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
 outFile.write("Number of files moved\n")
 outFile.write("Barcodes | Total Files\n")
@@ -161,5 +162,5 @@ for p in folderPathList:
      outFile.write("%s\n" % p)
 outFile.close
 outFile.flush()
-print("JOB FINISHED - "+str(datetime.datetime.now()))
+print("PRINT ONLY TEST: JOB FINISHED - "+str(datetime.datetime.now()))
 

@@ -1,12 +1,13 @@
-2018-08-27 16:18:36.392024
+PRINT ONLY_------------Date Time
+2018-08-28 09:34:00.224491
 
-Number of files moved:
-Barcodes, Total Files
-32,          37
+Number of files moved
+Barcodes | Total Files
+32  |  37
 
-Files left in incoming: 37
+Number of files left in incoming folder: 37
 
-FILES LEFT IN INCOMING. PLEASE MOVE THESE MANUALLY
+PLEASE MOVE THESE MANUALLY
 LSU00157996_1.JPG
 LSU00158045_1.JPG
 LSU00176631.JPG
