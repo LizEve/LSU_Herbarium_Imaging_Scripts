@@ -59,7 +59,7 @@ def bcList2folders(bcList,root_path):
             curDir=newDir
     return curDir
     
-def moveFiles(bcL,root_path):
+def moveFiles(bcL,root_path,incomingFolder):
     '''
     Takes barcode list of digits, and root path for specific collection
     Moves files into final resting place
@@ -81,7 +81,7 @@ def moveFiles(bcL,root_path):
             print(os.listdir(folderPath))
     return barCode,folderPath,allFiles
 
-def moveIncomingFiles(uniqueBarCodes,incomingFileList,lsuFolder,noFolder):
+def moveIncomingFiles(uniqueBarCodes,incomingFileList,incomingFolder,lsuFolder,noFolder):
     '''
     Takes list of unique barcodes and list of files to be moves
     Calls on other scripts to transform barcodes into paths, make folders when needed, and then move files into appropriate folders
@@ -100,10 +100,10 @@ def moveIncomingFiles(uniqueBarCodes,incomingFileList,lsuFolder,noFolder):
         # Sort based on first set of digits into lsu and no(tulane) barcodes
         if str(bcL[0]) == str("00"):
             root_path=lsuFolder
-            x = moveFiles(bcL,root_path)
+            x = moveFiles(bcL,root_path,incomingFolder)
         elif str(bcL[0]) == str("0"):
             root_path=noFolder
-            x = moveFiles(bcL,root_path)
+            x = moveFiles(bcL,root_path,incomingFolder)
         else:
             print("Barcode does not start with 0. There is probably an error. Has not been filed or listed: "+str(bcL))
             
@@ -148,7 +148,7 @@ def main():
         uniqueBarCodes.add(b)
 
     # Make folders and move files, returns lists of what was moved and where
-    folderPathList,movedBarcodeList,movedFileList=moveIncomingFiles(uniqueBarCodes,incomingFileList,lsuFolder,noFolder)  
+    folderPathList,movedBarcodeList,movedFileList=moveIncomingFiles(uniqueBarCodes,incomingFileList,incomingFolder,lsuFolder,noFolder)  
 
     # Count number of files in incoming folder after moving 
     fileAfter= next(os.walk(incomingFolder))[2]
