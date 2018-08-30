@@ -40,7 +40,6 @@ def barcode2List(b):
     else:
         print("Non LSU or NO barcode detected. This file will NOT be moved or listed: "+str(b))
     
-
 def bcList2folders(bcList,root_path):
     '''
     Takes barcode list of digits
@@ -75,7 +74,8 @@ def moveFiles(bcL,root_path,incomingFolder):
     
     # Move all files into their final resting place
     for oneFile in allFiles:
-        shutil.move(oneFile,folderPath)
+        movedFilePath=os.path.join(folderPath, os.path.basename(oneFile))
+        shutil.move(oneFile,movedFilePath)
     return barCode,folderPath,allFiles
 
 def moveIncomingFiles(uniqueBarCodes,incomingFileList,incomingFolder,lsuFolder,noFolder):
@@ -113,16 +113,16 @@ def moveIncomingFiles(uniqueBarCodes,incomingFileList,incomingFolder,lsuFolder,n
         
 def main():      
     # Local testing
-    #incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
-    #outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
-    #lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
-    #noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
+    incomingFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming"
+    outFileFolder = "/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/cfla/incoming_records2018"
+    lsuFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/"
+    noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
     #### Set folder paths and output log files ######
-    incomingFolder = "/home/silverimageftp/incoming/"
-    outFileFolder = "/data_storage/nfsshare/incoming_logs_2018"
-    lsuFolder="/data_storage/nfsshare/lsu/"
-    noFolder="/data_storage/nfsshare/no/vasc_plants/"
+    #incomingFolder = "/home/silverimageftp/incoming/"
+    #outFileFolder = "/data_storage/nfsshare/incoming_logs_2018"
+    #lsuFolder="/data_storage/nfsshare/lsu/"
+    #noFolder="/data_storage/nfsshare/no/vasc_plants/"
     # Make file name based on date
     outFileName=str(datetime.date.today()).replace("-","_")+str("_movedimages.out")
     outFilePath=os.path.join(outFileFolder,outFileName)
