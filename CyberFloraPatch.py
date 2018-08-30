@@ -55,7 +55,7 @@ def bcList2folders(bcList,root_path):
         if os.path.isdir(newDir):
             curDir=newDir
         else:
-            #os.makedirs(newDir)
+            os.makedirs(newDir)
             curDir=newDir
     return curDir
     
@@ -119,9 +119,8 @@ def main():
     #noFolder="/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/vasc_plants/"
 
     #### Set folder paths and output log files ######
-    #incomingFolder = "/data_storage/cfla/incoming"
-    incomingFolder = "/data_storage/cfla/incomingTEST"
-    outFileFolder = "/data_storage/cfla/incoming_logs_2018"
+    incomingFolder = "/home/silverimageftp/incoming/"
+    outFileFolder = "/data_storage/nfsshare/incoming_logs_2018"
     lsuFolder="/data_storage/nfsshare/lsu/"
     noFolder="/data_storage/nfsshare/no/vasc_plants/"
     # Make file name based on date
@@ -154,7 +153,7 @@ def main():
     
     # Open file, then write a bunch of stuff. 
     outFile = open('%s' % outFilePath, 'wa')
-    outFile.write("PRINT ONLY TEST: Date Time\n")
+    outFile.write("Date Time\n")
     outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
     outFile.write("Number of files moved\n")
     outFile.write("Barcodes | Total Files\n")
@@ -174,6 +173,6 @@ def main():
 
 if __name__=='__main__':
     # Adding some for standard output, shouldn't need this, but somewhere to write errors to just in case. 
-    print("PRINT ONLY TEST: JOB STARTED - "+str(datetime.datetime.now()))
+    print("JOB STARTED - "+str(datetime.datetime.now()))
     main()
-    print("PRINT ONLY TEST: JOB FINISHED - "+str(datetime.datetime.now()))
+    print("JOB FINISHED - "+str(datetime.datetime.now()))

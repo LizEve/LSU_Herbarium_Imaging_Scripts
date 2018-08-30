@@ -103,6 +103,14 @@ rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberF
 36 2 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/cfla/incoming_logs_2018/Errors.log
 
 
+file names. 
+write over files
+put files into nsfshare 
+number of files in incoming folder
+
+import files to larger drive 
+
+
 ###### Cyberflora patch testing
 
 Crontab 
@@ -113,9 +121,11 @@ Crontab
 
 Small file list to test on
 ```bash
-sudo cp /home/silverimageftp/incoming/LSU0019684* /data_storage/cfla/incomingTEST
-LSU00196965.JPG
-```ls
+sudo cp /home/silverimageftp/incoming/LSU00196841* /data_storage/cfla/incomingTEST
+sudo cp /home/silverimageftp/incoming/LSU00196842* /data_storage/cfla/incomingTEST
+56 14 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/cfla/incoming_logs_2018/Errors.log
+
+```
 
 ##### To DO
 
