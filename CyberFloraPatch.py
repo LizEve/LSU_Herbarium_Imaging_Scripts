@@ -164,8 +164,8 @@ def main():
         for i in fileAfter:
             outFile.write("%s\n" % i)
         outFile.write("\n")
-    outFile.write("Folders Created:\n\n")
-    for p in folderPathList:
+    outFile.write("Files Moved:\n\n")
+    for p in movedFileList:
         outFile.write("%s\n" % p)
     outFile.close
     outFile.flush()

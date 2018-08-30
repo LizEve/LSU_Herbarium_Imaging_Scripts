@@ -99,11 +99,11 @@ rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberF
 
 
 
+sudo crontab -e
+25 11 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/nfsshare/incoming_logs_2018
 
-36 2 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/cfla/incoming_logs_2018/Errors.log
 
-
-file names. 
+output file names. 
 write over files
 put files into nsfshare 
 number of files in incoming folder
@@ -167,3 +167,15 @@ my computer - origin/master -> copy of remote
 fetch - updates origin/master
 merge - merges origin/master with master
 pull - fetch + merge
+
+
+
+40 0 * * * /bin/sh /var/www/protected/specify_update.sh
+8 1 * * * /usr/bin/php /var/www/protected/harvester_ga/harvester.php
+5 1 * * * /usr/bin/php /var/www/protected/harvester_lsu/harvester.php
+5 1 * * * /bin/sh /var/www/protected/download.sh
+10 1 * * * /bin/sh /var/www/html/silvercollection/admin/api/update_georgia_data.sh
+20 1 * * * /bin/sh /var/www/protected/checkforimages.sh
+30 1 * * * /bin/sh /var/www/protected/processimages.sh
+40 1 * * * /bin/sh /var/www/protected/sync_georgia_images.sh
+55 1 * * * /bin/sh /var/www/protected/link_georgia_images.sh
