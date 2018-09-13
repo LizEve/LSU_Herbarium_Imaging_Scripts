@@ -1,6 +1,167 @@
 
-# Meeting 2018-08-20
-Jennie 
+# Open Refine
+
+Catalogue number, LSU, 
+other catalogue, LSU, other univ to match image. 
+
+# Try #1
+
+```python
+# edit cells > transform on locality and location ID
+if(isBlank(value)," ",value)
+# make a TF column. add column > edit column based on locality column
+value.contains(cells["locationID"].value) 
+# Create new locality col based on TF list col. 
+if(value==false,cells["locality"].value + ", " + cells["locationID"].value,cells["locality"].value)
+```
+
+Issues:
+- if locationID says unspecified, it tags that on the end of locality
+- if locationID has a part that matches locality, but not all of it, still gets added on
+- if there is spelling differences between locationID and locality, it adds it. 
+
+# Try #2
+<https://groups.google.com/forum/#!topic/openrefine/qCnQTOfdHAA>
+
+This does the same thing as try 1. 
+```python
+column1 = cells['locationID']['value']
+column2 = cells['locality']['value']
+
+if column1 in column2:
+    return column2
+else:
+    return column2+", "+column1
+```
+
+# Try #3
+<https://groups.google.com/forum/#!topic/openrefine/qCnQTOfdHAA>
+<https://stackoverflow.com/questions/3900054/python-strip-multiple-characters>
+Trying to modify try 2 to avoid pitfalls of try 1
+
+```python
+import re
+column1 = cells['locationID']['value']
+column2 = cells['locality']['value']
+colList1 = column1.split()
+colList2 = column2.split()
+badChars = '(){}[],.'
+
+stripped1=[re.sub('[,.();:]', '', x) for x in colList1]
+stripped2=[re.sub('[,.();:]', '', x) for x in colList2] 
+
+
+return str(list(set(stripped1) - set(stripped2)))
+
+
+# still need to account for case differences
+# probably want to use list not set comparison to preserve order of words
+
+z=0
+notInLocality=[]
+for x in colList1:
+    if x in colList2:
+        z+=1
+    else:
+        notInLocality.append(x)
+return notInLocality, colList1, colList2
+#return len(colList1),z
+
+
+
+if column1 in column2:
+    return column2
+else:
+    return column2+", "+column1
+```
+
+
+#### Did not work
+
+```python
+ngramFingerprint(cells.column2.value) == ngramFingerprint(value)
+
+
+cells["locationID"].value + " " + cells["locality"].value
+
+if(cells["locationID"].value == cells["locality"].value, "Y", "N") 
+#  this works, but i want to find if locationID is IN locality
+
+
+
+if(isNonBlank(value.match(/your regex/),
+
+if(value.match(/.*(\d{6})/.*,"y","n")) # returns any string of 6 digits
+if(value.match(/(.*)(\d{6})/(.*),"y","n")) #returns before, 6 digs, and after.)
+
+if(value.match(/.*(cells["locationID"].value)/.*,"y","n"))
+
+
+
+if(
+    isNonBlank(
+        value.match(
+            /.*(cells["locationID"].value)/.*
+            )
+            )
+            ,value,"xx"
+            )
+
+(/(.*)(\d{6})(.*)/)
+```
+
+open in excel, as tsv, change number columns to text to preserve them. 
+save as csv. 
+open into openrefine as csv
+
+# Host monster
+
+Login: cyberfloralouisiana.com
+PW: LAPlants#2015
+
+data.cbfla click websites, go to files, click file manager. edit publichtml, 
+looked through a lot. couldn't figure out where images insert on page is coming from. probably just from current clfa server. LAF is probably on old server. 
+
+# Databases to and from
+
+data.cyberflora 
+- Host Monster. hosting website to search database. 
+    - would be nice to edit, and eventually delete. 
+- where is the physical server for this?
+- images not loading, not a huge priority
+
+Check host monster to see what I can do with it. 
+
+
+Upload images to somewhere else. not the small harddrive. 
+Current patch sorts, but doesnt talk to silverimage, on imaging workstation. 
+
+How/what do we edit to change where the image input folder is? Is there one file to edit for this, or multiple?
+
+Server: images.cyberfloralouisiana.com
+User: silverimageftp
+Password: h@n=dMan
+Images Remote Path: incoming
+
+Where was GA images going? - those are now funneled somewhere other than ours. 
+
+/var/www/html
+- where apache drops web directories. 
+/etc/httpd/conf/httpd.conf <- says where to look on our server when pinged by a www.website.com
+all dealt with by apache. 
+
+data.cbfla click websites, go to files, click file manager. edit publichtml, index html. can edit pages to give warnings. 
+
+LAF images on cbfl broken, not on server, but on main page website. might be able to track this down with website html see above. s
+
+cbfla is hosting images
+
+To Do
+make list of to do what needs fixing. organize things. 
+    - is there somewhere on data that talks to the incoming from images and image station computer? 
+    - synology backups 
+    - georgia
+
 
 ## Databases
 
