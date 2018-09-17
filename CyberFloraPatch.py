@@ -126,6 +126,7 @@ def main():
     # Make file name based on date
     outFileName=str(datetime.date.today()).replace("-","_")+str("_movedimages.out")
     outFilePath=os.path.join(outFileFolder,outFileName)
+    blankoutFilePath=os.path.join(os.path.join(outFileFolder,"blankLogs"),outFileName)
 
 
     ##### Working with incoming files ###### 
@@ -152,7 +153,10 @@ def main():
     ##### Write info to file ##### 
     
     # Open file, then write a bunch of stuff. 
-    outFile = open('%s' % outFilePath, 'wa')
+    if len(movedFileList) == 0:
+        outFile = open('%s' % blankoutFilePath, 'wa')
+    elif len(movedFileList) > 0:
+        outFile = open('%s' % outFilePath, 'wa')
     outFile.write("Date Time\n")
     outFile.write([str(datetime.datetime.now())][0]+"\n"+"\n")
     outFile.write("Number of files moved\n")
