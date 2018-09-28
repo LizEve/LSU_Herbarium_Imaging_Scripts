@@ -96,7 +96,7 @@ test script to only print files TO move, but not moved files.
 
 
 rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/CyberFloraPatch.py gmount1@cyberflora.lsu.edu:/home/gmount1/
-
+rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/Scripts/CyberFloraPatch.py gmount1@cyberflora.lsu.edu:/home/gmount1/
 
 
 sudo crontab -e
