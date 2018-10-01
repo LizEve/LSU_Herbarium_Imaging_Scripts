@@ -85,4 +85,7 @@ if mySQL check == TRUE:
     put all files == barcode into "/session"
 
 
-
+Cron Jobs:
+- daily download/update of mysql database locally. 
+- daily push/upload of all images from the day  
+- barcodes per day by taxon group
