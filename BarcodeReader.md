@@ -6,3 +6,9 @@ https://www.learnopencv.com/barcode-and-qr-code-scanner-using-zbar-and-opencv/
 https://www.pyimagesearch.com/2018/03/19/reading-barcodes-with-python-and-openmv/
 
 https://github.com/adafruit/LS2208-USB-Barcode-Scanner
+
+
+
+
+https://stackoverflow.com/questions/14575403/pyusb-usb-barcode-scanner
+https://www.raspberrypi.org/forums/viewtopic.php?t=163587

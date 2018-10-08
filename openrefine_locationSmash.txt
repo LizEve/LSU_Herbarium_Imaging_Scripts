@@ -64,4 +64,7 @@ else:
 
 # remove leading and trailing whitespace and semicolons a few times
 newcolumn = newCol.strip().strip(";").strip()
+# make sure that any empty cells should be labeled as unspecified. 
+if newcolumn == " ":
+    newcolumn = "unspecified"
 return newcolumn

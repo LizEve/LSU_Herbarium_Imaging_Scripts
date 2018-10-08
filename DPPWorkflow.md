@@ -42,7 +42,7 @@ keep log of all images/barcodes taken per day. number uploaded to server. number
 
 
 
-Pseudo Code:
+Pseudo Code V1:
 
 Take photo
 # photo goes into "/unlabeled" as specified by DPP and EOS
