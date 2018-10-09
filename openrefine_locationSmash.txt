@@ -1,8 +1,18 @@
-# For locality, location ID, and LouisianaProtectedArea
-# Edit cells > transform  > GREL
+1. Replace blanks with spaces
+For locality, location ID, and LouisianaProtectedArea
+Edit cells > transform  > GREL
+``` (copy and paste the lines between the "```")
 if(isBlank(value)," ",value)
-# Open any column
-# Edit column > Add column based on column > jython/python
+```
+
+2. Edit unspecified entries for locality and locationID(if needed)
+locality > Text filter> "unspecified"
+locality > Facet > Text facet
+
+3. Big merge/edits
+Open any column
+Edit column > Add column based on column > jython/python
+```
 import re
 
 def col_to_list(column):
@@ -18,7 +28,7 @@ def clean_non_blanks(column):
     # stripping off spaces and semicolons, so it is cleaner when we concatenate columns
     # Transform blank cols into X
     if column == " ": 
-        cleanCol = "X"
+        cleanCol = "x"
     else:
         cleanCol = column.strip().strip(";").strip()
     return cleanCol
@@ -35,19 +45,19 @@ str3=col_to_list(column3)
 
 # Replace unspecified columns with blanks. Use the string of the first item in the list to compare to the word 'unspecified'
 if str(str1[0]) == 'unspecified':
-    column1 = 'X'
-    str1 = ['X']
-
+    column1 = ' '
+    str1 = ['x']
+# could add line. if str2 > 1. reorder temporarily. 
 if str(str2[0]) == 'unspecified':
-    column2 = 'X'
-    str2 = ['X']
+    column2 = ' '
+    str2 = ['x']
 
 # If all columns are blank. New column entry will be "unspecified"
-if str(str1[0]) == str(str2[0]) == 'X':
-    if str(str3[0]) == 'X':
+if str(str1[0]) == str(str2[0]) == 'x':
+    if str(str3[0]) == 'x':
         newCol = 'unspecified'
     # If column 3 has information. Use this information.
-    elif str(str3[0]) != 'X':
+    elif str(str3[0]) != 'x':
         newCol = column3
 # Now proceed with comparing columns
 else:
@@ -71,9 +81,8 @@ else:
         newCol = column12 + "; " + column3
 
 # remove leading and trailing whitespace and semicolons a few times
-newcolumn = newCol.strip().strip(";").strip()
+newcolumn = newCol.strip("x").strip().strip(";").strip()
 # make sure that any empty cells should be labeled as unspecified. 
-if newcolumn == "X":
-    newcolumn = "unspecified"
 #newcolumn = [str1,str2,str3,newCol]
 return newcolumn
+```
