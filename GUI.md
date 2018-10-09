@@ -1,6 +1,7 @@
 <http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html>
 <http://staff.washington.edu/rowen/TkinterSummary.html#BasicTkApplication>
-
+<https://wiki.wxpython.org/wxPython%20by%20Example>
+google - wx python program examples
 # To Do:
 - find gui window that continually lists files in two folders
 - start with first, check for files function

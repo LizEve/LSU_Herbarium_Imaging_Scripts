@@ -75,5 +75,5 @@ newcolumn = newCol.strip().strip(";").strip()
 # make sure that any empty cells should be labeled as unspecified. 
 if newcolumn == "X":
     newcolumn = "unspecified"
-#newcolumn = [str1,str2,str3,newCol]
+newcolumn = [str1,str2,str3,newCol]
 return newcolumn
