@@ -136,3 +136,19 @@ Goals:
 Upload (daily) all new image info to symbiota/ all diff portals
 Continually (daily) add image info, all info based on location of files (not sure how ill import this info yet)
 While imaging, check scanned barcode against current db of barcodes. raise error if already exists. Access via server, or DL database locally, at beginning of day. 
+
+Ideas:
+each portal with own table. 
+
+SqLite
+- local online. not a server. 
+- can portals use this? 
+- or use ftp and chron job to send to them. 
+
+MySql 
+- each portal with access
+- need to ask eric to install portal
+
+pushing scripts 
+- in push script, make file path and write directly there. 
+- ftp in python 
