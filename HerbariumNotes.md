@@ -1,3 +1,14 @@
+# To Do:
+
+- set up rsync cron job for synology backup and zip of server info
+- add closing warning on websites. 
+- compare barcodes/files on lacie drives to cbfla 
+- backup any files needed from lacie to cbfla, then from cbfla to synology
+- reorganize script
+	- get list of image + portal type
+- get keys for herbarium
+- write script to move files and check for corrupted images. 
+
 
 # Host monster
 
