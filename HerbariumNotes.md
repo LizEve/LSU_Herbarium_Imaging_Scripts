@@ -2,12 +2,15 @@
 
 - set up rsync cron job for synology backup and zip of server info
 - add closing warning on websites. 
-- compare barcodes/files on lacie drives to cbfla 
-- backup any files needed from lacie to cbfla, then from cbfla to synology
 - reorganize script
 	- get list of image + portal type
+    - write script to move files and check for corrupted images. 
+    - compare barcodes/files on lacie drives to cbfla 
 - get keys for herbarium
-- write script to move files and check for corrupted images. 
+- box for CR, store directly from LaCie 
+- ask eric about cycling drives, do we need more? 
+- make notes about everything. records. 
++ backup any files needed from lacie to cbfla, then from cbfla to synology
 
 
 # Host monster

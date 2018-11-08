@@ -1,7 +1,9 @@
 import os
 import csv
 from csv import DictReader
-
+import itertools
+import pathlib2 as pathlib
+import shutil
 
 def oldPathDict(root):
     '''
@@ -50,9 +52,11 @@ def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
     return portalDictionary
 
 
+
+
 # Get old path dictionary
-root = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/'
-oldPathDictionary=oldPathDict(root)
+oldRoot = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
+oldPathDictionary=oldPathDict(oldRoot)
 
 # Get portal dictionary
 occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
@@ -60,10 +64,59 @@ colName="catalogNumber"
 portalName="bryophyte"
 portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
-noImageBarcodeList=[]
+# Move files
+newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
+
+
+noImageBarcodeDict={}
+alreadyExists=[]
+# Iterate through barcodes that are in the specify database
+for bcp in portalDictionary:
+    # If barcode has image files... 
+    if bcp in oldPathDictionary:
+        # Split apart letters and numbers from barcode
+        barcodeSplit = ["".join(x) for _, x in itertools.groupby(bcp, key=str.isdigit)]
+        # Iterate through all image files associated with barcode
+        for oldPath in oldPathDictionary[bcp]:
+            # Grab name of file, collection (lsu,no,etc), numerical part of barcode, portal
+            fileName=oldPath.split("/")[-1]
+            collection=barcodeSplit[0]
+            number=barcodeSplit[1]
+            portal=portalDictionary[bcp]
+            # Split apart barcode number to create new file path
+            lastThree=number[-3:] # this isnt nessecary, just to double check things
+            cutoffThree=number[:-3]
+            secondFolder=cutoffThree[-3:]
+            firstFolder=cutoffThree[:-3]
+            # Create folders from barcode and portal information
+            # ex: LSU01020304 -> root/portal/lsu/01/020/LSU01020304.jpg 
+            newPath=os.path.join(newRoot,portal,collection,firstFolder,secondFolder,fileName)
+            # Get directory path to check if folders need to be created
+            newDir=os.path.dirname(newPath)
+            #print(bcp,portalDictionary[bcp], collection,number,fileName)
+            #print(len(number),number,firstFolder,secondFolder,lastThree)
+            # Keep track of all files that already exist in destination folder. Will happen if two portals list same files.
+            if os.path.exists(newPath):
+                alreadyExists.append(file)
+            # If file does not exist. Create path if needed. Then move/copy file to new destination
+            else:
+                pathlib.Path(newDir).mkdir(parents=True, exist_ok=True)
+                shutil.copy2(oldPath,newPath)
+                #os.rename(oldPath,newPath)
+                print(newPath)
+    # If barcode has no image files
+    elif bcp not in oldPathDictionary:
+        # keep track of specify records with no image file. 
+        noImageBarcodeDict[bcp]=portalDictionary[bcp]
+    
 
 
 ###### NOTES ##########
+To Do:
+- put last for loop into function 
+- check for corrupted Images
+- figure out what list comparisons need to be done. 
+
 
 all portal barcodes should be in Images
     - list of all in Images
