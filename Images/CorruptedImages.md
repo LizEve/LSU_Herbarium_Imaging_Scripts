@@ -45,18 +45,34 @@ from PIL import Image
 import os
 import ntpath
 
-files=[]   
-for filename in os.listdir('.'):
-    if filename.endswith('.jpg'):
-        files.append(filename)
+fileList=[]  
+root="/Users/ChatNoir/Projects/HerbariumRA/corruptedImages"
+for path, subdirs, files in os.walk(root):
+    for name in files:
+        oldPath=os.path.join(path,name)
+        fileList.append(oldPath)
 
-for f in files:
-    v_image = Image.open(f)
-    print(ntpath.basename(f))
-    try:
-        x=v_image.load()
-    except Exception as e:
-        print(str(e))
+
+for f in fileList:
+    if f.endswith(".jpg"):
+        try:
+                v_image = Image.open(f)
+                print(ntpath.basename(f))
+                try:
+                        x=v_image.load()
+                except Exception as e:
+                        print(str(e))
+        except IOError as f:
+                print(str(f))
+```
+
+```python
+oldPathList=[]
+root="/Users/ChatNoir/Projects/HerbariumRA/corruptedImages"
+for path, subdirs, files in os.walk(root):
+    for name in files:
+        oldPath=os.path.join(path,name)
+        oldPathList.append(oldPath)
 ```
 
 
