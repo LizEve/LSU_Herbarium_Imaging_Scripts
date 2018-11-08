@@ -54,18 +54,21 @@ for path, subdirs, files in os.walk(root):
 
 
 for f in fileList:
-    if f.endswith(".jpg"):
         try:
                 v_image = Image.open(f)
                 print(ntpath.basename(f))
                 try:
                         x=v_image.load()
                 except Exception as e:
+                        # add to corrupted list
                         print(str(e))
         except IOError as f:
+                # add to list of not an image, cant open. 
                 print(str(f))
 ```
-
+NLU0025522.jpg
+NLU0035517.jpg
+NLU0043454.jpg
 ```python
 oldPathList=[]
 root="/Users/ChatNoir/Projects/HerbariumRA/corruptedImages"
