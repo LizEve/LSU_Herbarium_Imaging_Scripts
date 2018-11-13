@@ -100,6 +100,44 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary):
             barcodeNoImageDict[bcp]=portalDictionary[bcp]
     return filesMovedDict,barcodeNoImageDict
 
+
+def valueListsToBigList(dict):
+    '''
+    Turns dictionary of key:[value,value,...] into continuous list of all values
+    '''
+    # Make one single list of all image files
+    allFilesList=[]
+    for paths in oldPathDictionary.values():
+        allFilesList.extend(paths)
+    return allFilesList
+
+def corruptImageFinder(allFilesList):
+    '''
+    Takes list of all absolute paths to files. Checks for image, and corruption. 
+    Returns list of non image files, and list of corrupt image files
+    '''
+    # List of files that cannot open as an image
+    noImageList=[]
+    # List of files that cannot load as an image, are corrupted
+    corruptImageList=[]
+
+    for f in allFilesList:
+        # Try opening image. 
+        try:
+            v_image = Image.open(f)
+            # Try loading image
+            try:
+                    x=v_image.load()
+            # If image cannot load, it is corrupted    
+            except Exception as e:
+                    corruptImageList.append(f)
+                    #print(str(e)+f)
+        # If image doesnt open as an image, take note
+        except IOError as i:
+                noImageList.append(f)
+                #print(str(i)+f)
+    return noImageList,corrurptImageList
+
 # Full path of current base/parent folder of images to move
 oldRoot = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
 # Get dictionary of current/old paths for each image file
@@ -130,40 +168,15 @@ filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDict
 
 ###### NOTES ##########
 To Do:
-- put last for loop into function 
 - check for corrupted Images
+- determine what lists are output, make notes 
 - figure out what list comparisons need to be done. 
 
-
-all portal barcodes should be in Images
-    - list of all in Images
-    - list of all NOT in Images. 
-
-for barcode in portal 
-if portal barcode NOT in allfiles
-add to list - no photo for specify entry. 
-
-
-moving file
-no file to move (no image OR already claimed in a different portal)
-already identicle file in new destination
+- figure out what to output for sql database. 
+- figure out how to update sql database on a regular basis (probably separate script)
 
 
 https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory-in-python
-
-
-
-if key from FD matches key from PD 
-make new path 
-newpathFolder = PD value / collection-institutionID / numbers from barcode
-for value in FD_key:
-    filename = get filename from oldpath value 
-    check for corruption - if corrupt, add to corruption dictionary barcode:newpathfolder+filename
-    move to newPath (if folders don't exist, then make them)
-
-Flags for:
-already identicle file in new destination
-no file to move (already claimed in a different portal)
 
 
 
@@ -188,11 +201,6 @@ vascular/lsu/00/099/LSU00099999.jpg
 
 NO0010203 -> ['0','010']
 vascular/no/0/010/NO0010203.jpg
-
-output 
-corrupted file dictionary barcode:new file path
-barcode list (set) - make set from file directory keys
-
 
 
 # Portal Dictionary. key = barcode. value = portal type
