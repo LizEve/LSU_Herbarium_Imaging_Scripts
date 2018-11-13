@@ -57,6 +57,10 @@ def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
 
 def moveFiles(newRoot,oldPathDictionary,portalDictionary):
     '''
+    Organizes files based on barcode and portal. 
+    Input - New parent folder. Dictionary of old paths. Dictionary of barcodes and their portal
+    Output - Dictionary of files moved {filename:[barcode,portal,newpath]}. 
+    Dictionary of barcodes with no image {barcode:portal}
     '''
     # filename:[barcode,portal,newpath]
     filesMovedDict={}
