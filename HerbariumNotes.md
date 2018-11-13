@@ -1,16 +1,51 @@
 # To Do:
 
+
+
+cbfla
 - set up rsync cron job for synology backup and zip of server info
-- add closing warning on websites. 
 - reorganize script
-	- get list of image + portal type
-    - write script to move files and check for corrupted images. 
-    - compare barcodes/files on lacie drives to cbfla 
+    - review everything with _l files 
+    - test on server
+    - figure out output
+
+compare / record
+- barcodes/files on lacie drives to cbfla 
+- all images not moved, not in a portal
+- corrupt/non images on lacie and cbfla
+- all barcodes in more than one portal
+
+sql database
+- input from file reorg
+- update with new files regularly (maybe from a list of new uploads?)
+- output/update csv for each portal regularly. accesible for jennie
+
+imaging centers
+- reorganization lacie
+    - run same script used on cbfla  
+    - make sure to include CR images
+- daily 
+    - download sql from cbfla
+    - move images from incoming to folders on lacie (make large files?)
+    - rsync lacie to cbfla
+    - upload CR to box
+        - script to scrape all CR images and drop in box.com, by portal/barcode institution/some numbers only. 
+- already barcoded checker script
+    - open to run whenever imaging
+    - keeps eyes on incoming folder, raises alert when any barcode matches barcode in sql db. 
+
+Questions:
+- make large images on LaCie or on cbfla? 
+- backup from LaCie to Cbfla after reorganize?
+- reorganizing script 
+    - nfsshare/lsu/vascular/lsu/##/###/file.jpg OR nfsshare/vascular/lsu/##/###/file.jpg
+    - Are we ingesting all of the images in no folder? 
+
+- add closing warning on websites. 
 - get keys for herbarium
 - box for CR, store directly from LaCie 
 - ask eric about cycling drives, do we need more? 
 - make notes about everything. records. 
-+ backup any files needed from lacie to cbfla, then from cbfla to synology
 
 
 # Host monster

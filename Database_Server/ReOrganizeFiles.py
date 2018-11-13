@@ -6,7 +6,7 @@ import pathlib2 as pathlib
 import shutil
 from PIL import Image
 
-def oldPathDict(root):
+def oldPathDict(roots):
     '''
     Get dictionary of all files we want to transfer
     Input- root directory
@@ -15,31 +15,32 @@ def oldPathDict(root):
     <https://stackoverflow.com/questions/2909975/python-list-directory-subdirectory-and-files>
     '''
     oldPathList=[]
-    unwanted=["_m","_s","txt"]
-    for path, subdirs, files in os.walk(root):
-        # Ignore hidden directories as files, those that start with "."
-        files = [f for f in files if not f[0] == '.']
-        subdirs[:] = [d for d in subdirs if not d[0] == '.']
-        for name in files:
-            # Do not keep any files from unwanted list
-            if any(x in name for x in unwanted):
-                pass
-            else:
-                oldPath=os.path.join(path,name)
-                oldPathList.append(oldPath)
     oldPathDictionary={}
-    #turn this info into dictionary
-    for oldPath in oldPathList:
-        # Get file name 
-        fileName=oldPath.split("/")[-1]
-        barcode=fileName.split(".")[0].split("_")[0]
-        #print barcode
-        if barcode not in oldPathDictionary:
-            oldPathDictionary[barcode]=[oldPath]
-        elif barcode in oldPathDictionary:
-            oldPathDictionary[barcode]=[oldPath]+oldPathDictionary[barcode]
-        else:
-            print("This should never happen")
+    unwanted=["_m","_s","txt"]
+    for root in roots:
+        for path, subdirs, files in os.walk(root):
+            # Ignore hidden directories as files, those that start with "."
+            files = [f for f in files if not f[0] == '.']
+            subdirs[:] = [d for d in subdirs if not d[0] == '.']
+            for name in files:
+                # Do not keep any files from unwanted list
+                if any(x in name for x in unwanted):
+                    pass
+                else:
+                    oldPath=os.path.join(path,name)
+                    oldPathList.append(oldPath)
+        #turn this info into dictionary
+        for oldPath in oldPathList:
+            # Get file name 
+            fileName=oldPath.split("/")[-1]
+            barcode=fileName.split(".")[0].split("_")[0]
+            #print barcode
+            if barcode not in oldPathDictionary:
+                oldPathDictionary[barcode]=[oldPath]
+            elif barcode in oldPathDictionary:
+                oldPathDictionary[barcode]=[oldPath]+oldPathDictionary[barcode]
+            else:
+                print("This should never happen")
     return oldPathDictionary
 
 def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
@@ -143,7 +144,8 @@ def corruptImageFinder(allFilesList):
     return noImageList,corrurptImageList
 
 # Specify full path of current parent folder of images
-oldRoot = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
+rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
+oldRoots = [rootLSU]
 
 # Get dictionary of current image paths for each barcode
 # barcode:[filepath1,...filepathN]
@@ -169,6 +171,4 @@ newPathList = dictToBigList(filesMovedDict)
 
 # Get lists of images with issues
 noImageList,corrurptImageList = corruptImageFinder(allFilesList)
-
-# CHECK FOR CORRUPT FILES SOMEWHERE 
 
