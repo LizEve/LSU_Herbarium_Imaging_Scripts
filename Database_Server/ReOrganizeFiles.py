@@ -4,6 +4,7 @@ from csv import DictReader
 import itertools
 import pathlib2 as pathlib
 import shutil
+from PIL import Image
 
 def oldPathDict(root):
     '''
@@ -16,6 +17,9 @@ def oldPathDict(root):
     oldPathList=[]
     unwanted=["_m","_s","txt"]
     for path, subdirs, files in os.walk(root):
+        # Ignore hidden directories as files, those that start with "."
+        files = [f for f in files if not f[0] == '.']
+        subdirs[:] = [d for d in subdirs if not d[0] == '.']
         for name in files:
             # Do not keep any files from unwanted list
             if any(x in name for x in unwanted):
@@ -118,8 +122,9 @@ newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/
 # Move files
 # Keep track of files that were moved, and barcodes that don't have images 
 filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDictionary)
-print(len(filesMovedDict))
-print(len(barcodeNoImageDict))
+#print(len(filesMovedDict))
+#print(len(barcodeNoImageDict))
+
 
 # CHECK FOR CORRUPT FILES SOMEWHERE 
 
