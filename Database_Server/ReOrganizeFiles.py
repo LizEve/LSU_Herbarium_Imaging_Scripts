@@ -105,14 +105,14 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary):
     return filesMovedDict,barcodeNoImageDict
 
 
-def valueListsToBigList(dict):
+def dictToBigList(filesMovedDict):
     '''
-    Turns dictionary of key:[value,value,...] into continuous list of all values
+    Turns dictionary of filename:[barcode,portal,newpath] into continuous list of all newpaths
     '''
     # Make one single list of all image files
     allFilesList=[]
-    for paths in oldPathDictionary.values():
-        allFilesList.extend(paths)
+    for paths in filesMovedDict.values():
+        allFilesList.append(paths[2])
     return allFilesList
 
 def corruptImageFinder(allFilesList):
@@ -142,31 +142,33 @@ def corruptImageFinder(allFilesList):
                 #print(str(i)+f)
     return noImageList,corrurptImageList
 
-# Full path of current base/parent folder of images to move
+# Specify full path of current parent folder of images
 oldRoot = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
-# Get dictionary of current/old paths for each image file
+
+# Get dictionary of current image paths for each barcode
 # barcode:[filepath1,...filepathN]
 oldPathDictionary=oldPathDict(oldRoot)
 
-# Full path to DwC-A occurences.csv file downloaded from portal
+# Specify full path to DwC-A occurences.csv file downloaded from portal, name of portal, column name for barcodes in occurences.csv
 occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
-# Name of portal, for naming folder
 portalName="bryophyte"
-# Column name in occurences.csv to find barcode 
 colName="catalogNumber"
-# Get portal dictionary
+
+# Get dictionary of barcodes and their portal
 # barcode:portal
 portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
-
-# New parent folder full path
+# Specify full path of the new parent folder for images
 newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
-# Move files
-# Keep track of files that were moved, and barcodes that don't have images 
-filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDictionary)
-#print(len(filesMovedDict))
-#print(len(barcodeNoImageDict))
 
+# Move files and keep track of files that were moved, and barcodes that don't have images 
+filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDictionary)
+
+# Get list of all new image paths
+newPathList = dictToBigList(filesMovedDict)
+
+# Get lists of images with issues
+noImageList,corrurptImageList = corruptImageFinder(allFilesList)
 
 # CHECK FOR CORRUPT FILES SOMEWHERE 
 
