@@ -11,12 +11,12 @@ def oldPathDict(roots):
     Get dictionary of all files we want to transfer
     Input- root directory
     Output- dictionary of barcode: [list of absolute paths to all files with barcode]
-    Details- does not move any txt, _m, _s files. Does not specify jpg either. 
+    Details- Does not specify file extension. does not move any txt, _l, _m, _s files. We will move any _l files later.
     <https://stackoverflow.com/questions/2909975/python-list-directory-subdirectory-and-files>
     '''
     oldPathList=[]
     oldPathDictionary={}
-    unwanted=["_m","_s","txt"]
+    unwanted=["_l","_m","_s","txt"]
     for root in roots:
         for path, subdirs, files in os.walk(root):
             # Ignore hidden directories as files, those that start with "."
@@ -67,7 +67,7 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary):
     filesMovedDict={}
     # barcode:portal
     barcodeNoImageDict={}
-    # Iterate through barcodes that are in the specify database
+    # Iterate through barcodes that are in the portal database
     for bcp in portalDictionary:
         # If barcode has image files... 
         if bcp in oldPathDictionary:
