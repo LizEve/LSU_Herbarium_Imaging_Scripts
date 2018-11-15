@@ -5,7 +5,7 @@
 cbfla
 - set up rsync cron job for synology backup and zip of server info
 - reorganize script
-    - review everything with _l files 
+    - review everything with _l files (need to finish)
     - test on server
     - figure out output
 
