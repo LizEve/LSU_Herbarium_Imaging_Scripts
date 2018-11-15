@@ -5,6 +5,7 @@ import itertools
 import pathlib2 as pathlib
 import shutil
 from PIL import Image
+import pandas as pd
 
 def oldPathDict(roots):
     '''
@@ -94,7 +95,7 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     # barcode:portal
     barcodeNoImageDict={}
     # files that need a large image made 
-    noLarge=[]
+    noLargeDict={}
     # Iterate through barcodes that are in the portal database
     for bcp in portalDictionary:
         # If barcode has image files... 
@@ -113,12 +114,12 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
                         shutil.copy2(oldLarge,newLarge)
                         #os.rename(oldPath,newPath)
                     except:
-                        noLarge.append(newLarge)
+                        noLargeDict[fileName]=newLarge
         # If barcode has no image files
         elif bcp not in oldPathDictionary:
             # keep track of specify records with no image file. barcode:portal
             barcodeNoImageDict[bcp]=portalDictionary[bcp]
-    return filesMovedDict,barcodeNoImageDict,noLarge
+    return filesMovedDict,barcodeNoImageDict,noLargeDict
 
 
 def dictToBigList(filesMovedDict):
@@ -136,10 +137,10 @@ def corruptImageFinder(allFilesList):
     Takes list of all absolute paths to files. Checks for image, and corruption. 
     Returns list of non image files, and list of corrupt image files
     '''
-    # List of files that cannot open as an image
-    noImageList=[]
-    # List of files that cannot load as an image, are corrupted
-    corruptImageList=[]
+    # Dictionary of files that cannot open as an image
+    notImageDict={}
+    # Dictionary of files that cannot load as an image, are corrupted
+    corruptImageDict={}
 
     for f in allFilesList:
         # Try opening image. 
@@ -150,39 +151,63 @@ def corruptImageFinder(allFilesList):
                     x=v_image.load()
             # If image cannot load, it is corrupted    
             except Exception as e:
-                    corruptImageList.append(f)
+                    corruptImageDict[os.path.basename(f)]=f
                     #print(str(e)+f)
         # If image doesnt open as an image, take note
         except IOError as i:
-                noImageList.append(f)
+                corruptImageDict[os.path.basename(f)]=f
+                #notImageDict[os.path.basename(f)]=f
                 #print(str(i)+f)
-    return noImageList,corruptImageList
+    return corruptImageDict
 
-# Specify full path of current parent folder of images
-rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
-oldRoots = [rootLSU]
-
-# Get dictionary of current image paths for each barcode
-# barcode:[filepath1,...filepathN]
-oldPathDictionary=oldPathDict(oldRoots)
+# Specify full path to folder for output lists
+outFolder='/Users/ChatNoir/Projects/HerbariumRA/'
 
 # Specify full path to DwC-A occurences.csv file downloaded from portal, name of portal, column name for barcodes in occurences.csv
 occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
 portalName="bryophyte"
 colName="catalogNumber"
 
+# Specify full path of the new parent folder for images
+newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
+
+# Specify full path of current parent folder of images
+rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
+rootNO = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/'
+oldRoots = [rootLSU,rootNO]
+
+# Get dictionary of current image paths for each barcode
+# barcode:[filepath1,...filepathN]
+oldPathDictionary=oldPathDict(oldRoots)
+
 # Get dictionary of barcodes and their portal
 # barcode:portal
 portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
-# Specify full path of the new parent folder for images
-newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
 
 # Move files and keep track of files that were moved, and barcodes that don't have images 
-filesMovedDict,barcodeNoImageDict,noLarge=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
+filesMovedDict,barcodeNoImageDict,noLargeDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
 
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
 
 # Get lists of images with issues
-noImageList,corrurptImageList = corruptImageFinder(newPathList)
+corruptImageDict = corruptImageFinder(newPathList)
+
+# Output Lists!! 
+
+dfBad = pd.DataFrame.from_dict(corruptImageDict,orient='index',columns=['File Path'])
+dfBad.index.name = 'Image File Name'
+dfBad.to_csv(os.path.join(outFolder,(portalName+"_corruptImages.csv")),sep=",")
+
+dfNoLarge = pd.DataFrame.from_dict(noLargeDict,orient='index',columns=['File Path'])
+dfNoLarge.index.name = 'Image File Name'
+dfBad.to_csv(os.path.join(outFolder,(portalName+"_noLargeImages.csv")),sep=",")
+
+dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['File Path'])
+dfNoImage.index.name = 'Image File Name'
+dfBad.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
+
+
+
+print(newPathList)

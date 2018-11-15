@@ -31,3 +31,6 @@ each portal with own table.
 SqLite
 - local 
 - need to output csv file 
+
+from reorganization file 
+output csv of all moved files 

@@ -5,14 +5,16 @@
 cbfla
 - set up rsync cron job for synology backup and zip of server info
 - reorganize script
-    - review everything with _l files (need to finish)
-    - test on server
-    - figure out output
+    - test on server in my home folder
+    - test in LaCie
+    - output csv for all different files with issues- corrupted, no image.
+- script for collecting all leftover files with no portal, make list after all portals have been moved.
+- comparison scripts moentioned in section below. 
+- script to make large files for all 
 
 compare / record
 - barcodes/files on lacie drives to cbfla 
 - all images not moved, not in a portal
-- corrupt/non images on lacie and cbfla
 - all barcodes in more than one portal
 
 sql database
@@ -35,12 +37,14 @@ imaging centers
     - keeps eyes on incoming folder, raises alert when any barcode matches barcode in sql db. 
 
 Questions:
-- make large images on LaCie or on cbfla? 
+- make large images on LaCie or on cbfla? probably not on LaCie. Only on cbfla. 
 - backup from LaCie to Cbfla after reorganize?
+- LaCie, might not have all files, could have originals somewhere else. Or in duplicate folders on current laCie. 
 - reorganizing script 
-    - nfsshare/lsu/vascular/lsu/##/###/file.jpg OR nfsshare/vascular/lsu/##/###/file.jpg
-    - Are we ingesting all of the images in no folder? 
+    - nfsshare/lsu/vascular/lsu/##/###/file.jpg OR nfsshare/vascular/lsu/##/###/file.jpg(this works)
+    - Are we ingesting all of the images in no folder? yes, all vascular. also ulm. keep barcodes. 
 
+- what if we need to move a barcode to a different portal after the fact? 
 - add closing warning on websites. 
 - get keys for herbarium
 - box for CR, store directly from LaCie 
