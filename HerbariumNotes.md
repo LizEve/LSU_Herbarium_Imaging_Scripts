@@ -9,7 +9,6 @@ cbfla
     - test in LaCie
     - output csv for all different files with issues- corrupted, no image.
 - script for collecting all leftover files with no portal, make list after all portals have been moved.
-- comparison scripts moentioned in section below. 
 - script to make large files for all 
 
 compare / record

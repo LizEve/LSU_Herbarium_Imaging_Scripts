@@ -30,18 +30,18 @@ def oldPathDict(roots):
                 else:
                     oldPath=os.path.join(path,name)
                     oldPathList.append(oldPath)
-        #turn this info into dictionary
-        for oldPath in oldPathList:
-            # Get file name 
-            fileName=oldPath.split("/")[-1]
-            barcode=fileName.split(".")[0].split("_")[0]
-            #print barcode
-            if barcode not in oldPathDictionary:
-                oldPathDictionary[barcode]=[oldPath]
-            elif barcode in oldPathDictionary:
-                oldPathDictionary[barcode]=[oldPath]+oldPathDictionary[barcode]
-            else:
-                print("This should never happen")
+    #turn this info into dictionary
+    for oldPath in oldPathList:
+        # Get file name 
+        fileName=oldPath.split("/")[-1]
+        barcode=fileName.split(".")[0].split("_")[0]
+        #print barcode
+        if barcode not in oldPathDictionary:
+            oldPathDictionary[barcode]=[oldPath]
+        elif barcode in oldPathDictionary:
+            oldPathDictionary[barcode]=[oldPath]+oldPathDictionary[barcode]
+        else:
+            print("This should never happen")
     return oldPathDictionary
 
 def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
@@ -63,8 +63,9 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     Makes an old and new path to a large (_l) image for each image. Does not confirm existance of this _l file. 
     '''
     # Grab name of file, collection (lsu,no,etc), numerical part of barcode, portal
-    fileName=oldPath.split("/")[-1]
-    collection=barcodeSplit[0]
+    fileName=str(oldPath.split("/")[-1]).upper()
+    largeFile=str(fileName.split(".")[0]+"_l."+fileName.split(".")[1]).upper()
+    collection=str(barcodeSplit[0]).upper()
     number=barcodeSplit[1]
     # Split apart barcode number to create new file path
     lastThree=number[-3:] # this isnt nessecary, just to double check things
@@ -76,8 +77,8 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName)
     # Get directory path to check if folders need to be created
     newDir=os.path.dirname(newPath)
-    oldLarge=os.path.join(os.path.dirname(oldPath),fileName.split(".")[0]+"_l."+fileName.split(".")[1])
-    newLarge=os.path.join(newDir,fileName.split(".")[0]+"_l."+fileName.split(".")[1])
+    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile)
+    newLarge=os.path.join(newDir,largeFile)
     #print(bcp,portalDictionary[bcp], collection,number,fileName)
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
@@ -174,7 +175,8 @@ newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/
 # Specify full path of current parent folder of images
 rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
 rootNO = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/'
-oldRoots = [rootLSU,rootNO]
+rootNLU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/nlu/'
+oldRoots = [rootLSU,rootNO,rootNLU]
 
 # Get dictionary of current image paths for each barcode
 # barcode:[filepath1,...filepathN]
@@ -210,4 +212,4 @@ dfBad.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
 
 
-print(newPathList)
+print(oldPathDictionary)
