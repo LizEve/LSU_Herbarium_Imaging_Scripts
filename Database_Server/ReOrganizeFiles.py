@@ -55,6 +55,7 @@ def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
     portalDictionary={}
     for n in catNumList:
         portalDictionary[n]=portalName
+    # return an all caps dicts
     return portalDictionary
 
 def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
@@ -64,8 +65,9 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     '''
     # Grab name of file, collection (lsu,no,etc), numerical part of barcode, portal
     fileName=str(oldPath.split("/")[-1]).upper()
-    largeFile=str(fileName.split(".")[0]+"_l."+fileName.split(".")[1]).upper()
-    collection=str(barcodeSplit[0]).upper()
+    largeFile_low=fileName.split(".")[0].upper()+"_l."+fileName.split(".")[1].upper()
+    largeFile_up=fileName.split(".")[0]+"_l."+fileName.split(".")[1]
+    collection=barcodeSplit[0]
     number=barcodeSplit[1]
     # Split apart barcode number to create new file path
     lastThree=number[-3:] # this isnt nessecary, just to double check things
@@ -77,8 +79,8 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName)
     # Get directory path to check if folders need to be created
     newDir=os.path.dirname(newPath)
-    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile)
-    newLarge=os.path.join(newDir,largeFile)
+    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile_low)
+    newLarge=os.path.join(newDir,largeFile_up)
     #print(bcp,portalDictionary[bcp], collection,number,fileName)
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
@@ -91,6 +93,8 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     Output - Dictionary of files moved {filename:[barcode,portal,newpath,newlargepath]}. 
     Dictionary of barcodes with no image {barcode:portal}
     '''
+    # Make all keys(barcodes) into uppercase. values(list of paths) will stay as is. 
+    oldDictionary_BCcaps = dict((k.upper(), v) for k, v in oldPathDictionary.items())
     # filename:[barcode,portal,newpath,newlargepath]
     filesMovedDict={}
     # barcode:portal
@@ -100,22 +104,23 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     # Iterate through barcodes that are in the portal database
     for bcp in portalDictionary:
         # If barcode has image files... 
-        if bcp in oldPathDictionary:
+        if bcp in oldDictionary_BCcaps:
             # Split apart letters and numbers from barcode
             barcodeSplit = ["".join(x) for _, x in itertools.groupby(bcp, key=str.isdigit)]
             # Iterate through all image files associated with barcode
-            for oldPath in oldPathDictionary[bcp]:
-                newDir,newPath,oldLarge,newLarge,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
-                if not os.path.exists(newPath):
-                    pathlib.Path(newDir).mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(oldPath,newPath)
-                    #os.rename(oldPath,newPath)
-                    filesMovedDict[fileName]=[bcp,portalName,newPath]
-                    try:
-                        shutil.copy2(oldLarge,newLarge)
+            for oldPaths in oldDictionary_BCcaps[bcp]:
+                for oldPath in [oldPaths]:
+                    newDir,newPath,oldLarge,newLarge,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
+                    if not os.path.exists(newPath):
+                        pathlib.Path(newDir).mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(oldPath,newPath)
                         #os.rename(oldPath,newPath)
-                    except:
-                        noLargeDict[fileName]=newLarge
+                        filesMovedDict[fileName]=[bcp,portalName,newPath]
+                        try:
+                            shutil.copy2(oldLarge,newLarge)
+                            #os.rename(oldPath,newPath)
+                        except:
+                            noLargeDict[fileName]=newLarge
         # If barcode has no image files
         elif bcp not in oldPathDictionary:
             # keep track of specify records with no image file. barcode:portal
