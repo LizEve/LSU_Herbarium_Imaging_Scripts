@@ -6,6 +6,7 @@
 ## Selective backup 
 `rm -rf /mnt/cflabkup/nlu`
 ```bash
+sudo zip --symlinks -r /data_storage/nfsshare/varwwwhtml.zip /var/www/html/
 sudo rsync -avu /data_storage/nfsshare/incoming_logs_2018 /mnt/cflabkup/
 sudo rsync -avu /data_storage/nfsshare/livingimages /mnt/cflabkup/
 sudo rsync -avu /data_storage/nfsshare/lsu /mnt/cflabkup/
