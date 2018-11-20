@@ -167,20 +167,27 @@ def corruptImageFinder(allFilesList):
     return corruptImageDict
 
 # Specify full path to folder for output lists
-outFolder='/Users/ChatNoir/Projects/HerbariumRA/'
+#outFolder='/Users/ChatNoir/Projects/HerbariumRA/'
+outFolder='/home/gmount1/'
 
 # Specify full path to DwC-A occurences.csv file downloaded from portal, name of portal, column name for barcodes in occurences.csv
-occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
-portalName="bryophyte"
+#occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
+#portalName="bryophyte"
+occurrencesFile="/home/gmount1/Database_Server/occurrencesfakecbfla.csv"
+portalName="vascular"
 colName="catalogNumber"
 
 # Specify full path of the new parent folder for images
-newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
+#newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
+newRoot='/home/gmount1/data_storage_fake/nfsshare/vascular/'
 
 # Specify full path of current parent folder of images
-rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
-rootNO = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/'
-rootNLU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/nlu/'
+#rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
+#rootNO = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/'
+#rootNLU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/nlu/'
+rootLSU = '/home/gmount1/data_storage_fake/nfsshare/lsu/'
+rootNO = '/home/gmount1/data_storage_fake/nfsshare/no/'
+rootNLU = '/home/gmount1/data_storage_fake/nfsshare/nlu/'
 oldRoots = [rootLSU,rootNO,rootNLU]
 
 # Get dictionary of current image paths for each barcode
@@ -217,4 +224,4 @@ dfBad.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
 
 
-print(oldPathDictionary)
+#print(oldPathDictionary)
