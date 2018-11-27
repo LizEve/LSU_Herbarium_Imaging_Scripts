@@ -101,7 +101,7 @@ su gmount1
 python2.7 -m pip install pandas
 ```
 
-## Results
+## Fixing Bugs
 
 `python2.7 Database_Server/ReOrganizeFiles.py`
 
@@ -133,8 +133,8 @@ NLU0058322
 **corrupt**: NLU0043454
 
 
-## Results 1
-### Corrupt
+### Results 1
+#### Corrupt
 NO0033003.CR2,
 NLU0043454.JPG,
 NO0022022.CR2,
@@ -142,16 +142,16 @@ NO0110111.CR2,
 Notes: CR files looks fine 
 <http://images.cyberfloralouisiana.com/images/specimensheets/no/vas_plants/0/4/40/4/NO0044004.CR2>
 
-### No Large
+#### No Large
 Notes: Same as corrupt output. I think the CR files messed with the barcode dictionary. 
 
-### No Images
+#### No Images
 Notes: also same, as other two. may have an output issue
 
-### Check LSU folder
+#### Check LSU folder
 all the listed files 
 
-## Changes 1
+### Changes 1
 To Do:
 + add CR2 to "no" list of file names w s, m, etc. 
 + check output lists 
@@ -165,12 +165,12 @@ Reset
 
 `python2.7 Database_Server/ReOrganizeFiles.py`
 
-## Results 2
-### Corrupt
+### Results 2
+#### Corrupt
 NLU0043454.JPG, +
 Yay worked
 
-### No Large
+#### No Large
 LSU00000044.JPG, +
 LSU00000033.JPG, -
 LSU00077777.JPG, +
@@ -183,13 +183,13 @@ NLU0058322.JPG, -
 
 None of the larges seem to be moving
 
-### No Images
+#### No Images
 LSU00099999,vascular +
 LSU00066666,vascular +
 NO0055055,vascular +
 Yay worked
 
-### Files Moved
+#### Files Moved
 |File|barcode|portal|newpath|
 |-|-|-|-|
 |LSU00000044.JPG|LSU00000044|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/LSU/00/000/LSU00000044.JPG|
@@ -214,7 +214,13 @@ LSU00022222
 LSU00000033
 NLU0058322
 
-## Changes 1
+### Changes 2
 - Fix large files moving issue. 
-- print # files in occurances, and # files moved, # files no image, # files corrupted, # files no large. 
 
+### Results 3 - WORKED 
+
+
+## Update Output for easy gut check
+
+- updating output
+- print # files in occurances, and # files moved, # files no image, # files corrupted, # files no large. 

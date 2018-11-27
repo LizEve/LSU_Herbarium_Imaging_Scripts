@@ -64,9 +64,10 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     Makes an old and new path to a large (_l) image for each image. Does not confirm existance of this _l file. 
     '''
     # Grab name of file, collection (lsu,no,etc), numerical part of barcode, portal
-    fileName=str(oldPath.split("/")[-1]).upper()
-    largeFile_low=fileName.split(".")[0].upper()+"_l."+fileName.split(".")[1].upper()
-    largeFile_up=fileName.split(".")[0]+"_l."+fileName.split(".")[1]
+    fileName=oldPath.split("/")[-1]
+    #largeFile_low=fileName.split(".")[0].lower()+"_l."+fileName.split(".")[1].lower()
+    largeFile_up=fileName.split(".")[0].upper()+"_l."+fileName.split(".")[1].upper()
+    largeFile=fileName.split(".")[0]+"_l."+fileName.split(".")[1]
     collection=barcodeSplit[0]
     number=barcodeSplit[1]
     # Split apart barcode number to create new file path
@@ -76,17 +77,19 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     firstFolder=cutoffThree[:-3]
     # Create folders from barcode and portal information
     # ex: LSU01020304 -> root/portal/lsu/01/020/LSU01020304.jpg 
-    newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName)
+    newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName.upper())
     # Get directory path to check if folders need to be created
     newDir=os.path.dirname(newPath)
-    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile_low)
+    #oldLarge=os.path.join(os.path.dirname(oldPath),largeFile_low)
+    #newLarge=os.path.join(newDir,largeFile_up)
+    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile)
     newLarge=os.path.join(newDir,largeFile_up)
     print(oldLarge)
     print(newLarge)
-    #print(bcp,portalDictionary[bcp], collection,number,fileName)
+    #print(bcp,portalDictionary[bcp], collection,number,fileName)   
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
-    return newDir,newPath,oldLarge,newLarge,fileName
+    return newDir,newPath,oldLarge,newLarge,fileName.upper()
 
 def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     '''
