@@ -81,6 +81,8 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     newDir=os.path.dirname(newPath)
     oldLarge=os.path.join(os.path.dirname(oldPath),largeFile_low)
     newLarge=os.path.join(newDir,largeFile_up)
+    print(oldLarge)
+    print(newLarge)
     #print(bcp,portalDictionary[bcp], collection,number,fileName)
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
@@ -218,12 +220,12 @@ dfNoLarge = pd.DataFrame.from_dict(noLargeDict,orient='index',columns=['File Pat
 dfNoLarge.index.name = 'Image File Name'
 dfNoLarge.to_csv(os.path.join(outFolder,(portalName+"_noLargeImages.csv")),sep=",")
 
-dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['File Path'])
-dfNoImage.index.name = 'Image File Name'
+dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['Portal'])
+dfNoImage.index.name = 'Barcode'
 dfNoImage.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
 # {filename:[barcode,portal,newpath,newlargepath]}
-dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['Barcode','Portal','File Path','Long Path'])
+dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['Barcode','Portal','File Path'])
 dfFilesMoved.index.name = 'Image File Name'
 dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep=",")
 

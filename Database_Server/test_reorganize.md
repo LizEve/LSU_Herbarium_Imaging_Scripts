@@ -122,6 +122,7 @@ LSU00077777 - no large
 NO0110111 - no large
 NO0022022 - no large
 NO0033003 - no large
+
 LSU00022222
 LSU00000033
 NLU0058322
@@ -161,3 +162,59 @@ To Do:
 
 Reset 
 `rm -rf data_storage_fake/nfsshare/vascular/`
+
+`python2.7 Database_Server/ReOrganizeFiles.py`
+
+## Results 2
+### Corrupt
+NLU0043454.JPG, +
+Yay worked
+
+### No Large
+LSU00000044.JPG, +
+LSU00000033.JPG, -
+LSU00077777.JPG, +
+NLU0043454.JPG, -
+LSU00022222.JPG, -
+NO0033003.JPG, +
+NO0022022.JPG, +
+NO0110111.JPG, +
+NLU0058322.JPG, -
+
+None of the larges seem to be moving
+
+### No Images
+LSU00099999,vascular +
+LSU00066666,vascular +
+NO0055055,vascular +
+Yay worked
+
+### Files Moved
+|File|barcode|portal|newpath|
+|-|-|-|-|
+|LSU00000044.JPG|LSU00000044|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/LSU/00/000/LSU00000044.JPG|
+|LSU00000033.JPG|LSU00000033|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/LSU/00/000/LSU00000033.JPG|
+|LSU00077777.JPG|LSU00077777|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/LSU/00/077/LSU00077777.JPG|
+|NLU0043454.JPG|NLU0043454|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/NLU/0/043/NLU0043454.JPG|
+|LSU00022222.JPG|LSU00022222|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/LSU/00/022/LSU00022222.JPG|
+|NO0033003.JPG|NO0033003|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/NO/0/033/NO0033003.JPG|
+|NO0022022.JPG|NO0022022|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/NO/0/022/NO0022022.JPG|
+|NO0110111.JPG|NO0110111|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/NO/0/110/NO0110111.JPG|
+|NLU0058322.JPG|NLU0058322|vascular|/home/gmount1/data_storage_fake/nfsshare/vascular/NLU/0/058/NLU0058322.JPG|
+
+Should move
+NLU0043454 - corrupted
+LSU00000044 - no large
+LSU00077777 - no large
+NO0110111 - no large
+NO0022022 - no large
+NO0033003 - no large
+
+LSU00022222
+LSU00000033
+NLU0058322
+
+## Changes 1
+- Fix large files moving issue. 
+- print # files in occurances, and # files moved, # files no image, # files corrupted, # files no large. 
+
