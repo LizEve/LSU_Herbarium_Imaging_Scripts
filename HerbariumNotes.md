@@ -1,15 +1,16 @@
 # To Do:
 
 
-
 cbfla
-- set up rsync cron job for synology backup and zip of server info
++ set up rsync cron job for synology backup and zip of server info
 - reorganize script
     - test on server in my home folder
+        - NO has CR files. that are getting flagged as corrupt
     - test in LaCie
-    - output csv for all different files with issues- corrupted, no image.
+    + output csv for all different files with issues- corrupted, no image.
 - script for collecting all leftover files with no portal, make list after all portals have been moved.
-- script to make large files for all 
+- script to make large files for all (someone else might help with this)
+- need to upgrade. will break all current access, need to reaccess with passwords. 
 
 compare / record
 - barcodes/files on lacie drives to cbfla 
@@ -49,6 +50,14 @@ Questions:
 - box for CR, store directly from LaCie 
 - ask eric about cycling drives, do we need more? 
 - make notes about everything. records. 
+
+
+# sudo commands
+`su` = **S**witch **U**ser
+`sudo su -` = switch shell, go to roots home dir and env
+`su gmount1` = switch back to gmount
+More here: <https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used>
+
 
 
 # Host monster

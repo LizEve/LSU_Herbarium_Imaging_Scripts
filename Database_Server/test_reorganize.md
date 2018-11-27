@@ -64,11 +64,99 @@ rm /home/gmount1/data_storage_fake/nfsshare/no/vas_plants/0/3/30/3/*_l*
 ## Occurance file
 
 occurrencesfakecbfla.csv
-NOT in portal list: LSU00000088, LSU00000055, NO0044004
-NO image: LSU00066666, LSU00099999, NO0055055
-NO large: LSU00000044, LSU00077777, all NO images  
-corrupt: NLU0043454
+**Not** in portal list: LSU00000088, LSU00000055, NO0044004
+**No** image: LSU00066666, LSU00099999, NO0055055
+**No** large: LSU00000044, LSU00077777, all NO images  
+**corrupt**: NLU0043454
 
 ## Copy files to cbfla
 
 `rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/Scripts/Database_Server gmount1@cyberflora.lsu.edu:/home/gmount1/`
+
+# Errors in running ReOrganizeFiles.py
+
+**ImportError: No module named pathlib2**
+
+```bash
+python2.7 Database_Server/ReOrganizeFiles.py
+<https://www.tecmint.com/install-pip-in-linux/>
+#sudo
+yum install epel-release
+yum install python-pip
+pip install pathlib2
+pip install --upgrade setuptools
+pip install Pillow
+# broken
+ImportError: No module named sysconfig
+```
+
+Long talk with Eric, ended up installing python2.7 locally in his home dir. I can call it using python2.7. Associated pip with this python. Will specifically call this python for everything. Need to sudo to install python packages via pip. 
+
+```bash
+sudo su 
+python2.7 -m pip install
+su gmount1
+```
+
+```bash
+python2.7 -m pip install pandas
+```
+
+## Results
+
+### Files
+
+Should not move
+LSU00066666 - no image
+LSU00099999 - no image
+NO0055055 - no image
+NO0044004 - not listed
+LSU00000055 - not listed
+LSU00000088 - not listed
+
+Should move
+NLU0043454 - corrupted
+LSU00000044 - no large
+LSU00077777 - no large
+NO0110111 - no large
+NO0022022 - no large
+NO0033003 - no large
+LSU00022222
+LSU00000033
+NLU0058322
+
+**Not** in portal list: LSU00000088, LSU00000055, NO0044004
+**No** image: LSU00066666, LSU00099999, NO0055055
+**No** large: LSU00000044, LSU00077777, all NO images  
+**corrupt**: NLU0043454
+
+
+## Results 1
+### Corrupt
+NO0033003.CR2,
+NLU0043454.JPG,
+NO0022022.CR2,
+NO0110111.CR2,
+Notes: CR files looks fine 
+<http://images.cyberfloralouisiana.com/images/specimensheets/no/vas_plants/0/4/40/4/NO0044004.CR2>
+
+### No Large
+Notes: Same as corrupt output. I think the CR files messed with the barcode dictionary. 
+
+### No Images
+Notes: also same, as other two. may have an output issue
+
+### Check LSU folder
+all the listed files 
+
+## Changes 1
+To Do:
+- add CR2 to "no" list of file names w s, m, etc. 
+- check output lists 
+- `data_storage_fake/nfsshare/vascular/vascular/` one too many vasculars
+- no large files got moved
+- add more print statements for each step
+  
+
+Reset 
+`rm -rf data_storage_fake/nfsshare/vascular/`
