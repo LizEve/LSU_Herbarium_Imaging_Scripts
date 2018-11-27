@@ -12,12 +12,12 @@ def oldPathDict(roots):
     Get dictionary of all files we want to transfer
     Input- root directory
     Output- dictionary of barcode: [list of absolute paths to all files with barcode]
-    Details- does not move any txt, _l, _m, _s files. Does not specify file extension
+    Details- does not move any txt, _l, _m, _s, CR2 files. Does not specify file extension
     <https://stackoverflow.com/questions/2909975/python-list-directory-subdirectory-and-files>
     '''
     oldPathList=[]
     oldPathDictionary={}
-    unwanted=["_m","_s","txt","_l"]
+    unwanted=["_m","_s","txt","_l","CR2"]
     for root in roots:
         for path, subdirs, files in os.walk(root):
             # Ignore hidden directories as files, those that start with "."
@@ -178,8 +178,8 @@ portalName="vascular"
 colName="catalogNumber"
 
 # Specify full path of the new parent folder for images
-#newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsuNEW/'
-newRoot='/home/gmount1/data_storage_fake/nfsshare/vascular/'
+#newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/'
+newRoot='/home/gmount1/data_storage_fake/nfsshare/'
 
 # Specify full path of current parent folder of images
 #rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
@@ -216,12 +216,15 @@ dfBad.to_csv(os.path.join(outFolder,(portalName+"_corruptImages.csv")),sep=",")
 
 dfNoLarge = pd.DataFrame.from_dict(noLargeDict,orient='index',columns=['File Path'])
 dfNoLarge.index.name = 'Image File Name'
-dfBad.to_csv(os.path.join(outFolder,(portalName+"_noLargeImages.csv")),sep=",")
+dfNoLarge.to_csv(os.path.join(outFolder,(portalName+"_noLargeImages.csv")),sep=",")
 
 dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['File Path'])
 dfNoImage.index.name = 'Image File Name'
-dfBad.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
+dfNoImage.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
+dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['File Path'])
+dfFilesMoved.index.name = 'Image File Name'
+dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep=",")
 
 
 #print(oldPathDictionary)

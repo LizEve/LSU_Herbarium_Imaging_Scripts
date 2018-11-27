@@ -151,8 +151,8 @@ all the listed files
 
 ## Changes 1
 To Do:
-- add CR2 to "no" list of file names w s, m, etc. 
-- check output lists 
++ add CR2 to "no" list of file names w s, m, etc. 
++ check output lists 
 - `data_storage_fake/nfsshare/vascular/vascular/` one too many vasculars
 - no large files got moved
 - add more print statements for each step
