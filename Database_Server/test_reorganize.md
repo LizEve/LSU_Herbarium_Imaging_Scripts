@@ -73,12 +73,11 @@ occurrencesfakecbfla.csv
 
 `rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/Scripts/Database_Server gmount1@cyberflora.lsu.edu:/home/gmount1/`
 
-# Errors in running ReOrganizeFiles.py
+# Import python packages
 
 **ImportError: No module named pathlib2**
 
 ```bash
-python2.7 Database_Server/ReOrganizeFiles.py
 <https://www.tecmint.com/install-pip-in-linux/>
 #sudo
 yum install epel-release
@@ -103,6 +102,8 @@ python2.7 -m pip install pandas
 ```
 
 ## Results
+
+`python2.7 Database_Server/ReOrganizeFiles.py`
 
 ### Files
 

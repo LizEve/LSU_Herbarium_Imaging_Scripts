@@ -222,7 +222,8 @@ dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['F
 dfNoImage.index.name = 'Image File Name'
 dfNoImage.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
-dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['File Path'])
+# {filename:[barcode,portal,newpath,newlargepath]}
+dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['Barcode','Portal','File Path','Long Path'])
 dfFilesMoved.index.name = 'Image File Name'
 dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep=",")
 

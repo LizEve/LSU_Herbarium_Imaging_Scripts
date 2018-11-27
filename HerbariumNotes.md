@@ -1,5 +1,6 @@
 # To Do:
 
+- collect extra disc drives floating around and give to eric. 
 
 cbfla
 + set up rsync cron job for synology backup and zip of server info
