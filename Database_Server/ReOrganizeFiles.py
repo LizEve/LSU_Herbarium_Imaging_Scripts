@@ -195,20 +195,19 @@ filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDict
 
 # Create dictionary barcode:[files moved]
 bcMovedDict={}
-for key,value in filesMovedDict:
+for key in filesMovedDict:
     barcode=filesMovedDict[key][0]
     if barcode not in bcMovedDict:
         bcMovedDict[barcode]=[key]
     elif barcode in bcMovedDict:
        bcMovedDict[barcode]=[key]+bcMovedDict[barcode]
 
-# Get dictionary of images with issues. corruptImageDict[image name]=newimagepath
-corruptImageDict = corruptImageFinder(newPathList)
-
 
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
 
+# Get dictionary of images with issues. corruptImageDict[image name]=newimagepath
+corruptImageDict = corruptImageFinder(newPathList)
 
 # Output info in csv files
 # corruptImageDict[image name]= new image path
@@ -237,4 +236,10 @@ bcMoved=len(bcMovedDict)
 # Number of barcodes with no image file
 noImage=len(barcodeNoImageDict)
 # If a != b + c raise error 
-print(occurances,bcMoved,noImage)
+amberAlert=occurances-(bcMoved+noImage)
+print('Moving files for '+str(portalName)+' poral')
+print('Portal barcodes: '+str(occurances))
+print('Relocated barcodes: '+str(bcMoved))
+print('No image barcodes: '+str(noImage))
+print('Unaccounted for barcodes: '+str(amberAlert))
+

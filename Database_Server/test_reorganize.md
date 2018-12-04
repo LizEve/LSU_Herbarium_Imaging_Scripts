@@ -234,3 +234,5 @@ Reset
 `rm -rf data_storage_fake/nfsshare/vascular/`
 
 `python2.7 Database_Server/ReOrganizeFiles.py`
+
+`rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/Scripts/Database_Server gmount1@cyberflora.lsu.edu:/home/gmount1/`
