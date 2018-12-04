@@ -80,16 +80,14 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName.upper())
     # Get directory path to check if folders need to be created
     newDir=os.path.dirname(newPath)
-    #oldLarge=os.path.join(os.path.dirname(oldPath),largeFile_low)
-    #newLarge=os.path.join(newDir,largeFile_up)
-    oldLarge=os.path.join(os.path.dirname(oldPath),largeFile)
-    newLarge=os.path.join(newDir,largeFile_up)
-    print(oldLarge)
-    print(newLarge)
+    oldLargePath=os.path.join(os.path.dirname(oldPath),largeFile)
+    newLargePath=os.path.join(newDir,largeFile_up)
+    print(oldLargePath)
+    print(newLargePath)
     #print(bcp,portalDictionary[bcp], collection,number,fileName)   
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
-    return newDir,newPath,oldLarge,newLarge,fileName.upper()
+    return newDir,newPath,oldLargePath,newLargePath,fileName.upper()
 
 def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     '''
@@ -115,17 +113,17 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
             # Iterate through all image files associated with barcode
             for oldPaths in oldDictionary_BCcaps[bcp]:
                 for oldPath in [oldPaths]:
-                    newDir,newPath,oldLarge,newLarge,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
+                    newDir,newPath,oldLargePath,newLargePath,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
                     if not os.path.exists(newPath):
                         pathlib.Path(newDir).mkdir(parents=True, exist_ok=True)
                         shutil.copy2(oldPath,newPath)
                         #os.rename(oldPath,newPath)
                         filesMovedDict[fileName]=[bcp,portalName,newPath]
                         try:
-                            shutil.copy2(oldLarge,newLarge)
+                            shutil.copy2(oldLargePath,newLargePath)
                             #os.rename(oldPath,newPath)
                         except:
-                            noLargeDict[fileName]=newLarge
+                            noLargeDict[fileName]=newLargePath
         # If barcode has no image files
         elif bcp not in oldPathDictionary:
             # keep track of specify records with no image file. barcode:portal
@@ -146,7 +144,7 @@ def dictToBigList(filesMovedDict):
 def corruptImageFinder(allFilesList):
     '''
     Takes list of all absolute paths to files. Checks for image, and corruption. 
-    Returns list of non image files, and list of corrupt image files
+    Returns a dictionary of file name: file path. for all corrupted/non image files
     '''
     # Dictionary of files that cannot open as an image
     notImageDict={}
@@ -195,7 +193,7 @@ rootNO = '/home/gmount1/data_storage_fake/nfsshare/no/'
 rootNLU = '/home/gmount1/data_storage_fake/nfsshare/nlu/'
 oldRoots = [rootLSU,rootNO,rootNLU]
 
-# Get dictionary of current image paths for each barcode
+# Get dictionary of current image paths, organized by barcode
 # barcode:[filepath1,...filepathN]
 oldPathDictionary=oldPathDict(oldRoots)
 
@@ -207,10 +205,15 @@ portalDictionary=portalDict(occurrencesFile,portalName,colName)
 # Move files and keep track of files that were moved, and barcodes that don't have images 
 filesMovedDict,barcodeNoImageDict,noLargeDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
 
+filesMovedDict[fileName]=[bcp,portalName,newPath]
+noLargeDict[fileName]=newLargePath
+barcodeNoImageDict[bcp]=portalDictionary[bcp]
+
+
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
 
-# Get lists of images with issues
+# Get dictionary of images with issues. image name: image path
 corruptImageDict = corruptImageFinder(newPathList)
 
 # Output Lists!! 
@@ -234,3 +237,5 @@ dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep="
 
 
 #print(oldPathDictionary)
+# Number of barcodes in portal occurances.csv
+len(portalDictionary)

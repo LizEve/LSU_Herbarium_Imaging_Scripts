@@ -224,3 +224,9 @@ NLU0058322
 
 - updating output
 - print # files in occurances, and # files moved, # files no image, # files corrupted, # files no large. 
+
+
+Reset 
+`rm -rf data_storage_fake/nfsshare/vascular/`
+
+`python2.7 Database_Server/ReOrganizeFiles.py`
