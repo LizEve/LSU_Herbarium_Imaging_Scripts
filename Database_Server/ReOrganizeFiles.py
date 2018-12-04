@@ -198,25 +198,23 @@ oldRoots = [rootLSU,rootNO,rootNLU]
 oldPathDictionary=oldPathDict(oldRoots)
 
 # Get dictionary of barcodes and their portal
-# barcode:portal
+# portalDictionary[barcode]=portal
 portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
 
 # Move files and keep track of files that were moved, and barcodes that don't have images 
 filesMovedDict,barcodeNoImageDict,noLargeDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
 
-filesMovedDict[fileName]=[bcp,portalName,newPath]
-noLargeDict[fileName]=newLargePath
-barcodeNoImageDict[bcp]=portalDictionary[bcp]
-
-
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
 
-# Get dictionary of images with issues. image name: image path
+# Get dictionary of images with issues. corruptImageDict[image name]=image path
 corruptImageDict = corruptImageFinder(newPathList)
 
-# Output Lists!! 
+# Output info in csv files
+# corruptImageDict[image name]=image path
+# barcodeNoImageDict[bcp]=portal
+# noLargeDict[fileName]=newLargePath
 
 dfBad = pd.DataFrame.from_dict(corruptImageDict,orient='index',columns=['File Path'])
 dfBad.index.name = 'Image File Name'

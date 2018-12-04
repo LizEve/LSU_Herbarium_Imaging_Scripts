@@ -225,6 +225,10 @@ NLU0058322
 - updating output
 - print # files in occurances, and # files moved, # files no image, # files corrupted, # files no large. 
 
+want
+- numbers that will add up and make sense
+- occurances vs moved files
+    - count original images only not large
 
 Reset 
 `rm -rf data_storage_fake/nfsshare/vascular/`
