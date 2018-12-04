@@ -30,13 +30,12 @@ def oldPathDict(roots):
                 else:
                     oldPath=os.path.join(path,name)
                     oldPathList.append(oldPath)
-    #turn this info into dictionary barcode:all filepaths with barcode
+    #turn this info into dictionary
     for oldPath in oldPathList:
-        # Get file name and barcode
+        # Get file name 
         fileName=oldPath.split("/")[-1]
         barcode=fileName.split(".")[0].split("_")[0]
         #print barcode
-        # if barcode isnt in the dictionary, add it with file, if it is, add any extra files. 
         if barcode not in oldPathDictionary:
             oldPathDictionary[barcode]=[oldPath]
         elif barcode in oldPathDictionary:
@@ -62,9 +61,13 @@ def portalDict(occurrencesFile,portalName,colName="catalogNumber"):
 def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     '''
     Use old path to image, and portal to create a new path to place images. 
+    Makes an old and new path to a large (_l) image for each image. Does not confirm existance of this _l file. 
     '''
     # Grab name of file, collection (lsu,no,etc), numerical part of barcode, portal
     fileName=oldPath.split("/")[-1]
+    #largeFile_low=fileName.split(".")[0].lower()+"_l."+fileName.split(".")[1].lower()
+    largeFile_up=fileName.split(".")[0].upper()+"_l."+fileName.split(".")[1].upper()
+    largeFile=fileName.split(".")[0]+"_l."+fileName.split(".")[1]
     collection=barcodeSplit[0]
     number=barcodeSplit[1]
     # Split apart barcode number to create new file path
@@ -77,24 +80,30 @@ def newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName):
     newPath=os.path.join(newRoot,portalName,collection,firstFolder,secondFolder,fileName.upper())
     # Get directory path to check if folders need to be created
     newDir=os.path.dirname(newPath)
+    oldLargePath=os.path.join(os.path.dirname(oldPath),largeFile)
+    newLargePath=os.path.join(newDir,largeFile_up)
+    print(oldLargePath)
+    print(newLargePath)
     #print(bcp,portalDictionary[bcp], collection,number,fileName)   
     #print(len(number),number,firstFolder,secondFolder,lastThree)
     # If file does not exist. Create path if needed. Then move/copy file to new destination
-    return newDir,newPath,fileName.upper()
+    return newDir,newPath,oldLargePath,newLargePath,fileName.upper()
 
 def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
     '''
     Organizes files based on barcode and portal. 
     Input - New parent folder. Dictionary of old paths. Dictionary of barcodes and their portal
-    Output - Dictionary of files moved {filename:[barcode,portal,newpath]}. 
+    Output - Dictionary of files moved {filename:[barcode,portal,newpath,newlargepath]}. 
     Dictionary of barcodes with no image {barcode:portal}
     '''
     # Make all keys(barcodes) into uppercase. values(list of paths) will stay as is. 
     oldDictionary_BCcaps = dict((k.upper(), v) for k, v in oldPathDictionary.items())
-    # filename:[barcode,portal,newpath]
+    # filename:[barcode,portal,newpath,newlargepath]
     filesMovedDict={}
     # barcode:portal
     barcodeNoImageDict={}
+    # files that need a large image made 
+    noLargeDict={}
     # Iterate through barcodes that are in the portal database
     for bcp in portalDictionary:
         # If barcode has image files... 
@@ -104,17 +113,22 @@ def moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName):
             # Iterate through all image files associated with barcode
             for oldPaths in oldDictionary_BCcaps[bcp]:
                 for oldPath in [oldPaths]:
-                    newDir,newPath,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
+                    newDir,newPath,oldLargePath,newLargePath,fileName=newPathNames(bcp,oldPath,barcodeSplit,portalDictionary,portalName)
                     if not os.path.exists(newPath):
                         pathlib.Path(newDir).mkdir(parents=True, exist_ok=True)
                         shutil.copy2(oldPath,newPath)
                         #os.rename(oldPath,newPath)
                         filesMovedDict[fileName]=[bcp,portalName,newPath]
+                        try:
+                            shutil.copy2(oldLargePath,newLargePath)
+                            #os.rename(oldPath,newPath)
+                        except:
+                            noLargeDict[fileName]=newLargePath
         # If barcode has no image files
         elif bcp not in oldPathDictionary:
             # keep track of specify records with no image file. barcode:portal
             barcodeNoImageDict[bcp]=portalDictionary[bcp]
-    return filesMovedDict,barcodeNoImageDict
+    return filesMovedDict,barcodeNoImageDict,noLargeDict
 
 
 def dictToBigList(filesMovedDict):
@@ -189,7 +203,7 @@ portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
 
 # Move files and keep track of files that were moved, and barcodes that don't have images 
-filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
+filesMovedDict,barcodeNoImageDict,noLargeDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
 
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
@@ -200,17 +214,21 @@ corruptImageDict = corruptImageFinder(newPathList)
 # Output info in csv files
 # corruptImageDict[image name]=image path
 # barcodeNoImageDict[bcp]=portal
+# noLargeDict[fileName]=newLargePath
 
 dfBad = pd.DataFrame.from_dict(corruptImageDict,orient='index',columns=['File Path'])
 dfBad.index.name = 'Image File Name'
 dfBad.to_csv(os.path.join(outFolder,(portalName+"_corruptImages.csv")),sep=",")
 
+dfNoLarge = pd.DataFrame.from_dict(noLargeDict,orient='index',columns=['File Path'])
+dfNoLarge.index.name = 'Image File Name'
+dfNoLarge.to_csv(os.path.join(outFolder,(portalName+"_noLargeImages.csv")),sep=",")
 
 dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['Portal'])
 dfNoImage.index.name = 'Barcode'
 dfNoImage.to_csv(os.path.join(outFolder,(portalName+"_noImages.csv")),sep=",")
 
-# {filename:[barcode,portal,newpath]}
+# {filename:[barcode,portal,newpath,newlargepath]}
 dfFilesMoved = pd.DataFrame.from_dict(filesMovedDict,orient='index',columns=['Barcode','Portal','File Path'])
 dfFilesMoved.index.name = 'Image File Name'
 dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep=",")
@@ -219,5 +237,3 @@ dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep="
 #print(oldPathDictionary)
 # Number of barcodes in portal occurances.csv
 len(portalDictionary)
-# Number of barcodes in all files
-len(oldPathDictionary)
