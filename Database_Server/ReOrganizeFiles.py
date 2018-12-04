@@ -189,22 +189,35 @@ portalDictionary=portalDict(occurrencesFile,portalName,colName)
 
 
 # Move files and keep track of files that were moved, and barcodes that don't have images 
+# barcodeNoImageDict[bcp]=portal
+# filesMovedDict[filename]=[barcode,portal,newpath]
 filesMovedDict,barcodeNoImageDict=moveFiles(newRoot,oldPathDictionary,portalDictionary,portalName)
+
+# Create dictionary barcode:[files moved]
+bcMovedDict={}
+for key,value in filesMovedDict:
+    barcode=filesMovedDict[key][0]
+    if barcode not in bcMovedDict:
+        bcMovedDict[barcode]=[key]
+    elif barcode in bcMovedDict:
+       bcMovedDict[barcode]=[key]+bcMovedDict[barcode]
+
+# Get dictionary of images with issues. corruptImageDict[image name]=newimagepath
+corruptImageDict = corruptImageFinder(newPathList)
+
 
 # Get list of all new image paths
 newPathList = dictToBigList(filesMovedDict)
 
-# Get dictionary of images with issues. corruptImageDict[image name]=image path
-corruptImageDict = corruptImageFinder(newPathList)
 
 # Output info in csv files
-# corruptImageDict[image name]=image path
+# corruptImageDict[image name]= new image path
 # barcodeNoImageDict[bcp]=portal
+# filesMovedDict[filename]=[barcode,portal,newpath]
 
 dfBad = pd.DataFrame.from_dict(corruptImageDict,orient='index',columns=['File Path'])
 dfBad.index.name = 'Image File Name'
 dfBad.to_csv(os.path.join(outFolder,(portalName+"_corruptImages.csv")),sep=",")
-
 
 dfNoImage = pd.DataFrame.from_dict(barcodeNoImageDict,orient='index',columns=['Portal'])
 dfNoImage.index.name = 'Barcode'
@@ -216,8 +229,12 @@ dfFilesMoved.index.name = 'Image File Name'
 dfFilesMoved.to_csv(os.path.join(outFolder,(portalName+"_filesMoved.csv")),sep=",")
 
 
-#print(oldPathDictionary)
+
 # Number of barcodes in portal occurances.csv
-len(portalDictionary)
-# Number of barcodes in all files
-len(oldPathDictionary)
+occurances=len(portalDictionary)
+# Number of barcodes moved
+bcMoved=len(bcMovedDict)
+# Number of barcodes with no image file
+noImage=len(barcodeNoImageDict)
+# If a != b + c raise error 
+print(occurances,bcMoved,noImage)
