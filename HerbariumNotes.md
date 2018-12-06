@@ -8,11 +8,10 @@ cbfla
 + reorganize script
     + test on server in my home folder
         + NO has CR files. that are getting flagged as corrupt
-    - test in LaCie
-        - are 
+    + test in LaCie
     + output csv for all different files with issues- corrupted, no image.
-- figure out running python on windows
-- set up test folders on windows machine. 
++ figure out running python on windows
++ set up test folders on windows machine. 
 - 
 
 
