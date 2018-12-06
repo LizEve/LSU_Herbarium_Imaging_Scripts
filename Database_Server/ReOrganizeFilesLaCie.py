@@ -232,7 +232,7 @@ bcMoved=len(bcMovedDict)
 noImage=len(barcodeNoImageDict)
 # If a != b + c raise error 
 amberAlert=occurances-(bcMoved+noImage)
-print('Moving files for '+str(portalName)+' poral')
+print('Moving files for '+str(portalName)+' portal')
 print('Portal barcodes: '+str(occurances))
 print('Relocated barcodes: '+str(bcMoved))
 print('No image barcodes: '+str(noImage))

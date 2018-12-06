@@ -1,6 +1,7 @@
 # To Do:
 
 - collect extra disc drives floating around and give to eric. 
+- are we keeping CR files on LaCie or just on box? 
 
 cbfla
 + set up rsync cron job for synology backup and zip of server info
@@ -8,6 +9,7 @@ cbfla
     + test on server in my home folder
         + NO has CR files. that are getting flagged as corrupt
     - test in LaCie
+        - are 
     + output csv for all different files with issues- corrupted, no image.
 - figure out running python on windows
 - set up test folders on windows machine. 

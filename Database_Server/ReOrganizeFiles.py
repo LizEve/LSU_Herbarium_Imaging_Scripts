@@ -157,23 +157,28 @@ def corruptImageFinder(allFilesList):
 
 # Specify full path to folder for output lists
 #outFolder='/Users/ChatNoir/Projects/HerbariumRA/'
+#outFolder='/mnt/c/Users/image/Desktop/gmount/'
 outFolder='/home/gmount1/'
 
 # Specify full path to DwC-A occurences.csv file downloaded from portal, name of portal, column name for barcodes in occurences.csv
 #occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/LSU-Bryophytes_backup_2018-10-01_115050_DwC-A/occurrencesfake.csv"
 #portalName="bryophyte"
+#occurrencesFile="/mnt/c/Users/image/Desktop/gmount/HerbariumRA/Database_Server/occurrencesfakeLaCie.csv"
 occurrencesFile="/home/gmount1/Database_Server/occurrencesfakecbfla.csv"
 portalName="vascular"
 colName="catalogNumber"
 
 # Specify full path of the new parent folder for images
 #newRoot='/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/'
+#newRoot='/mnt/c/Users/image/Desktop/gmount/output_fake/'
 newRoot='/home/gmount1/data_storage_fake/nfsshare/'
 
 # Specify full path of current parent folder of images
 #rootLSU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/lsu/'
 #rootNO = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/no/'
 #rootNLU = '/Users/ChatNoir/Projects/HerbariumRA/data_storage_fake/nfsshare/nlu/'
+#rootLSU = '/mnt/c/Users/image/Desktop/gmount/output_fake/LSU/'
+#oldRoots = [rootLSU]
 rootLSU = '/home/gmount1/data_storage_fake/nfsshare/lsu/'
 rootNO = '/home/gmount1/data_storage_fake/nfsshare/no/'
 rootNLU = '/home/gmount1/data_storage_fake/nfsshare/nlu/'
@@ -237,7 +242,7 @@ bcMoved=len(bcMovedDict)
 noImage=len(barcodeNoImageDict)
 # If a != b + c raise error 
 amberAlert=occurances-(bcMoved+noImage)
-print('Moving files for '+str(portalName)+' poral')
+print('Moving files for '+str(portalName)+' portal')
 print('Portal barcodes: '+str(occurances))
 print('Relocated barcodes: '+str(bcMoved))
 print('No image barcodes: '+str(noImage))
