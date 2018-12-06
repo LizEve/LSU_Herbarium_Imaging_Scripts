@@ -46,10 +46,12 @@ def oldPathDict(roots):
     return oldPathDictionary
 
 
-rootLSU = '/mnt/c/Users/image/Desktop/gmount/output_fake/LSU/'
+#rootLSU = '/mnt/c/Users/image/Desktop/gmount/output_fake/LSU/'
+rootLSU = '/mnt/j/CFLA-LSU-Station2/images/output/LSU/'
 oldRoots = [rootLSU]
 oldPathDictionary=oldPathDict(oldRoots)
-
+portalName = 'Vascular_LaCie'
+outFolder = '/mnt/c/Users/image/Desktop/gmount/'
 # {filename:[barcode,portal,newpath]}
 dfFiles = pd.DataFrame.from_dict(oldPathDictionary,orient='index',columns=['File Name'])
 dfFiles.index.name = 'Barcode'
