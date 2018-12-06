@@ -17,7 +17,7 @@ def oldPathDict(roots):
     '''
     oldPathList=[]
     oldPathDictionary={}
-    unwanted=["_m","_s","txt","_l","jpg"]
+    unwanted=["_m","_s","txt","_l","jpg","JPG"]
     for root in roots:
         for path, subdirs, files in os.walk(root):
             # Ignore hidden directories as files, those that start with "."
@@ -52,7 +52,7 @@ oldRoots = [rootLSU]
 oldPathDictionary=oldPathDict(oldRoots)
 portalName = 'Vascular_LaCie'
 outFolder = '/mnt/c/Users/image/Desktop/gmount/'
-# {filename:[barcode,portal,newpath]}
-dfFiles = pd.DataFrame.from_dict(oldPathDictionary,orient='index',columns=['File Name'])
+
+dfFiles = pd.DataFrame.from_dict(oldPathDictionary,orient='index')
 dfFiles.index.name = 'Barcode'
 dfFiles.to_csv(os.path.join(outFolder,(portalName+"_files.csv")),sep=",")
