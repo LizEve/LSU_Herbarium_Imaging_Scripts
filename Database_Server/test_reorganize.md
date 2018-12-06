@@ -236,3 +236,91 @@ Reset
 `python2.7 Database_Server/ReOrganizeFiles.py`
 
 `rsync -avzure ssh --stats --progress /Users/ChatNoir/Projects/HerbariumRA/Scripts/Database_Server gmount1@cyberflora.lsu.edu:/home/gmount1/`
+
+
+# Test on workstations 
+
+## Workstation general folders
+
+**Vasc plant workstation** - windows 10
+
+I think most everything is in `CFLA-LSU-Station2/images/output/LSU/`
+
+```bash
+CFLA-LSU-Station2/
+    images/
+        output/
+            LSU/
+        output-algaeLSU/
+        output-calea # ??? no idea what this is. lots of files, not organized
+        output-lichens/
+            LSU/
+        output-types/
+            LSU/
+            NO/
+```
+
+**Lichen/Bryophtye/etc** - windows 7
+
+```bash
+CFLA-IS-LSU/
+    Bryophyte/
+        output/LSU/
+        backup/ # appears to be backup from 9/24-25/2012
+    CyberFlora LSU Images/
+        output/LSU/ # a bunch of images organized. 
+    Fungi/
+        output/LSU/ 
+    Lichens/
+        output/LSU/
+    Old LSU Images/
+        JPG/ # 15,091 jpgs 
+        CR/ 19k cr2s
+    Station1/ # a few random files
+    tmp/ # 269 jpgs from 2011-2010
+```
+
+## Installing and testing ubuntu and python on vasc workstation2
+
+<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
+
+Right click and enable powershell as administrator. 
+`Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
+restart computer
+
+UNIX username: image
+UNIX password: image
+
+### Python packages
+
+import pathlib2
+import PIL
+import pandas
+
+```bash
+sudo apt-get update
+sudo apt-get install python3-pip
+pip3 install pandas
+pip3 install pathlib2
+pip3 install Pillow
+```
+
+## Make test files on vasc workstation
+
+```bash
+cd /mnt/c/Users/image/Desktop/gmount
+mnt/j/CFLA-LSU-Station2/images/output/LSU/0/
+
+mkdir -p /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/0/22/77/
+cp mnt/j/CFLA-LSU-Station2/images/output/LSU/0/0/22/77/* /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/0/22/77/
+
+mkdir -p /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/11/33/55/
+cp mnt/j/CFLA-LSU-Station2/images/output/LSU/0/11/33/55/LSU0113355* /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/11/33/55/
+
+mkdir -p /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/2/22/22/
+cp mnt/j/CFLA-LSU-Station2/images/output/LSU/0/2/22/22/* /mnt/c/Users/image/Desktop/gmount/output_fake/LSU/0/2/22/22/
+
+```
+
+write script to copy a bunch of files to a test folder (use same files as on cbfla)
+make up a csv file - should be same as before

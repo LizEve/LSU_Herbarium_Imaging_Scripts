@@ -4,13 +4,17 @@
 
 cbfla
 + set up rsync cron job for synology backup and zip of server info
-- reorganize script
-    - test on server in my home folder
-        - NO has CR files. that are getting flagged as corrupt
++ reorganize script
+    + test on server in my home folder
+        + NO has CR files. that are getting flagged as corrupt
     - test in LaCie
     + output csv for all different files with issues- corrupted, no image.
+- figure out running python on windows
+- set up test folders on windows machine. 
+- 
+
+
 - script for collecting all leftover files with no portal, make list after all portals have been moved.
-- script to make large files for all (someone else might help with this)
 - need to upgrade. will break all current access, need to reaccess with passwords. 
 
 compare / record
