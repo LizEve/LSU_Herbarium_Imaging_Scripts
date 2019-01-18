@@ -1,5 +1,13 @@
 ## Cron jobs:
 
+```bash
+20 2 * * * /bin/sh /home/gmount1/backup_to_synology.sh &>> /home/gmount1/backup_to_synology.log
+45 23 * * * /bin/sh /home/gmount1/Move_incoming_log.sh &>> /home/gmount1/Move_incoming_log.log
+59 23 * * * /usr/bin/python /home/gmount1/CyberFloraPatch.py &>> /data_storage/nfsshare/incoming_logs_2018/Errors.log
+0 * * * * /bin/sh /home/gmount1/Move_incoming_files.sh &>> /home/gmount1/Move_incoming_files.log
+30 * * * * /bin/sh /home/gmount1/Move_incoming_files.sh &>> /home/gmount1/Move_incoming_files.log
+```
+
 http://www.adminschoice.com/crontab-quick-reference
 
 Crontab (CRON TABle) is a file which contains the schedule of cron entries to be run and at specified times.

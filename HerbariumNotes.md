@@ -1,7 +1,26 @@
-# To Do:
+# Spring
 
+Current incoming issues:
+1) Incoming folder, ask Eric
+   1) short term fix- unload every hour. 
+2) Incoming log dates, date imaged on computer. 
+   1) Count discrepancies
+Fix: go over logs and uploads
+    - print one log per day
+    - ask eric about incoming
+
+Original file archiving
+    - library?
+    - Download tulane originals to LaCie and upload to box. 
+
+Clean up server with jennie. 
+    - put extras on old drives to sit and die. 
+
+Put message on website
+
+
+# To Do:
 - collect extra disc drives floating around and give to eric. 
-- are we keeping CR files on LaCie or just on box? 
 
 cbfla
 + set up rsync cron job for synology backup and zip of server info
@@ -12,7 +31,10 @@ cbfla
     + output csv for all different files with issues- corrupted, no image.
 + figure out running python on windows
 + set up test folders on windows machine. 
-- 
+
+- figure out where to put CR files
+- compare cbfla files with lacie files 
+    - use this as a way to test out sqlite 
 
 
 - script for collecting all leftover files with no portal, make list after all portals have been moved.
