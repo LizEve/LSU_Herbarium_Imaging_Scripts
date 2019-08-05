@@ -51,7 +51,7 @@ def pathDict(roots,unwanted):
                     # Put into dictionary dict1
                     dict1[name]=[b,d,p]
     # Make dict 2
-    for key,value in dict1:
+    for key,value in dict1.items():
         # Get barcode and path from list of values
         b=value[0]
         p=value[2]
@@ -65,10 +65,10 @@ def pathDict(roots,unwanted):
             print("This should never happen")
     return dict1,dict2
 
-def pklDictOut(outDict,outPath,outFileName)
+def pklDictOut(outDict,outPath,outFileName):
     # Output dictionaries into pkl files 
     outFile = open(os.path.join(outPath,outFileName+".pkl"),'wb')
-    pickle.dump(outDict,outPath)
+    pickle.dump(outDict,outFile)
     outFile.close()
 
 
@@ -90,8 +90,8 @@ def main():
     # Get dictionaries of files and barcodes 
     d1,d2=pathDict(lsa303Roots,unwanted)
     # Save dictionaries to pkl files
-    pklDictOut(d1,'lsa303_Aug05_1')
-    pklDictOut(d2,'lsa303_Aug05_2')
+    pklDictOut(d1,outFolder,'lsa303_Aug05_1')
+    pklDictOut(d2,outFolder,'lsa303_Aug05_2')
 
 
 if __name__ == "__main__":
