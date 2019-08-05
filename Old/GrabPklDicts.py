@@ -5,10 +5,8 @@ import pickle
 def pathDict(roots,outFolder,outPkl,unwanted):
     '''
     Get dictionary of all files we want to transfer
-    Input- root directory
+    Input- root directory, outfolder for pkl files, pkl file names, list of file extentions to ignore
     Output- dictionary of barcode: [list of absolute paths to all files with barcode]
-    Details- does not move any txt, _l, _m, _s, CR2 files. Does not specify file extension
-    <https://stackoverflow.com/questions/2909975/python-list-directory-subdirectory-and-files>
     '''
     oldPathList=[]
     oldPathDictionary={}
