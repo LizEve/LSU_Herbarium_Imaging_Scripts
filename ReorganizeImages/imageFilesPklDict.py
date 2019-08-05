@@ -73,32 +73,25 @@ def pklDictOut(outDict,outPath,outFileName)
 
 
 def main():
-    # Specify full path to folder for output lists
-    # Specify full path of current parent folder of images
-    outFolder1='/home/gmount1/'
-    rootLSU = '/data_storage/nfsshare/lsu/'
-    rootNO1 = '/data_storage/nfsshare/no/vas_plants/'
-    rootNO2 = '/data_storage/nfsshare/no/0/'
-    rootNLU = '/data_storage/nfsshare/nlu/'
-    rootLSUS = '/data_storage/nfsshare/lsus/'
-    cbflaRoots = [rootLSU,rootNO1,rootNO2,rootNLU,rootLSUS]
-    outPkl1 = 'cbfla_Jun07'
-    unwanted=["txt"]
-    d1,d2=pathDict(cbflaRoots,unwanted)
-    outFolder1,outPkl1
-
+    # Full path of current parent folders of images
     rootLSU = '/data/cbfla_backup/lsu/'
     rootNO1 = '/data/no/vas_plants/'
     rootNO2 = '/data/no/0/'
     rootNLU = '/data/nlu/'
     rootLSUS = '/data/lsus/'
-    lsa303Roots = [rootLSU,rootNO1,rootNO2,rootNLU,rootLSUS]
-    outFolder2='/home/ggmount/'
-    outPkl2 = 'lsa303_Jun07'
+    root1 = '/data/WorkStation1_backup/'  
+    root2 = '/data/WorkStation1_Computer/'  
+    root3 = '/data/WorkStation2_backup/'
+    lsa303Roots = [rootLSU,rootNO1,rootNO2,rootNLU,rootLSUS,root1, root2,root3]
+    # Full path to folder for output lists
+    outFolder='/home/ggmount/'
+    # List unwanted extensions
     unwanted=["txt","tmp","csv","zip"]
-    d3,d4=pathDict(lsa303Roots,unwanted)
-    pklDictOut(d3,)
-    outFolder2,outPkl2
+    # Get dictionaries of files and barcodes 
+    d1,d2=pathDict(lsa303Roots,unwanted)
+    # Save dictionaries to pkl files
+    pklDictOut(d1,'lsa303_Aug05_1')
+    pklDictOut(d2,'lsa303_Aug05_2')
 
 
 if __name__ == "__main__":
