@@ -8,6 +8,7 @@ def creation_date(path_to_file):
     Try to get the date that a file was created, falling back to when it was
     last modified if that isn't possible.
     See http://stackoverflow.com/a/39501288/1709587 for explanation.
+    to transfer this into a human readable date - import datetime then datetime.datetime.fromtimestamp(stat.st_mtime)
     """
     if platform.system() == 'Windows':
         return os.path.getctime(path_to_file)
@@ -73,25 +74,17 @@ def pklDictOut(outDict,outPath,outFileName):
 
 
 def main():
-    # Full path of current parent folders of images
-    rootLSU = '/data/cbfla_backup/lsu/'
-    rootNO1 = '/data/no/vas_plants/'
-    rootNO2 = '/data/no/0/'
-    rootNLU = '/data/nlu/'
-    rootLSUS = '/data/lsus/'
-    root1 = '/data/WorkStation1_backup/'  
-    root2 = '/data/WorkStation1_Computer/'  
-    root3 = '/data/WorkStation2_backup/'
-    lsa303Roots = [rootLSU,rootNO1,rootNO2,rootNLU,rootLSUS,root1, root2,root3]
-    # Full path to folder for output lists
-    outFolder='/home/ggmount/'
     # List unwanted extensions
     unwanted=["txt","tmp","csv","zip"]
+    # Full path to folder for output lists
+    outFolder='/home/ggmount/'
+    # Full path of current parent folders of images
+    rootLSUS = '/data/lsus/'
     # Get dictionaries of files and barcodes 
-    d1,d2=pathDict(lsa303Roots,unwanted)
+    d1,d2=pathDict([rootLSUS],unwanted)
     # Save dictionaries to pkl files
-    pklDictOut(d1,outFolder,'lsa303_Aug05_1')
-    pklDictOut(d2,outFolder,'lsa303_Aug05_2')
+    pklDictOut(d1,outFolder,'imageFiles_lsus_Aug08_filename')
+    pklDictOut(d2,outFolder,'imageFiles_lsus_Aug08_barcode')
 
 
 if __name__ == "__main__":
