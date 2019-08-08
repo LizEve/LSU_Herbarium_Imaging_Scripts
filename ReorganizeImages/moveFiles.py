@@ -131,7 +131,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted):
                         print(newPath+" already has a file here. Nothing moved.")
                     
         elif b not in portal_Dict:
-            print("Error - image barcode "+str(b)+" not in master list "+ str(portal_pkl))
+            print("Error - image barcode "+str(b)+" not in master portal list")
 
     return new_dict,nolarge_dict
 
@@ -141,7 +141,7 @@ def main():
     # dict1 - filename: [barcode, date, current path]
     # dict2 - barcode: [list of absolute paths to all files with barcode]
     # portal - barcode: portal
-    barcode_pkl='/home/ggmount/imageFiles_lsus_Aug08_barcode.pkl'
+    barcode_pkl='/home/ggmount/imageFiles_lsu_Aug08_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
     new_root='/data/'
     outFolder='/home/ggmount/'
@@ -153,8 +153,8 @@ def main():
     portal_dict=pickleOpen(portal_pkl)
 
     newPaths,noLarge=moveFiles(new_root,barcode_dict,portal_dict,unwanted)
-    pklDictOut(newPaths,outFolder,'newPaths_lsus_Aug08')
-    pklDictOut(noLarge,outFolder,'noLarge_lsus_Aug08')
+    pklDictOut(newPaths,outFolder,'newPaths_lsu_Aug08')
+    pklDictOut(noLarge,outFolder,'noLarge_lsu_Aug08')
     
 
 if __name__ == "__main__":
