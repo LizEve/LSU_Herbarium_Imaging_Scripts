@@ -192,7 +192,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                     shutil.copy2(p,newPath)
 
                     # Try and copy large file if it exists, if not, add to list. 
-                    nolarge_dict = addLarge(p,newPath,nolarge_dict)
+                    nolarge_dict = addLarge(b,p,newPath,nolarge_dict)
                 
                     # Get creation date 
                     d = creation_date(p)
