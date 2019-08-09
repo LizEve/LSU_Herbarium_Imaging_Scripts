@@ -110,7 +110,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             d = creation_date(p)
 
             #filename: [barcode,  date, old path]
-            badbarcode_dict[fileName]=[b,d,p]
+            badbarcode_dict[b]=[fName,d,p]
             print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
     return badbarcode_dict
             
