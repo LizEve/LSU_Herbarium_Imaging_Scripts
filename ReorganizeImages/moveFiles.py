@@ -65,15 +65,26 @@ def pklDictOut(outDict,outPath,outFileName):
     pickle.dump(outDict,outFile)
     outFile.close()
 
-def addLarge(oldPath,newPath,nolarge_dict):
+def addLarge(barcode,oldPath,newPath,nolarge_dict):
     # Assume paths to old "large" file (which is smaller) for image file
+    # Using a few options for case. 
     lp=str(pathlib.Path(oldPath).with_suffix(""))+str("_L.JPG")
+    lp1=str(pathlib.Path(oldPath).with_suffix(""))+str("_l.JPG")
+    lp2=str(pathlib.Path(oldPath).with_suffix(""))+str("_L.jpg")
+    lp3=str(pathlib.Path(oldPath).with_suffix(""))+str("_l.jpg")
+    # All new files are uppercase. fight me about it. 
     lnewPath=str(pathlib.Path(newPath).with_suffix(""))+str("_L.JPG")
     # Try to copy large file to new location. If no large exists, add to dict of files that need larges
     try:
         shutil.copy2(lp,lnewPath)
+        try:
+            shutil.copy2(lp1,lnewPath)
+            try:
+                shutil.copy2(lp2,lnewPath)
+                try:
+                    shutil.copy2(lp3,lnewPath)
     except FileNotFoundError:
-        nolarge_dict[b]=newPath
+        nolarge_dict[barcode]=newPath
     return nolarge_dict
 
 
@@ -95,16 +106,22 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
         # Split apart letters and numbers from barcode
         try:
             b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
+
+        # For bad barcodes move them to a special folder for Jennie to check. 
         except ValueError:
-            # Iterate through all file paths in barcode dict
+
+            # Iterate through all file paths in bad barcode dict
             for p in barcode_Dict[b]:
+
                 # Ignore files in "unwanted" list 
                 if any(x in p for x in unwanted):
                     pass
+
                 else:
                     # Make new path to folder for images that have a bad barcode 
                     fName=os.path.basename(p)
                     newPath=os.path.join(badBarcodePath,fName.upper())
+
                     # Copy file, preserving permissions 
                     shutil.copy2(p,newPath)
                 
@@ -113,9 +130,10 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
                     #filename: [barcode,  date, old path]
                     badbarcode_dict[fileName]=[b,d,p]
-                    print("Incorrect barcode format. Excepting only one set of numbers and letters: "+str(b))
+                    print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
         
-        # Look for barcode in portal dictionary 
+        # For all good barcodes that can be split into Letters/Numbers
+        # If barcode is found in records, move it into correct portal file
         if b in portal_Dict:
 
             # Get portal for barcode 
@@ -127,8 +145,8 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                 # Ignore files in "unwanted" list 
                 if any(x in p for x in unwanted):
                     pass
-                else:
 
+                else:
                     # Get new file path and uppercase file name 
                     newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
 
@@ -143,7 +161,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                         shutil.copy2(p,newPath)
 
                         # Try and copy large file if it exists, if not, add to list. 
-                        nolarge_dict = addLarge(p,newPath,nolarge_dict)
+                        nolarge_dict = addLarge(b,p,newPath,nolarge_dict)
                     
                         # Get creation date 
                         d = creation_date(p)
