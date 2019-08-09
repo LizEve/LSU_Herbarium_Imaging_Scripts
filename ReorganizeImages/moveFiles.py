@@ -179,12 +179,14 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                         d1 = creation_date(newPath)
                         # If dates are the same, probably rerunning script, dont add to duplicate dict
                         if d == d1:
-                            pass
+                            print(str(b)+"same time, pass")
+                            #passs
                         else:
                             # Add to duplicate dict 
                             duplicate_dict[b]=barcode_dict[b]
                         # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
                         if d > d1:
+                            print(str(b)+"this file is newer, i will move it")
                             # Copy file, preserving permissions 
                             shutil.copy2(p,newPath)
 
