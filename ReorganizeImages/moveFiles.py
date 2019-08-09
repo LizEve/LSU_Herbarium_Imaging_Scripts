@@ -173,7 +173,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                         new_dict[fileName]=[b,portal,d,newPath]
 
                     elif os.path.exists(newPath):
-                        print("Not moving,"+str(p)+", Already a file at,"+str(newPath))
+                        print("Not moving,"+str(p)+", Already a file at,"+str(newPath)+','+barcode_dict[b])
 
         # If no record in master list. Move to special folder. 
         # Also try and move large file. Add to list of moved files.             
@@ -212,7 +212,7 @@ def main():
     # portal - barcode: portal
     barcode_pkl='/home/ggmount/lsu_imageFiles_Aug09_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
-    new_root='/data/'
+    new_root='/data/test/'
     outFolder='/home/ggmount/'
     noPortalPath='/data/LSU_noRecord'
     badBarcodePath='/data/LSU_badBarcode'
