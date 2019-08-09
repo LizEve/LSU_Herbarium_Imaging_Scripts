@@ -267,7 +267,7 @@ def main():
     # portal - barcode: portal
     barcode_pkl='/home/ggmount/lsu_imageFiles_Aug09_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
-    new_root='/data/test/'
+    new_root='/data/LSUCollections'
     outFolder='/home/ggmount/'
     noPortalPath='/data/LSU_noRecord'
     badBarcodePath='/data/LSU_badBarcode'
