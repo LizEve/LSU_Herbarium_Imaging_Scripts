@@ -77,14 +77,17 @@ def addLarge(barcode,oldPath,newPath,nolarge_dict):
     # Try to copy large file to new location. If no large exists, add to dict of files that need larges
     try:
         shutil.copy2(lp,lnewPath)
+    except FileNotFoundError:
         try:
             shutil.copy2(lp1,lnewPath)
+        except FileNotFoundError:
             try:
                 shutil.copy2(lp2,lnewPath)
+            except FileNotFoundError:
                 try:
                     shutil.copy2(lp3,lnewPath)
-    except FileNotFoundError:
-        nolarge_dict[barcode]=newPath
+                except FileNotFoundError:
+                    nolarge_dict[barcode]=newPath
     return nolarge_dict
 
 
