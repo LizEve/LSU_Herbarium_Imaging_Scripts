@@ -173,7 +173,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                         new_dict[fileName]=[b,portal,d,newPath]
 
                     elif os.path.exists(newPath):
-                        print("Not moving,"+str(p)+", Already a file at,"+str(newPath)+','+barcode_dict[b])
+                        print("Not moving,"+str(p)+", Already a file at,"+str(newPath)+','+str(barcode_dict[b]))
 
         # If no record in master list. Move to special folder. 
         # Also try and move large file. Add to list of moved files.             
