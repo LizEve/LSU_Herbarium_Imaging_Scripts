@@ -111,7 +111,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
 
             #filename: [barcode,  date, old path]
             badbarcode_dict[fName]=[b,d,p]
-            print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
+            #print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
     return badbarcode_dict
             
 def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen):
@@ -253,7 +253,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 #filename: [barcode, portal, date, current(new) path]
                                 new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
 
-                        print("No record for "+str(b)+" moved to "+str(noPortalPath))
+                        #print("No record for "+str(b)+" moved to "+str(noPortalPath))
         # If barcode is wrong lenght, shove it somewhere else, and make note. 
         else:
             badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
