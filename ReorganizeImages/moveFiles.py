@@ -91,7 +91,7 @@ def addLarge(barcode,oldPath,newPath,nolarge_dict):
     return nolarge_dict
 
 
-def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,rerun):
+def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath):
 
     # Make all barcodes into caps for comparison
     barcode_Dict=dict((k.upper(), v) for k, v in barcode_dict.items())
@@ -262,7 +262,6 @@ def main():
     outFolder='/home/ggmount/'
     noPortalPath='/data/LSU_noRecord'
     badBarcodePath='/data/LSU_badBarcode'
-    rerun=FALSE
     # List files to skip over 
     unwanted=["_m","_s","_l","txt"]
 
@@ -274,7 +273,7 @@ def main():
     barcode_dict=pickleOpen(barcode_pkl)
     portal_dict=pickleOpen(portal_pkl)
 
-    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,rerun)
+    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath)
     pklDictOut(newPaths,outFolder,'lsu_newPaths_Aug09')
     pklDictOut(noLarge,outFolder,'lsu_noLarge_Aug09')
     pklDictOut(badbarcode,outFolder,'lsu_badBarcode_Aug09')
