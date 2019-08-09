@@ -144,116 +144,117 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                 badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             
             # For all good barcodes that can be split into Letters/Numbers
-            # If barcode is found in records, move it into correct portal file
-            if b in portal_Dict:
+            else:
+                # If barcode is found in records, move it into correct portal file
+                if b in portal_Dict:
 
-                # Get portal for barcode 
-                portal=portal_Dict[b]
+                    # Get portal for barcode 
+                    portal=portal_Dict[b]
 
-                # Iterate through all file paths in barcode dict
-                for p in barcode_Dict[b]:
+                    # Iterate through all file paths in barcode dict
+                    for p in barcode_Dict[b]:
 
-                    # Ignore files in "unwanted" list 
-                    if any(x in p for x in unwanted):
-                        pass
+                        # Ignore files in "unwanted" list 
+                        if any(x in p for x in unwanted):
+                            pass
 
-                    else:
-                        # Get new file path and uppercase file name 
-                        newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
+                        else:
+                            # Get new file path and uppercase file name 
+                            newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
 
-                        # Check if file exists at new path
-                        if not os.path.exists(newPath):
+                            # Check if file exists at new path
+                            if not os.path.exists(newPath):
 
-                            # Make new directories if needed https://docs.python.org/3/library/pathlib.html
-                            if not os.path.exists(newDir):
-                                pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
+                                # Make new directories if needed https://docs.python.org/3/library/pathlib.html
+                                if not os.path.exists(newDir):
+                                    pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
 
-                            # Copy file, preserving permissions 
-                            shutil.copy2(p,newPath)
-
-                            # Try and copy large file if it exists, if not, add to list. 
-                            nolarge_dict = addLarge(fileName,p,newPath,nolarge_dict)
-                            
-                            # Get creation date 
-                            d = creation_date(p)
-
-                            #filename: [barcode, portal, date, current(new) path]
-                            new_dict[fileName]=[b,portal,d,newPath]
-                        # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
-                        elif os.path.exists(newPath):
-                            # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
-                            d = creation_date(p)
-                            d1 = creation_date(newPath)
-                            # If dates are the same, probably rerunning script, dont add to duplicate dict
-                            if d == d1:
-                                pass
-                            else:
-                                # Add to duplicate dict 
-                                duplicate_dict[fileName]=[b,d,p]
-                            # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
-                            if d > d1:
-                            
                                 # Copy file, preserving permissions 
                                 shutil.copy2(p,newPath)
 
                                 # Try and copy large file if it exists, if not, add to list. 
                                 nolarge_dict = addLarge(fileName,p,newPath,nolarge_dict)
+                                
+                                # Get creation date 
+                                d = creation_date(p)
 
                                 #filename: [barcode, portal, date, current(new) path]
                                 new_dict[fileName]=[b,portal,d,newPath]
+                            # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
+                            elif os.path.exists(newPath):
+                                # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
+                                d = creation_date(p)
+                                d1 = creation_date(newPath)
+                                # If dates are the same, probably rerunning script, dont add to duplicate dict
+                                if d == d1:
+                                    pass
+                                else:
+                                    # Add to duplicate dict 
+                                    duplicate_dict[fileName]=[b,d,p]
+                                # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
+                                if d > d1:
+                                
+                                    # Copy file, preserving permissions 
+                                    shutil.copy2(p,newPath)
 
-            # If no record in master list. Move to special folder. 
-            # Also try and move large file. Add to list of moved files.             
-            elif b not in portal_Dict:
-                # Iterate through all file paths in barcode dict
-                for p in barcode_Dict[b]:
+                                    # Try and copy large file if it exists, if not, add to list. 
+                                    nolarge_dict = addLarge(fileName,p,newPath,nolarge_dict)
 
-                    # Ignore files in "unwanted" list 
-                    if any(x in p for x in unwanted):
-                        pass
-                    else:
-                        # Make new path to folder for images that don't have barcode in master list. 
-                        fName=os.path.basename(p)
-                        newPath=os.path.join(noPortalPath,fName.upper())
+                                    #filename: [barcode, portal, date, current(new) path]
+                                    new_dict[fileName]=[b,portal,d,newPath]
 
-                        # Check if file exists at new path
-                        if not os.path.exists(newPath):
-                            # Copy file, preserving permissions 
-                            shutil.copy2(p,newPath)
+                # If no record in master list. Move to special folder. 
+                # Also try and move large file. Add to list of moved files.             
+                elif b not in portal_Dict:
+                    # Iterate through all file paths in barcode dict
+                    for p in barcode_Dict[b]:
 
-                            # Try and copy large file if it exists, if not, add to list. 
-                            nolarge_dict = addLarge(fName,p,newPath,nolarge_dict)
-                        
-                            # Get creation date 
-                            d = creation_date(p)
+                        # Ignore files in "unwanted" list 
+                        if any(x in p for x in unwanted):
+                            pass
+                        else:
+                            # Make new path to folder for images that don't have barcode in master list. 
+                            fName=os.path.basename(p)
+                            newPath=os.path.join(noPortalPath,fName.upper())
 
-                            #filename: [barcode, portal, date, current(new) path]
-                            new_dict[fileName]=[b,"NoPortal",d,newPath]
-
-                        # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
-                        elif os.path.exists(newPath):
-                            # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
-                            d = creation_date(p)
-                            d1 = creation_date(newPath)
-                            # If dates are the same, probably rerunning script, dont add to duplicate dict
-                            if d == d1:
-                                pass
-                            else:
-                                # Add to duplicate dict 
-                                duplicate_dict[fileName]=[b,d,p]
-                            # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
-                            if d > d1:
-
+                            # Check if file exists at new path
+                            if not os.path.exists(newPath):
                                 # Copy file, preserving permissions 
                                 shutil.copy2(p,newPath)
 
                                 # Try and copy large file if it exists, if not, add to list. 
                                 nolarge_dict = addLarge(fName,p,newPath,nolarge_dict)
+                            
+                                # Get creation date 
+                                d = creation_date(p)
 
                                 #filename: [barcode, portal, date, current(new) path]
-                                new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
+                                new_dict[fileName]=[b,"NoPortal",d,newPath]
 
-                        #print("No record for "+str(b)+" moved to "+str(noPortalPath))
+                            # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
+                            elif os.path.exists(newPath):
+                                # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
+                                d = creation_date(p)
+                                d1 = creation_date(newPath)
+                                # If dates are the same, probably rerunning script, dont add to duplicate dict
+                                if d == d1:
+                                    pass
+                                else:
+                                    # Add to duplicate dict 
+                                    duplicate_dict[fileName]=[b,d,p]
+                                # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
+                                if d > d1:
+
+                                    # Copy file, preserving permissions 
+                                    shutil.copy2(p,newPath)
+
+                                    # Try and copy large file if it exists, if not, add to list. 
+                                    nolarge_dict = addLarge(fName,p,newPath,nolarge_dict)
+
+                                    #filename: [barcode, portal, date, current(new) path]
+                                    new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
+
+                            #print("No record for "+str(b)+" moved to "+str(noPortalPath))
         # If barcode is wrong lenght, shove it somewhere else, and make note. 
         else:
             badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)

@@ -85,7 +85,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict,
             badbarcode_dict[fName]=[b,d,p]
             #print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
     return badbarcode_dict
-            
+
 def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen,tempDate):
 
     # Make all barcodes into caps for comparison
@@ -110,51 +110,53 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
             # Split apart letters and numbers from barcode
             try:
                 b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
+                # goodBarcodeSequence(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen,tempDate):
 
             # For bad barcodes move them to a special folder for Jennie to check. 
             except ValueError:
                 badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict,tempDate)
             
             # For all good barcodes that can be split into Letters/Numbers
-            # If barcode is found in records, move it into correct portal file
-            if b in portal_Dict:
+            else:
+                # If barcode is found in records, move it into correct portal file
+                if b in portal_Dict:
 
-                # Get portal for barcode 
-                portal=portal_Dict[b]
+                    # Get portal for barcode 
+                    portal=portal_Dict[b]
 
-                # Iterate through all file paths in barcode dict
-                for p in barcode_Dict[b]:
+                    # Iterate through all file paths in barcode dict
+                    for p in barcode_Dict[b]:
 
-                    # Ignore files in "unwanted" list 
-                    if any(x in p for x in unwanted):
-                        pass
+                        # Ignore files in "unwanted" list 
+                        if any(x in p for x in unwanted):
+                            pass
 
-                    else:
-                        # Get new file path and uppercase file name 
-                        newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
+                        else:
+                            # Get new file path and uppercase file name 
+                            newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
 
-                        # Get creation date 
-                        d = creation_date(tempDate)
+                            # Get creation date 
+                            d = creation_date(tempDate)
 
-                        #filename: [barcode, portal, date, current(new) path]
-                        new_dict[fileName]=[b,portal,d,newPath]
+                            #filename: [barcode, portal, date, current(new) path]
+                            new_dict[fileName]=[b,portal,d,newPath]
 
-            # If no record in master list. Move to special folder. 
-            # Also try and move large file. Add to list of moved files.             
-            elif b not in portal_Dict:
-                # Iterate through all file paths in barcode dict
-                for p in barcode_Dict[b]:
+                # If no record in master list. Move to special folder. 
+                # Also try and move large file. Add to list of moved files.             
+                elif b not in portal_Dict:
+                    # Iterate through all file paths in barcode dict
+                    for p in barcode_Dict[b]:
 
-                    # Ignore files in "unwanted" list 
-                    if any(x in p for x in unwanted):
-                        pass
-                    else:
-                        # Make new path to folder for images that don't have barcode in master list. 
-                        fName=os.path.basename(p)
-                        newPath=os.path.join(noPortalPath,fName.upper())
-                        d = creation_date(tempDate)
-                        #filename: [barcode, portal, date, current(new) path]
-                        new_dict[fileName]=[b,"NoPortal",d,newPath]
+                        # Ignore files in "unwanted" list 
+                        if any(x in p for x in unwanted):
+                            pass
+                        else:
+                            # Make new path to folder for images that don't have barcode in master list. 
+                            fName=os.path.basename(p)
+                            newPath=os.path.join(noPortalPath,fName.upper())
+                            d = creation_date(tempDate)
+                            #filename: [barcode, portal, date, current(new) path]
+                            new_dict[fileName]=[b,"NoPortal",d,newPath]
 
         # If barcode is wrong lenght, shove it somewhere else, and make note. 
         else:
