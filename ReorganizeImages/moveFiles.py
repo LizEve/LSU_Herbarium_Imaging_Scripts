@@ -262,15 +262,14 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
 def main():
     # Read in dictionaries 
-    # dict1 - filename: [barcode, date, current path]
-    # dict2 - barcode: [list of absolute paths to all files with barcode]
-    # portal - barcode: portal
+    # barcode: [list of absolute paths to all files with barcode]
+    # barcode: portal
     barcode_pkl='/home/ggmount/lsu_imageFiles_Aug09_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
     new_root='/data/LSUCollections'
     outFolder='/home/ggmount/'
-    noPortalPath='/data/LSU_noRecord'
-    badBarcodePath='/data/LSU_badBarcode'
+    noPortalPath='/data/LSUCollections/NoPortal/LSU/'
+    badBarcodePath='/data/LSUCollections/BadBarcode/LSU/'
     barcodeLen=11
     # List files to skip over 
     unwanted=["_m","_s","_l","txt"]
