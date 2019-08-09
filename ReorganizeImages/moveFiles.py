@@ -189,7 +189,7 @@ def main():
     # dict1 - filename: [barcode, date, current path]
     # dict2 - barcode: [list of absolute paths to all files with barcode]
     # portal - barcode: portal
-    barcode_pkl='/home/ggmount/lsu_imageFiles_Aug08_barcode.pkl'
+    barcode_pkl='/home/ggmount/lsu_imageFiles_Aug09_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
     new_root='/data/'
     outFolder='/home/ggmount/'
@@ -205,9 +205,9 @@ def main():
     portal_dict=pickleOpen(portal_pkl)
 
     newPaths,noLarge,badbarcode=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath)
-    pklDictOut(newPaths,outFolder,'lsu_newPaths_Aug08')
-    pklDictOut(noLarge,outFolder,'lsu_noLarge_Aug08')
-    pklDictOut(badbarcode,outFolder,'lsu_badBarcode_Aug08')
+    pklDictOut(newPaths,outFolder,'lsu_newPaths_Aug09')
+    pklDictOut(noLarge,outFolder,'lsu_noLarge_Aug09')
+    pklDictOut(badbarcode,outFolder,'lsu_badBarcode_Aug09')
     
 
 if __name__ == "__main__":

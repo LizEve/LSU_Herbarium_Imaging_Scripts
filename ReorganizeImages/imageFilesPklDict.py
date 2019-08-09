@@ -80,11 +80,13 @@ def main():
     outFolder='/home/ggmount/'
     # Full path of current parent folders of images
     rootLSU = '/data/lsu/'
+    rootLSU1 = '/data/workstationFilesToAdd/lsu/jpg/'
+    rootLSU2 = '/data/workstationFilesToAdd/lsu/cr/'
     # Get dictionaries of files and barcodes 
-    d1,d2=pathDict([rootLSU],unwanted)
+    d1,d2=pathDict([rootLSU,rootLSU1,rootLSU2],unwanted)
     # Save dictionaries to pkl files
-    pklDictOut(d1,outFolder,'lsu_imageFiles_Aug08_filename')
-    pklDictOut(d2,outFolder,'lsu_imageFiles_Aug08_barcode')
+    pklDictOut(d1,outFolder,'lsu_imageFiles_Aug09_filename')
+    pklDictOut(d2,outFolder,'lsu_imageFiles_Aug09_barcode')
 
 
 if __name__ == "__main__":
