@@ -77,7 +77,7 @@ def main():
     # List unwanted extensions
     unwanted=["txt","tmp","csv","zip","_s","_m","_l","_S","_M","_L"]
     # Full path to folder for output lists
-    outFolder='/home/ggmount/'
+    outFolder='/mnt/c/Users/image/Documents/MovingFiles_GGM'
     # Full path of current parent folders of images
     root1 = 'J:\CFLA-LSU-Station2\images\output'
     root2 = 'J:\CFLA-LSU-Station2\images\output-algaeLSU'
