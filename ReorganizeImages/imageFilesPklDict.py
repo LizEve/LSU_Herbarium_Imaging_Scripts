@@ -75,18 +75,16 @@ def pklDictOut(outDict,outPath,outFileName):
 
 def main():
     # List unwanted extensions
-    unwanted=["txt","tmp","csv","zip"]
+    unwanted=["txt","tmp","csv","zip","_L"]
     # Full path to folder for output lists
     outFolder='/home/ggmount/'
     # Full path of current parent folders of images
-    rootLSU = '/data/lsu/'
-    rootLSU1 = '/data/workstationFilesToAdd/lsu/jpg/'
-    rootLSU2 = '/data/workstationFilesToAdd/lsu/cr/'
+    rootLSU = '/data/LSUCollections/'
     # Get dictionaries of files and barcodes 
-    d1,d2=pathDict([rootLSU,rootLSU1,rootLSU2],unwanted)
+    d1,d2=pathDict([rootLSU],unwanted)
     # Save dictionaries to pkl files
-    pklDictOut(d1,outFolder,'lsu_imageFiles_Aug09_filename')
-    pklDictOut(d2,outFolder,'lsu_imageFiles_Aug09_barcode')
+    pklDictOut(d1,outFolder,'lsu_movedFiles_Aug12_filename')
+    pklDictOut(d2,outFolder,'lsu_movedFiles_Aug12_barcode')
 
 
 if __name__ == "__main__":

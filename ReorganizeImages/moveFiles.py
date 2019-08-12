@@ -145,8 +145,10 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
             
             # For all good barcodes that can be split into Letters/Numbers
             else:
+                print(b+", good barcode")
                 # If barcode is found in records, move it into correct portal file
                 if b in portal_Dict:
+                    print(b+", in portal dict")
 
                     # Get portal for barcode 
                     portal=portal_Dict[b]
@@ -159,12 +161,13 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                             pass
 
                         else:
+                            print(p+", good path")
                             # Get new file path and uppercase file name 
                             newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
 
                             # Check if file exists at new path
                             if not os.path.exists(newPath):
-
+                                print(p+", new path")
                                 # Make new directories if needed https://docs.python.org/3/library/pathlib.html
                                 if not os.path.exists(newDir):
                                     pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
@@ -182,6 +185,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 new_dict[fileName]=[b,portal,d,newPath]
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
+                                print(p+", duplicate path")
                                 # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
                                 d = creation_date(p)
                                 d1 = creation_date(newPath)
@@ -193,7 +197,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                     duplicate_dict[fileName]=[b,d,p]
                                 # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
                                 if d > d1:
-                                
+                                    print(p+", replace older image file ")
                                     # Copy file, preserving permissions 
                                     shutil.copy2(p,newPath)
 
@@ -206,6 +210,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                 # If no record in master list. Move to special folder. 
                 # Also try and move large file. Add to list of moved files.             
                 elif b not in portal_Dict:
+                    print(b+", not in records")
                     # Iterate through all file paths in barcode dict
                     for p in barcode_Dict[b]:
 
