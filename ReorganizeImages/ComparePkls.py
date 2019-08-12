@@ -22,8 +22,11 @@ goodDict = dict((k.upper(), v) for k, v in goodFiles.items())
 badFiles = pickleOpen(homeDir+'lsu_badBarcode_Aug12.pkl')
 badDict = dict((k.upper(), v) for k, v in badFiles.items())
 
+len(goodDict)
+len(goodFiles)
 
-
+len(badDict)
+len(badFiles)
 
 
 imageFiles = pickleOpen(homeDir+'lsu_imageFiles_Aug12_filename.pkl')

@@ -244,7 +244,8 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 d1 = creation_date(newPath)
                                 # If dates are the same, probably rerunning script, dont add to duplicate dict
                                 if d == d1:
-                                    pass
+                                    new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
+                                    #pass
                                 else:
                                     # Add to duplicate dict 
                                     duplicate_dict[fileName]=[b,d,p]
