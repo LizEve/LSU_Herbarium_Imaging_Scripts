@@ -65,30 +65,6 @@ def pklDictOut(outDict,outPath,outFileName):
     pickle.dump(outDict,outFile)
     outFile.close()
 
-def addLarge(fileName,oldPath,newPath,nolarge_dict):
-    # Assume paths to old "large" file (which is smaller) for image file
-    # Using a few options for case. 
-    lp=str(pathlib.Path(oldPath).with_suffix(""))+str("_L.JPG")
-    lp1=str(pathlib.Path(oldPath).with_suffix(""))+str("_l.JPG")
-    lp2=str(pathlib.Path(oldPath).with_suffix(""))+str("_L.jpg")
-    lp3=str(pathlib.Path(oldPath).with_suffix(""))+str("_l.jpg")
-    # All new files are uppercase. fight me about it. 
-    lnewPath=str(pathlib.Path(newPath).with_suffix(""))+str("_L.JPG")
-    # Try to copy large file to new location. If no large exists, add to dict of files that need larges
-    try:
-        shutil.copy2(lp,lnewPath)
-    except FileNotFoundError:
-        try:
-            shutil.copy2(lp1,lnewPath)
-        except FileNotFoundError:
-            try:
-                shutil.copy2(lp2,lnewPath)
-            except FileNotFoundError:
-                try:
-                    shutil.copy2(lp3,lnewPath)
-                except FileNotFoundError:
-                    nolarge_dict[fileName]=newPath
-    return nolarge_dict
 
 def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict):
     # Iterate through all file paths in bad barcode dict
@@ -104,7 +80,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             newPath=os.path.join(badBarcodePath,fName.upper())
 
             # Copy file, preserving permissions 
-            shutil.copy2(p,newPath)
+            #shutil.copy2(p,newPath)
         
             # Get creation date 
             d = creation_date(p)
@@ -172,9 +148,6 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 if not os.path.exists(newDir):
                                     pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
 
-                                # Try and copy large file if it exists, if not, add to list. 
-                                nolarge_dict = addLarge(fileName,p,newPath,nolarge_dict)
-                                
                                 # Get creation date 
                                 d = creation_date(p)
 
@@ -182,7 +155,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 new_dict[fileName]=[b,portal,d,newPath]
 
                                 # Copy file, preserving permissions 
-                                shutil.copy2(p,newPath)
+                                #shutil.copy2(p,newPath)
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
                                 print(p+", duplicate path")
@@ -200,14 +173,11 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 if d > d1:
                                     print(p+", replace older image file ")
 
-                                    # Try and copy large file if it exists, if not, add to list. 
-                                    nolarge_dict = addLarge(fileName,p,newPath,nolarge_dict)
-
                                     #filename: [barcode, portal, date, current(new) path]
                                     new_dict[fileName]=[b,portal,d,newPath]
 
                                     # Copy file, preserving permissions 
-                                    shutil.copy2(p,newPath)
+                                    #shutil.copy2(p,newPath)
 
                 # If no record in master list. Move to special folder. 
                 # Also try and move large file. Add to list of moved files.             
@@ -227,9 +197,6 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                             # Check if file exists at new path
                             if not os.path.exists(newPath):
 
-                                # Try and copy large file if it exists, if not, add to list. 
-                                nolarge_dict = addLarge(fName,p,newPath,nolarge_dict)
-                            
                                 # Get creation date 
                                 d = creation_date(p)
 
@@ -237,7 +204,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 new_dict[fileName]=[b,"NoPortal",d,newPath]
 
                                 # Copy file, preserving permissions 
-                                shutil.copy2(p,newPath)
+                                #shutil.copy2(p,newPath)
 
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
@@ -255,10 +222,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 if d > d1:
 
                                     # Copy file, preserving permissions 
-                                    shutil.copy2(p,newPath)
-
-                                    # Try and copy large file if it exists, if not, add to list. 
-                                    nolarge_dict = addLarge(fName,p,newPath,nolarge_dict)
+                                    #shutil.copy2(p,newPath)
 
                                     #filename: [barcode, portal, date, current(new) path]
                                     new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
@@ -274,13 +238,13 @@ def main():
     # Read in dictionaries 
     # barcode: [list of absolute paths to all files with barcode]
     # barcode: portal
-    barcode_pkl='/home/ggmount/no_imageFiles_Aug12_barcode.pkl'
-    portal_pkl='/home/ggmount/masterDF_july24.pkl'
-    new_root='/data/LSUCollections'
-    outFolder='/home/ggmount/'
-    noPortalPath='/data/LSUCollections/NoPortal/NO/'
-    badBarcodePath='/data/LSUCollections/BadBarcode/NO/'
-    barcodeLen=9
+    barcode_pkl='/mnt/c/Users/image/Documents/MovingFiles_GGM/ws2_imageFiles_Aug12_barcode.pkl'
+    portal_pkl='/mnt/c/Users/image/Documents/MovingFiles_GGM/masterDF_july24.pkl'
+    new_root='/mnt/j/CFLA-LSU-Station2/LSUCollections/'
+    outFolder='/mnt/c/Users/image/Documents/MovingFiles_GGM'
+    noPortalPath='/mnt/j/CFLA-LSU-Station2/LSUCollections/NoPortal/LSU/'
+    badBarcodePath='/mnt/j/CFLA-LSU-Station2/LSUCollections/BadBarcode/LSU/'
+    barcodeLen=11
     # List files to skip over 
     unwanted=["_m","_s","_l","txt","_M","_L","_S"]
     # Make this directories if needed
@@ -290,10 +254,10 @@ def main():
     barcode_dict=pickleOpen(barcode_pkl)
     portal_dict=pickleOpen(portal_pkl)
     newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPathbad,BarcodePath,barcodeLen)
-    pklDictOut(newPaths,outFolder,'no_newPaths_Aug12')
-    pklDictOut(noLarge,outFolder,'no_noLarge_Aug12')
-    pklDictOut(badbarcode,outFolder,'no_badBarcode_Aug12')
-    pklDictOut(badbarcode,outFolder,'no_duplicate_Aug12')
+    pklDictOut(newPaths,outFolder,'ws2_newPaths_Aug12')
+    pklDictOut(noLarge,outFolder,'ws2_noLarge_Aug12')
+    pklDictOut(badbarcode,outFolder,'ws2_badBarcode_Aug12')
+    pklDictOut(badbarcode,outFolder,'ws2_duplicate_Aug12')
 
 if __name__ == "__main__":
     main()
