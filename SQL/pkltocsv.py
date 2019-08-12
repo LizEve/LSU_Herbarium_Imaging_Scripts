@@ -12,55 +12,45 @@ def pickleOpen(p):
     return data
 
 # Read in dictionary for all files moved 
-inFile = '/Users/ChatNoir/Projects/HerbariumRA/Scripts/SQL/temp_newPaths_Aug09.pkl'
+# fileName: [barcode,time,path]
+inFile = '/Users/ChatNoir/Google Drive/Herbiarum_Notes/ImageSpreadSheets/lsu_movedFiles_Aug12_filename.pkl'
 inDict = pickleOpen(inFile)
-outFile = '/Users/ChatNoir/Projects/HerbariumRA/Scripts/SQL/temp_newPaths_Aug11.csv'
+outFile = '/Users/ChatNoir/Projects/HerbariumRA/Scripts/SQL/temp_masterDB_Aug12.csv'
 #['Barcode_ID','Portal', 'Collection_Code', 'Date','File_Path','Large_Path']
 newDict = {}
+barcodeLen = 11
+
 # Iterate through input dictionary
 for key,value in inDict.items():
     # Parse out each part of value list
-    b=value[0]
-    p=value[1]
-    d=value[2]
-    np=value[3]
-    # Transform epoch time to date time string 
-    nd=str(datetime.datetime.fromtimestamp(int(d)))
-    # Get theoretical path to "large" smaller image
-    lnewPath=str(pathlib.Path(np).with_suffix(""))+str("_L.JPG")
-    # Get letters of collection institution from barcode 
-    b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
-    # Add all of this to a new dictionary. key is filename. 
-    newDict[key]=[b,p,b_letters,nd,d,np,lnewPath]
+    b=value[0] # barcode
+    d=value[1] # date time
+    np=value[2] # new path
+
+    # if barcode is the right lenght, go through a lot of stuff. 
+    if len(b) == int(barcodeLen):
+        # Split apart letters and numbers from barcode
+        try:
+            b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]       
+        # For bad barcodes move them to a special folder for Jennie to check. 
+        except ValueError:
+            pass
+        # For all good barcodes that can be split into Letters/Numbers
+        else:
+                # Transform epoch time to date time string 
+                nd=str(datetime.datetime.fromtimestamp(int(d)))
+                # Get theoretical path to "large" smaller image
+                lnewPath=str(pathlib.Path(np).with_suffix(""))+str("_L.JPG")
+                # Get portal from path 
+                p=np.split('/')[3]
+                # Add all of this to a new dictionary. key is filename. 
+                newDict[key]=[b,p,b_letters,nd,d,np,lnewPath]
+
+
+
+
+
 inPD = pd.DataFrame.from_dict(newDict,orient='index', columns=['Barcode_ID','Portal','Collection_Code','Date','Epoch','File_Path','Large_Path'])
 inPD.index.name = 'File_Name'
 inPD.to_csv(outFile,sep=',')
 
-'''
-# Read in dictionary for all files moved 
-inFile = '/Users/ChatNoir/Projects/HerbariumRA/Scripts/SQL/temp_newPaths_Aug09.pkl'
-inDict = pickleOpen(inFile)
-# filename:[barcode, portal, date, current(new) path]
-tables = ['Algae',  'Bryophyte',  'Fungi',  'Lichen',  'Vascular', 'NoPortal']
-for t in tables:
-    outFile = '/Users/ChatNoir/Projects/HerbariumRA/Scripts/SQL/temp_'+t+'_Aug09.csv'
-    #['Barcode_ID','Portal', 'Collection_Code', 'Date','File_Path','Large_Path']
-    newDict = {}
-    # Iterate through input dictionary
-    for key,value in inDict.items():
-        # Parse out each part of value list
-        b=value[0]
-        p=value[1]
-        d=value[2]
-        np=value[3]
-        # If record from this portal. get more info and eventually save
-        if p == t:
-            # Transform epoch time to date time string 
-            nd=str(datetime.datetime.fromtimestamp(int(d)))
-            lnewPath=str(pathlib.Path(newPath).with_suffix(""))+str("_L.JPG")
-            b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
-            newDict[key]=[b,p,b_letters,nd,n,np,lnewPath]
-    inPD = pd.DataFrame.from_dict(newDict,orient='index', columns=['Barcode_ID','Portal','Collection_Code','Date','Epoch','File_Path','Large_Path'])
-    inPD.index.name = 'File_Name'
-    inPD.to_csv(outFile,sep=',')
-'''
