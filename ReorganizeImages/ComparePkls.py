@@ -28,6 +28,10 @@ len(goodFiles)
 len(badDict)
 len(badFiles)
 
+allDict = {**goodDict, **badDict}
+
+set(movedDict).difference(set(allDict))
+set(allDict).difference(set(movedDict))
 
 imageFiles = pickleOpen(homeDir+'lsu_imageFiles_Aug12_filename.pkl')
 imageDict = dict((k.upper(), v) for k, v in imageFiles.items())
