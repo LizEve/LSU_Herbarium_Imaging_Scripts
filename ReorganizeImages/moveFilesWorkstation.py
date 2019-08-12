@@ -253,7 +253,7 @@ def main():
     # Change pkl files to dictionaries
     barcode_dict=pickleOpen(barcode_pkl)
     portal_dict=pickleOpen(portal_pkl)
-    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPathbad,BarcodePath,barcodeLen)
+    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen)
     pklDictOut(newPaths,outFolder,'ws2_newPaths_Aug12')
     pklDictOut(noLarge,outFolder,'ws2_noLarge_Aug12')
     pklDictOut(badbarcode,outFolder,'ws2_badBarcode_Aug12')
