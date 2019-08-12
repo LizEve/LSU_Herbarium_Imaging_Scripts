@@ -270,7 +270,7 @@ def main():
     # Read in dictionaries 
     # barcode: [list of absolute paths to all files with barcode]
     # barcode: portal
-    barcode_pkl='/home/ggmount/lsu_imageFiles_Aug09_barcode.pkl'
+    barcode_pkl='/home/ggmount/lsu_imageFiles_Aug12_barcode.pkl'
     portal_pkl='/home/ggmount/masterDF_july24.pkl'
     new_root='/data/LSUCollections'
     outFolder='/home/ggmount/'
@@ -278,7 +278,7 @@ def main():
     badBarcodePath='/data/LSUCollections/BadBarcode/LSU/'
     barcodeLen=11
     # List files to skip over 
-    unwanted=["_m","_s","_l","txt"]
+    unwanted=["txt","_s","_m","_l","_S","_M","_L"]
 
     # Make this directories if needed
     pathlib.Path(noPortalPath).mkdir(parents=True, exist_ok=True) 
@@ -289,10 +289,10 @@ def main():
     portal_dict=pickleOpen(portal_pkl)
 
     newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen)
-    pklDictOut(newPaths,outFolder,'lsu_newPaths_Aug09')
-    pklDictOut(noLarge,outFolder,'lsu_noLarge_Aug09')
-    pklDictOut(badbarcode,outFolder,'lsu_badBarcode_Aug09')
-    pklDictOut(badbarcode,outFolder,'lsu_duplicate_Aug09')
+    pklDictOut(newPaths,outFolder,'lsu_newPaths_Aug12')
+    pklDictOut(noLarge,outFolder,'lsu_noLarge_Aug12')
+    pklDictOut(badbarcode,outFolder,'lsu_badBarcode_Aug12')
+    pklDictOut(badbarcode,outFolder,'lsu_duplicate_Aug12')
 
 if __name__ == "__main__":
     main()
