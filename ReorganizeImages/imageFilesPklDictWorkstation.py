@@ -79,10 +79,10 @@ def main():
     # Full path to folder for output lists
     outFolder='/mnt/c/Users/image/Documents/MovingFiles_GGM'
     # Full path of current parent folders of images
-    root1 = 'J:\CFLA-LSU-Station2\images\output'
-    root2 = 'J:\CFLA-LSU-Station2\images\output-algaeLSU'
-    root4 = 'J:\CFLA-LSU-Station2\images\output-lichens'
-    root5 = 'J:\CFLA-LSU-Station2\images\output-types'
+    root1 = '/mnt/j/CFLA-LSU-Station2/images/output'
+    root2 = '/mnt/j/CFLA-LSU-Station2/images/output-algaeLSU'
+    root4 = '/mnt/j/CFLA-LSU-Station2/images/output-lichens'
+    root5 = '/mnt/j/CFLA-LSU-Station2/images/output-types'
     # Get dictionaries of files and barcodes 
     d1,d2=pathDict([root1,root2,root4,root5],unwanted)
     # Save dictionaries to pkl files
