@@ -75,7 +75,7 @@ def pklDictOut(outDict,outPath,outFileName):
 
 def main():
     # List unwanted extensions
-    unwanted=["txt","tmp","csv","zip","_L"]
+    unwanted=["txt","tmp","csv","zip","_L.JPG"]
     # Full path to folder for output lists
     outFolder='/home/ggmount/'
     # Full path of current parent folders of images
