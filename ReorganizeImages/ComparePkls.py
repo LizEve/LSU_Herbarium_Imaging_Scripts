@@ -10,6 +10,22 @@ def pickleOpen(p):
 
 # Read in the list of all files before moving  
 homeDir='/Users/ChatNoir/Google Drive/Herbiarum_Notes/ImageSpreadSheets/'
+
+
+dupFiles = pickleOpen(homeDir+'lsu_duplicate_Aug12.pkl')
+dupDict = dict((k.upper(), v) for k, v in dupFiles.items())
+
+# Read in the list of files that were moved with good barcodes
+goodFiles = pickleOpen(homeDir+'lsu_newPaths_Aug12.pkl')
+goodDict = dict((k.upper(), v) for k, v in goodFiles.items())
+
+badFiles = pickleOpen(homeDir+'lsu_badBarcode_Aug12.pkl')
+badDict = dict((k.upper(), v) for k, v in badFiles.items())
+
+
+
+
+
 imageFiles = pickleOpen(homeDir+'lsu_imageFiles_Aug12_filename.pkl')
 imageDict = dict((k.upper(), v) for k, v in imageFiles.items())
 
@@ -34,17 +50,6 @@ len(imageDict)
 set(movedDict).difference(set(imageDict))
 set(imageDict).difference(set(movedDict))
 
-
-
-dupFiles = pickleOpen(homeDir+'lsu_duplicate_Aug09.pkl')
-dupDict = dict((k.upper(), v) for k, v in dupFiles.items())
-
-# Read in the list of files that were moved with good barcodes
-goodFiles = pickleOpen(homeDir+'lsu_newPaths_Aug09.pkl')
-goodDict = dict((k.upper(), v) for k, v in goodFiles.items())
-
-badFiles = pickleOpen(homeDir+'lsu_badBarcode_Aug09.pkl')
-badDict = dict((k.upper(), v) for k, v in badFiles.items())
 
 
 
