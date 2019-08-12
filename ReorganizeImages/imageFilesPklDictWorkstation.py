@@ -82,9 +82,8 @@ def main():
     root1 = '/mnt/j/CFLA-LSU-Station2/images/output'
     root2 = '/mnt/j/CFLA-LSU-Station2/images/output-algaeLSU'
     root4 = '/mnt/j/CFLA-LSU-Station2/images/output-lichens'
-    root5 = '/mnt/j/CFLA-LSU-Station2/images/output-types'
     # Get dictionaries of files and barcodes 
-    d1,d2=pathDict([root1,root2,root4,root5],unwanted)
+    d1,d2=pathDict([root1,root2,root4],unwanted)
     # Save dictionaries to pkl files
     pklDictOut(d1,outFolder,'ws2_imageFiles_Aug12_filename')
     pklDictOut(d2,outFolder,'ws2_imageFiles_Aug12_barcode')
