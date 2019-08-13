@@ -222,7 +222,10 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
                                 # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
-                                d = creation_date(p)
+                                try:
+                                    d = creation_date(p)
+                                except FileNotFoundError:
+                                    d = creation_date(newPath)
                                 d1 = creation_date(newPath)
                                 # Copy both duplicate files to new folder. add _1 to one of them. 
                                 dName=os.path.basename(p)
