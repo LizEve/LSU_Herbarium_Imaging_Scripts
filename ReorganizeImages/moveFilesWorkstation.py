@@ -81,10 +81,11 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
 
             try:
                 d = creation_date(p)
-            try:
-                d = creation_date(newPath)
             except FileNotFoundError:
-                d = '0'
+                try:
+                    d = creation_date(newPath)
+                except FileNotFoundError:
+                    d = '0'
 
             try:
                 shutil.move(p,newPath)
