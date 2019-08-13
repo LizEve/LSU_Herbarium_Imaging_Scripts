@@ -188,6 +188,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                         else:
                             # File is already moved add to moved dict. 
                             newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
+                            d = creation_date(newPath)
                             new_dict[fileName]=[b,portal,d,newPath]
 
 
