@@ -230,10 +230,16 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 # Copy both duplicate files to new folder. add _1 to one of them. 
                                 dName=os.path.basename(p)
                                 ddPath=os.path.join(dPath,dName.upper())
-                                shutil.copy2(p,ddPath)
+                                try:
+                                    shutil.copy2(p,ddPath)
+                                except FileExistsError:
+                                    pass
                                 d1Name=os.path.basename(newPath)
                                 dd1Path=os.path.join(dPath,d1Name.upper(),'1')
-                                shutil.copy2(p,dd1Path)
+                                try:
+                                    shutil.copy2(p,dd1Path)
+                                except FileExistsError:
+                                    pass
                                 # If dates are the same, probably rerunning script, dont add to duplicate dict
                                 if d == d1:
                                     new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
