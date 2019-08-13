@@ -160,15 +160,26 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 elif os.path.exists(newPath):
                                     print(p+", duplicate path")
                                     # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
-                                    d = creation_date(p)
+                                    # This got really ugly when moving files and dealing with files already moved getting passed to this loop. 
+                                    # Not making it clean right now. don't care enough. just need to move files 
+                                    try:
+                                        d = creation_date(p)
+                                    except FileNotFoundError:
+                                        d = creation_date(newPath)
                                     d1 = creation_date(newPath)
                                     # Copy both duplicate files to new folder. add _1 to one of them. 
                                     dName=os.path.basename(p)
                                     ddPath=os.path.join(dPath,dName.upper())
-                                    shutil.copy2(p,ddPath)
+                                    try:
+                                        shutil.copy2(p,ddPath)
+                                    except FileExistsError:
+                                        pass
                                     d1Name=os.path.basename(newPath)
                                     dd1Path=os.path.join(dPath,d1Name.upper(),'1')
-                                    shutil.copy2(p,dd1Path)
+                                    try:
+                                        shutil.copy2(p,dd1Path)
+                                    except FileExistsError:
+                                        pass
                                     # If dates are the same, probably rerunning script, dont add to duplicate dict
                                     if d == d1:
                                         new_dict[fileName]=[b,portal,d,newPath]
