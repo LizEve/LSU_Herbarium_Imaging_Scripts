@@ -79,11 +79,17 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             fName=os.path.basename(p)
             newPath=os.path.join(badBarcodePath,fName.upper())
 
-            # Copy file, preserving permissions 
-            shutil.move(p,newPath)
-        
-            # Get creation date 
-            d = creation_date(newPath)
+            try:
+                d = creation_date(p)
+            try:
+                d = creation_date(newPath)
+            except FileNotFoundError:
+                d = '0'
+
+            try:
+                shutil.move(p,newPath)
+            except FileNotFoundError:
+                pass
 
             #filename: [barcode,  date, old path]
             badbarcode_dict[fName]=[b,d,p]
