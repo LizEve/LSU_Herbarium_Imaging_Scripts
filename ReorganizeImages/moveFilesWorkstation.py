@@ -172,13 +172,13 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                     ddPath=os.path.join(dPath,dName.upper())
                                     try:
                                         shutil.copy2(p,ddPath)
-                                    except FileExistsError:
+                                    except FileNotFoundError:
                                         pass
                                     d1Name=os.path.basename(newPath)
                                     dd1Path=os.path.join(dPath,d1Name.upper(),'1')
                                     try:
                                         shutil.copy2(p,dd1Path)
-                                    except FileExistsError:
+                                    except FileNotFoundError:
                                         pass
                                     # If dates are the same, probably rerunning script, dont add to duplicate dict
                                     if d == d1:
@@ -243,13 +243,13 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 ddPath=os.path.join(dPath,dName.upper())
                                 try:
                                     shutil.copy2(p,ddPath)
-                                except FileExistsError:
+                                except FileNotFoundError:
                                     pass
                                 d1Name=os.path.basename(newPath)
                                 dd1Path=os.path.join(dPath,d1Name.upper(),'1')
                                 try:
                                     shutil.copy2(p,dd1Path)
-                                except FileExistsError:
+                                except FileNotFoundError:
                                     pass
                                 # If dates are the same, probably rerunning script, dont add to duplicate dict
                                 if d == d1:
