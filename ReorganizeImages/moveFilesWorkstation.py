@@ -131,60 +131,65 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
                     # Iterate through all file paths in barcode dict
                     for p in barcode_Dict[b]:
+                        if os.path.exists(p):
+                            # Ignore files in "unwanted" list 
+                            if any(x in p for x in unwanted):
+                                pass
 
-                        # Ignore files in "unwanted" list 
-                        if any(x in p for x in unwanted):
-                            pass
+                            else:
+                                print(p+", good path")
+                                # Get new file path and uppercase file name 
+                                newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
 
-                        else:
-                            print(p+", good path")
-                            # Get new file path and uppercase file name 
-                            newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
+                                # Check if file exists at new path
+                                if not os.path.exists(newPath):
+                                    print(newPath+", new path")
+                                    # Make new directories if needed https://docs.python.org/3/library/pathlib.html
+                                    if not os.path.exists(newDir):
+                                        pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
 
-                            # Check if file exists at new path
-                            if not os.path.exists(newPath):
-                                print(newPath+", new path")
-                                # Make new directories if needed https://docs.python.org/3/library/pathlib.html
-                                if not os.path.exists(newDir):
-                                    pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
-
-                                # Get creation date 
-                                d = creation_date(p)
-
-                                #filename: [barcode, portal, date, current(new) path]
-                                new_dict[fileName]=[b,portal,d,newPath]
-
-                                # Copy file, preserving permissions 
-                                shutil.move(p,newPath)
-                            # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
-                            elif os.path.exists(newPath):
-                                print(p+", duplicate path")
-                                # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
-                                d = creation_date(p)
-                                d1 = creation_date(newPath)
-                                # Copy both duplicate files to new folder. add _1 to one of them. 
-                                dName=os.path.basename(p)
-                                ddPath=os.path.join(dPath,dName.upper())
-                                shutil.copy2(p,ddPath)
-                                d1Name=os.path.basename(newPath)
-                                dd1Path=os.path.join(dPath,d1Name.upper(),'1')
-                                shutil.copy2(p,dd1Path)
-                                # If dates are the same, probably rerunning script, dont add to duplicate dict
-                                if d == d1:
-                                    new_dict[fileName]=[b,portal,d,newPath]
-                                    #pass
-                                else:
-                                    # Add to duplicate dict 
-                                    duplicate_dict[fileName]=[b,d,p]
-                                # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
-                                if d > d1:
-                                    print(p+", replace older image file ")
+                                    # Get creation date 
+                                    d = creation_date(p)
 
                                     #filename: [barcode, portal, date, current(new) path]
                                     new_dict[fileName]=[b,portal,d,newPath]
-                                    
+
                                     # Copy file, preserving permissions 
                                     shutil.move(p,newPath)
+                                # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
+                                elif os.path.exists(newPath):
+                                    print(p+", duplicate path")
+                                    # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
+                                    d = creation_date(p)
+                                    d1 = creation_date(newPath)
+                                    # Copy both duplicate files to new folder. add _1 to one of them. 
+                                    dName=os.path.basename(p)
+                                    ddPath=os.path.join(dPath,dName.upper())
+                                    shutil.copy2(p,ddPath)
+                                    d1Name=os.path.basename(newPath)
+                                    dd1Path=os.path.join(dPath,d1Name.upper(),'1')
+                                    shutil.copy2(p,dd1Path)
+                                    # If dates are the same, probably rerunning script, dont add to duplicate dict
+                                    if d == d1:
+                                        new_dict[fileName]=[b,portal,d,newPath]
+                                        #pass
+                                    else:
+                                        # Add to duplicate dict 
+                                        duplicate_dict[fileName]=[b,d,p]
+                                    # If this file is newer, replace older file. Rerun or not we want to move newer file to main folder.
+                                    if d > d1:
+                                        print(p+", replace older image file ")
+
+                                        #filename: [barcode, portal, date, current(new) path]
+                                        new_dict[fileName]=[b,portal,d,newPath]
+
+                                        # Copy file, preserving permissions 
+                                        shutil.move(p,newPath)
+                        else:
+                            # File is already moved add to moved dict. 
+                            newDir,newPath,fileName=newPathNames(b,p,new_root,portal)
+                            new_dict[fileName]=[b,portal,d,newPath]
+
 
                 # If no record in master list. Move to special folder. 
                 # Also try and move large file. Add to list of moved files.             
