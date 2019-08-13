@@ -80,7 +80,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             newPath=os.path.join(badBarcodePath,fName.upper())
 
             # Copy file, preserving permissions 
-            #shutil.copy2(p,newPath)
+            shutil.move(p,newPath)
         
             # Get creation date 
             d = creation_date(p)
@@ -155,7 +155,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 new_dict[fileName]=[b,portal,d,newPath]
 
                                 # Copy file, preserving permissions 
-                                #shutil.copy2(p,newPath)
+                                shutil.move(p,newPath)
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
                                 print(p+", duplicate path")
@@ -177,7 +177,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                     new_dict[fileName]=[b,portal,d,newPath]
 
                                     # Copy file, preserving permissions 
-                                    #shutil.copy2(p,newPath)
+                                    shutil.move(p,newPath)
 
                 # If no record in master list. Move to special folder. 
                 # Also try and move large file. Add to list of moved files.             
@@ -204,7 +204,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 new_dict[fileName]=[b,"NoPortal",d,newPath]
 
                                 # Copy file, preserving permissions 
-                                #shutil.copy2(p,newPath)
+                                shutil.move(p,newPath)
 
                             # If path exists, check if this is a rerun, if not, put newest file in folder. make note of duplicates
                             elif os.path.exists(newPath):
@@ -222,7 +222,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 if d > d1:
 
                                     # Copy file, preserving permissions 
-                                    #shutil.copy2(p,newPath)
+                                    shutil.move(p,newPath)
 
                                     #filename: [barcode, portal, date, current(new) path]
                                     new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
