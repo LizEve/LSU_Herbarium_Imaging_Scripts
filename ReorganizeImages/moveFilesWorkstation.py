@@ -90,7 +90,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             #print("Incorrect barcode format. Putting files from ,"+str(b)+", into "+str(badBarcodePath))
     return badbarcode_dict
             
-def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen):
+def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen,dPath):
 
     # Make all barcodes into caps for comparison
     barcode_Dict=dict((k.upper(), v) for k, v in barcode_dict.items())
@@ -162,6 +162,13 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
                                 d = creation_date(p)
                                 d1 = creation_date(newPath)
+                                # Copy both duplicate files to new folder. add _1 to one of them. 
+                                dName=os.path.basename(p)
+                                ddPath=os.path.join(dPath,dName.upper())
+                                shutil.copy2(p,ddPath)
+                                d1Name=os.path.basename(newPath)
+                                dd1Path=os.path.join(dPath,d1Name.upper(),'1')
+                                shutil.copy2(p,dd1Path)
                                 # If dates are the same, probably rerunning script, dont add to duplicate dict
                                 if d == d1:
                                     new_dict[fileName]=[b,portal,d,newPath]
@@ -175,7 +182,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
                                     #filename: [barcode, portal, date, current(new) path]
                                     new_dict[fileName]=[b,portal,d,newPath]
-
+                                    
                                     # Copy file, preserving permissions 
                                     shutil.move(p,newPath)
 
@@ -211,6 +218,13 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                                 # Get creation dates for file already moved, and the one that is similar to it. likely different due to case sensitive issues.  
                                 d = creation_date(p)
                                 d1 = creation_date(newPath)
+                                # Copy both duplicate files to new folder. add _1 to one of them. 
+                                dName=os.path.basename(p)
+                                ddPath=os.path.join(dPath,dName.upper())
+                                shutil.copy2(p,ddPath)
+                                d1Name=os.path.basename(newPath)
+                                dd1Path=os.path.join(dPath,d1Name.upper(),'1')
+                                shutil.copy2(p,dd1Path)
                                 # If dates are the same, probably rerunning script, dont add to duplicate dict
                                 if d == d1:
                                     new_dict[fName.upper()]=[b,"NoPortal",d,newPath]
@@ -244,6 +258,7 @@ def main():
     outFolder='/mnt/c/Users/image/Documents/MovingFiles_GGM'
     noPortalPath='/mnt/j/CFLA-LSU-Station2/LSUCollections/NoPortal/LSU/'
     badBarcodePath='/mnt/j/CFLA-LSU-Station2/LSUCollections/BadBarcode/LSU/'
+    dPath='/mnt/j/CFLA-LSU-Station2/LSUCollections/Duplicates/LSU/'
     barcodeLen=11
     # List files to skip over 
     unwanted=["_m","_s","_l","txt","_M","_L","_S"]
@@ -253,7 +268,7 @@ def main():
     # Change pkl files to dictionaries
     barcode_dict=pickleOpen(barcode_pkl)
     portal_dict=pickleOpen(portal_pkl)
-    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen)
+    newPaths,noLarge,badbarcode,duplicate=moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcodePath,barcodeLen,dPath)
     pklDictOut(newPaths,outFolder,'ws2_newPaths_Aug13')
     pklDictOut(noLarge,outFolder,'ws2_noLarge_Aug13')
     pklDictOut(badbarcode,outFolder,'ws2_badBarcode_Aug13')
