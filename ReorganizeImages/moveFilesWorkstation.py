@@ -83,7 +83,7 @@ def badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             shutil.move(p,newPath)
         
             # Get creation date 
-            d = creation_date(p)
+            d = creation_date(newPath)
 
             #filename: [barcode,  date, old path]
             badbarcode_dict[fName]=[b,d,p]
@@ -143,7 +143,7 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
                             # Check if file exists at new path
                             if not os.path.exists(newPath):
-                                print(p+", new path")
+                                print(newPath+", new path")
                                 # Make new directories if needed https://docs.python.org/3/library/pathlib.html
                                 if not os.path.exists(newDir):
                                     pathlib.Path(newDir).mkdir(parents=True, exist_ok=True) 
