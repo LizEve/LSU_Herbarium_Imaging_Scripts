@@ -85,7 +85,9 @@ def main():
     # For each record in list to move, find in file path dictionary. 
     for b in L:
         if b in D2:
+            print(D2[b])
             for f in D2[b]:
+                print(f)
                 os.system('mv %s %s' % (f,toFolder))
 
 
