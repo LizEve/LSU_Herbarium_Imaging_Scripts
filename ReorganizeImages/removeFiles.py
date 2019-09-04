@@ -42,7 +42,7 @@ def pathDict(roots,unwanted):
     for key,value in dict1.items():
         # Get barcode and path from list of values
         b=value[0]
-        p=value[2]
+        p=value[1]
         # if barcode isnt in the dictionary, add it with filepath 
         if b not in dict2:
             dict2[b]=[p]
