@@ -29,11 +29,18 @@ def portalDict(occurrencesFile,portalName,colName,outPkl,outFolder):
     return portalDictionary
 
 def main():
-    occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/MasterPortalList/masterDF_july24.csv"
+    #occurrencesFile="/Users/ChatNoir/Projects/HerbariumRA/MasterPortalList/masterDF_july24.csv"
+    #portalName="portalName"
+    #colName="catalogNumber"
+    #outFolder = "/Users/ChatNoir/Projects/HerbariumRA/MasterPortalList/"
+    #outPkl = 'masterDF_july24'
+    #portalDictionary=portalDict(occurrencesFile,portalName,colName,outPkl,outFolder)
+
+    occurrencesFile="/Users/ChatNoir/Google Drive/Herbiarum_Notes/ImageSpreadSheets/ULM_RepatriationSet3_forNEW_ImageServer.csv"
     portalName="portalName"
-    colName="catalogNumber"
-    outFolder = "/Users/ChatNoir/Projects/HerbariumRA/MasterPortalList/"
-    outPkl = 'masterDF_july24'
+    colName="catalogueNumber"
+    outFolder = "/Users/ChatNoir/Google Drive/Herbiarum_Notes/ImageSpreadSheets/"
+    outPkl = 'ULM_RepatriationSet3_sept04'
     portalDictionary=portalDict(occurrencesFile,portalName,colName,outPkl,outFolder)
 
 

@@ -43,10 +43,8 @@ def database(inFile, outFile, barcodeLen):
                     # Add all of this to a new dictionary. key is filename. 
                     newDict[key]=[b,p,b_letters,nd,d,np,lnewPath]
 
-    inPD = pd.DataFrame.from_dict(newDict,orient='index', columns=['Barcode_ID','Portal','Collection_Code','Date','Epoch','File_Path','Large_Path'])
-    inPD.index.name = 'File_Name'
-    inPD.to_csv(outFile+".csv",sep=',')
-    inPD.to_pickle(outFile+".pkl")
+    
+    
 
 def main():
     # fileName: [barcode,time,path]
