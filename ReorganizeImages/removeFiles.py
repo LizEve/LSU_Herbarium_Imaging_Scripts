@@ -34,12 +34,10 @@ def pathDict(roots,unwanted):
                 else:
                     # Combine path and name
                     p=os.path.join(path,name)
-                    # get creation or modification date 
-                    d=creation_date(p)
                     # Get barcode from file name 
                     b=name.split(".")[0].split("_")[0].split("-")[0]
                     # Put into dictionary dict1
-                    dict1[name]=[b,d,p]
+                    dict1[name]=[b,p]
     # Make dict 2
     for key,value in dict1.items():
         # Get barcode and path from list of values
