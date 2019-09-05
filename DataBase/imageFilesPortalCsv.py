@@ -5,7 +5,7 @@ import platform
 import pandas as pd
 
 
-def pathDict(roots,unwanted,find,replace,portal):
+def pathDict(root,unwanted,find,replace,portal):
     '''
     Get dictionary of all image files in root folders 
     Input- root directory,  list of file extentions to ignore
