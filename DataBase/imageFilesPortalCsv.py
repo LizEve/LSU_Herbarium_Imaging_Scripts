@@ -12,9 +12,8 @@ def pathDict(root,unwanted,find,replace,portal):
     Output- two dictionaries
     dict1 - filename: [barcode, current path]
     '''
-    # Set up empty dictionaries
+    # Set up empty dictionary
     dict1={}
-    dict2={}
     x=0
     # Walk through all folders and files. Not using path or subdirs 
     for path, subdirs, files in os.walk(root):
@@ -25,9 +24,10 @@ def pathDict(root,unwanted,find,replace,portal):
             if any(x in name for x in unwanted):
                 pass
             else:
+                print(name)
                 # Combine path and name
                 p=os.path.join(path,name)
-                p.replace(find,replace)
+                p=p.replace(find,replace)
                 # Get barcode from file name 
                 b=name.split(".")[0].split("_")[0].split("-")[0]
                 # Put into dictionary dict1
