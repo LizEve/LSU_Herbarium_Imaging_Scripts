@@ -1,0 +1,23 @@
+
+import wx
+
+class SingleAppFrame(wx.Frame):
+    def __init__(self, parent, title):
+        wx.Frame.__init__(self, parent, title=title, size=(300, 300))
+        self.Centre()
+
+
+class SingleApp(wx.App):
+    def OnInit(self):
+        self.name = "SingleApp-%s" % wx.GetUserId()
+        self.instance = wx.SingleInstanceChecker(self.name)
+        if self.instance.IsAnotherRunning():
+            wx.MessageBox("Another instance is running", "ERROR")
+                return False
+       frame = SingleAppFrame(None, "SingleApp")
+       frame.Show()
+       return True
+
+
+app = SingleApp(redirect=False)
+app.MainLoop()
