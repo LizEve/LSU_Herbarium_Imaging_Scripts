@@ -49,7 +49,7 @@ def main():
     # Full path of current parent folders of images
     root2 = '/data/LSUCollections/Fungi/'
     # filename: [barcode, file name, portal, current path]
-    d1=pathDict([root2],unwanted,find,replace,portal)
+    d1=pathDict(root2,unwanted,find,replace,portal)
     # Save dictionaries to csv file 
     # {filename:[barcode,portal,newpath]}
     df = pd.DataFrame.from_dict(d1,orient='index',columns=['CatalogNumber','ImageFileName','Portal','originalurl'])
