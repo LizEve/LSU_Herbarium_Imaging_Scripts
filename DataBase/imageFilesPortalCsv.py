@@ -32,7 +32,7 @@ def pathDict(root,unwanted,find,replace,portal):
                 b=name.split(".")[0].split("_")[0].split("-")[0]
                 # Put into dictionary dict1
                 dict1[x]=[b,name,portal,p]
-                x =+ 1
+                x += 1
     return dict1
 
 
