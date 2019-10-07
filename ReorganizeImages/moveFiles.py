@@ -141,7 +141,9 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
 
             # For bad barcodes move them to a special folder for Jennie to check. 
             except ValueError:
-                badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
+                # Iterate through all file paths in barcode dict
+                for p in barcode_Dict[b]:
+                    badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
             
             # For all good barcodes that can be split into Letters/Numbers
             else:
@@ -266,7 +268,9 @@ def moveFiles(new_root,barcode_dict,portal_dict,unwanted,noPortalPath,badBarcode
                             #print("No record for "+str(b)+" moved to "+str(noPortalPath))
         # If barcode is wrong lenght, shove it somewhere else, and make note. 
         else:
-            badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
+            # Iterate through all file paths in barcode dict
+            for p in barcode_Dict[b]:
+                badbarcode_dict=badBarcodeSequence(p,b,barcode_Dict,unwanted,badBarcodePath,badbarcode_dict)
     return new_dict,nolarge_dict,badbarcode_dict,duplicate_dict
 
 
