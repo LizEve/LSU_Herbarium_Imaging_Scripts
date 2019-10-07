@@ -58,7 +58,7 @@ def main():
     # Save dictionaries to csv file 
     #dict1 - filename: [barcode, filename, portal, current path, large path]
     df = pd.DataFrame.from_dict(d1,orient='index',columns=['Catalog Number','Image File Name','Group','originalurl','originalurl'])
-    df.index = df["output_order"]
+    df.index.name = "output_order"
     df.to_csv(os.path.join(outFolder,(outName+".csv")),sep=",")
 
     root3 = '/data/LSUCollections/Bryophyte/'
