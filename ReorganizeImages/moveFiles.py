@@ -284,7 +284,7 @@ def main():
     outFolder='/home/ggmount/'
     noPortalPath='/data/LSUCollections/NoPortal/NO/'
     badBarcodePath='/data/LSUCollections/BadBarcode/NO/'
-    barcodeLen=9
+    barcodeLen=11
     # List files to skip over 
     unwanted=["_m","_s","_l","txt","_M","_L","_S"]
     # Make this directories if needed
