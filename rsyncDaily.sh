@@ -10,8 +10,9 @@ destination='/data/LSUCollections/'
 
 source1='/mnt/LSUCollectionsWS1/'
 logfolder1='/mnt/LSUCollectionsWS1/Logs/'
-outlog1='/home/ggmount/rsync1.out' # Only need one because rsync writes over it each time rsync is called
+outlog1='/mnt/LSUCollections/Logs/rsync1.out' # Only need one because rsync writes over it each time rsync is called
 suffix1="_serverWS1.txt" # adding "_server" to end of log file so it is differentiated from files sorted locally
+source1='/mnt/LSUCollections/'
 
 
 # verbose and itemize changes, change ownership of moved files to match /data/
@@ -33,11 +34,12 @@ done < $outlog1
 
 
 
-# Repeat for second computer 
+# Repeat for second computer - WS2 
 source2='/mnt/LSUCollections/'
-logfolder2='/home/ggmount/'
-outlog2='/home/ggmount/rsync2.out'
-suffix2="_serverWS2.txt"
+logfolder2='/mnt/LSUCollections/Logs/'
+outlog2='/mnt/LSUCollections/Logs/rsync2.out' # Only need one because rsync writes over it each time rsync is called
+suffix2="_serverWS2.txt" # adding "_server" to end of log file so it is differentiated from files sorted locally
+
 
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --exclude '*Log*' $source2 $destination | grep '^>f' | cut -d' ' -f2 > $outlog2
 
