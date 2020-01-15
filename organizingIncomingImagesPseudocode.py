@@ -46,3 +46,7 @@ sourceFilePath='/mnt/c/Users/Image/Desktop/Imaging/Algae/img5650334.jpg.CR2'
 destinationFilePath='/mnt/e/CFLA-LSU-Station2/Test/Algae/IMG/5/650/IMG5650334.JPG.CR2'
 shutil.move(sourceFilePath,destinationFilePath)
  
+
+folderPath='/Users/ChatNoir/Projects/HerbariumRA/HerbariumRA/Compost'
+destinationFolder='/Users/ChatNoir/Projects/HerbariumRA/test/'
+d = shutil.move(folderPath,destinationFolder,copy_function = shutil.copytree)
