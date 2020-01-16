@@ -4,9 +4,9 @@ import itertools
 import pathlib
 import shutil 
 import platform
+import datetime
 
-
-def splitNumLet(b):
+def splitNumLet(b,f):
     '''
     Takes barcode in the format ABC_12345 and splits it into numbers and letters
     If barcode isnt in this format, it returns the original barcode
@@ -15,7 +15,7 @@ def splitNumLet(b):
         b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
         return b_letters,b_numbers
     except ValueError:
-        print("Incorrect barcode format. Excepting only one set of numbers and letters: "+str(b))
+        print("Incorrect barcode format. Excepting only one set of numbers and letters: "+str(f))
         return b
 
 def creationDate(path_to_file):
@@ -39,7 +39,7 @@ def creationDate(path_to_file):
             # so we'll settle for when its content was last modified.
             return stat.st_mtime  
 
-def newPathName(sourceFolder,Filename,sourceFilePath,destinationPortalFolder,barcodeLength):
+def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin):
     '''
     Use old path to image, image file name, and destination parent folder (portal for LSU) to create a new path to move image. 
     Folder structure comes from barcode
@@ -47,19 +47,15 @@ def newPathName(sourceFolder,Filename,sourceFilePath,destinationPortalFolder,bar
     Improperly formated barcodes, or barcodes that are too long will have their destination be in the "BadBarcode" folder in the source folder for manual inspection and editing. 
     '''
     # Isolate barcode, remove anything that comes after . _ or -
-    Barcode=Filename.split(".")[0].split("_")[0].split("-")[0]
-    if len(Barcode) > barcodeLength:
-        # File this into a "BadBarcode" folder for manual inspection and editing. 
-        newDir = os.path.join(sourceFolder,"BadBarcode",Filename)
-        newPath = os.path.join(sourceFolder,"BadBarcode")
-    else: 
+    Barcode=FileName.split(".")[0].split("_")[0].split("-")[0]
+    if barcodeMax > len(Barcode) > barcodeMin: 
         # Split letters and numbers in two, returning two strings. LSU12345678 = LSU, 12345678. 
         # If barcode has the wrong format, the whole barcode will be returned. 
-        splitBarcode=splitNumLet(Barcode)
+        splitBarcode=splitNumLet(Barcode,FileName)
         # If the barcode is returned as a single string
         if len(splitBarcode) == 1:
             # File this into a "BadBarcode" folder for manual inspection and editing. 
-            newDir = os.path.join(sourceFolder,"BadBarcode",Filename)
+            newDir = os.path.join(sourceFolder,"BadBarcode",FileName)
             newPath = os.path.join(sourceFolder,"BadBarcode")
         # If the barcode was split into two strings, continue to split and create new file path
         elif len(splitBarcode) == 2:
@@ -71,57 +67,119 @@ def newPathName(sourceFolder,Filename,sourceFilePath,destinationPortalFolder,bar
             firstFolder=cutoffThree[:-3]
             # Create folders from barcode and portal information
             # ex: LSU01020304 -> root/portal/lsu/01/020/LSU01020304.jpg 
-            newPath=os.path.join(destinationPortalFolder,Collection,firstFolder,secondFolder,fileName.upper())
+            newPath=os.path.join(destinationPortalFolder,Collection,firstFolder,secondFolder,FileName.upper())
             # Get directory path to check if folders need to be created
             newDir=os.path.dirname(newPath)
+        else:
+            print("Barcode splitting went wrong for- "+str(Barcode))
+    else:
+        # File this into a "BadBarcode" folder for manual inspection and editing. 
+        newPath = os.path.join(sourceFolder,"BadBarcode",FileName)
+        newDir = os.path.join(sourceFolder,"BadBarcode")
     return newDir,newPath
 
-def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeLength,outLogsuffix):
-
+def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix):
 
     # Iterate through list of user defined organizing source folders, for LSU these are portal names 
     for folder in portalFolders:
+    
         # Get full folder path 
         folderPath=os.path.join(sourceFolder,folder)
+        
         # Iterate through files in folder 
         for filename in os.listdir(folderPath):
+
             # Change file names to uppercase for consistancy later on
             FileName=filename.upper()
-            # Get full path for file 
+            
+            # Get full path to source file 
             sourceFilePath=os.path.join(folderPath,filename)
-            # Get creation date for file, or last modification date if creation date cannot be recovered
+
+            # Get creation date for source file, or last modification date if creation date cannot be recovered
             birthDate=creationDate(sourceFilePath)
-            # For those files to be sorted as normal set destination path
-            if folder not in otherFolders:
-                # Path to portal folder 
-                destinationPortalFolder = os.path.join(destinationFolder,folder)
-                # Create path to destination file and parent folder 
-                # This will also check for barcode format and length, sending all bad barcodes to a seperate folder for manual inspection.
-                destinationFolderPath,destinationFilePath = newPathName(sourceFolder,Filename,sourceFilePath,destinationPortalFolder,barcodeLength)
-            # For those files who are moved as is in their folders, set destination path
-            elif folder in otherFolders:
-                # Get any nested folders that exists beyond the organizing folder, for LSU it will be named "Random"
-                # Strip the source folder path, keeping any other nested folder structure within "Random"
-                nestedFolderPath=sourceFilePath.strip(folderPath)
-                # Create destination file path 
-                destinationFilePath=os.path.join(destinationFolder,nestedFolderPath)
-            # Try to move file 
-            try:
-                shutil.move(sourceFilePath,destinationFilePath)
-                # Get day that the file was created or modified(Ex 2019-06-07) and add customized suffix and file extension
-                logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
-                # Create path to log file 
-                logFilePath=os.path.join(sourceFolder,"Logs",logFileName)
-                # Open log file and write down destination path
-                writeLog = open(logFilePath,'a')
-                writeLog.write(destinationFilePath)
-                writeLog.close()
-            except FileNotFoundError:
+            
+            # Get path to source folder 
+            destinationPortalFolder = os.path.join(destinationFolder,folder)
+            
+            # Create destination file path and folder path 
+            # The function newPathName also checks for barcode format and length
+            # All files with incorrectly formatted barcodes will be moved to a "BadBarcode" folder NOT on the specified backup 
+            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin)
+ 
+            # For files with correctly formated barcodes 
+            if "BadBarcode" not in destinationFilePath:
+                
+                try:
+                    # If destination nested folders do not exist, create them
+                    if not os.path.exists(destinationFolderPath):
+                        pathlib.Path(destinationFolderPath).mkdir(parents=True)
+                        
+                    # Move file to destination    
+                    shutil.move(sourceFilePath,destinationFilePath)
+                    
+                    # Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
+                    # Also add customized suffix and file extension to log file name 
+                    logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
+                    
+                    # Get path to log file 
+                    logFilePath=os.path.join(sourceFolder,"Logs",logFileName)
+                    
+                    # Open log file and write destination file path 
+                    writeLog = open(logFilePath,'a')
+                    writeLog.write(destinationFilePath+'\n')
+                    writeLog.close()
+                    
+                # If anything under the try statement cannot be completed, an error will be printed to screen.
+                except Exception as e:
+                    print(str(e)+" File failed to move "+str(sourceFilePath))
+
+            # For files with incorrectly formated barcodes
+            # File is moved to BadBarcode and not written to the log file
+            else:
+                try:
+                    shutil.move(sourceFilePath,destinationFilePath)
+                    
+                # If anything under the try statement cannot be completed, an error will be printed to screen.
+                except Exception as e:
+                    print(str(e)+" File failed to move "+str(sourceFilePath))
+    
+    # Iterate through list of user defined "other" folders, for LSU this is the folder "Random"               
+    for folder in otherFolders:
+        
+        # Get full folder path 
+        folderPath=os.path.join(sourceFolder,folder)
+        
+        # Get files in any nested folders that exists beyond the source folder, for LSU it will be named "Random"
+        for filepath in pathlib.Path(folderPath).rglob('*'):
+        
+            # Ignore folders
+            if filepath.is_dir():
                 pass
+            
+            else:
+                # For all files get full file path 
+                sourceFilePath = filepath.absolute()
+                
+                # Get destination file path, replicating any nested folders within the main source folder.
+                nestedFolderPath=str(sourceFilePath).strip(folderPath)
+                destinationFilePath=os.path.join(destinationFolder,folder,nestedFolderPath)
+                destinationFolderPath=os.path.dirname(destinationFilePath)
+                
+                try:
+                    # Create desination folders if needed. 
+                    if not os.path.exists(destinationFolderPath):
+                        pathlib.Path(destinationFolderPath).mkdir(parents=True)  
+                    
+                    # Move file to destination
+                    shutil.move(sourceFilePath,destinationFilePath)
+                
+                # If anything under the try statement cannot be completed, an error will be printed to screen.
+                except Exception as e:
+                        print(str(e)+" File failed to move "+str(sourceFilePath))
+                
 
 def main():
-    # All of the following folders should already exist. 
-    # As well as a folder named "BadBarcode" and one named "Logs" in your destination folder 
+    # All of the following folders should already exist.                 
     # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
 
     # Folder of images on computer
@@ -143,16 +201,25 @@ def main():
     
     otherFolders=['Random']
     
+    # As well as a folder named "BadBarcode" and one named "Logs" in your destination folder 
+    LogPath=os.path.join(sourceFolder,"Logs")
+    BadPath=os.path.join(sourceFolder,"BadBarcode")
+    if not os.path.exists(LogPath):
+        pathlib.Path(LogPath).mkdir(parents=True)
+    if not os.path.exists(BadPath):
+        pathlib.Path(BadPath).mkdir(parents=True)
+    
     # Maximum length for legitimate barcode, does not count anything trailing an underscore "_"
     
-    barcodeLength=15
+    barcodeMax=15
+    barcodeMin=9
     
     # String that will be appended to all out logs. Can customize for computer. 
     # Make sure this is different from the string appended to your server logs. 
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     outLogsuffix="_workstation1.txt"
     
-    newPaths,badbarcode,duplicate=moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeLength,outLogsuffix)
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix)
 
     '''
     Extra notes 
