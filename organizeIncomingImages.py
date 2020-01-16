@@ -229,6 +229,8 @@ def main():
     Extra notes or tags, such as numbering multiple files should come after an underscore "_"
     Ex: LSU01234567.JPG or LSU01234567_1.JPG
     All file names will be changed to all caps if they are not already. Except those files in the other/random folders
+    Run script in Task scheduler on Windows 10 with 
+    wsl python3 /mnt/c/Users/Image/Documents/GitHub/HerbariumRA/organizeIncomingImages.py
     '''
 
 if __name__ == "__main__":
