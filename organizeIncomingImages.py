@@ -15,7 +15,9 @@ def splitNumLet(b,f):
         b_letters,b_numbers = ["".join(x) for _, x in itertools.groupby(b, key=str.isdigit)]
         return b_letters,b_numbers
     except ValueError:
-        print("Incorrect barcode format. Excepting only one set of numbers and letters: "+str(f))
+        writeError = open(errorFilePath,'a')
+        writeError.write("Incorrect barcode format. Will be moved to BadBarcode folder - "+str(f)+'\n')
+        writeError.close()
         return b
 
 def creationDate(path_to_file):
@@ -71,14 +73,17 @@ def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,bar
             # Get directory path to check if folders need to be created
             newDir=os.path.dirname(newPath)
         else:
-            print("Barcode splitting went wrong for- "+str(Barcode))
+            writeError = open(errorFilePath,'a')
+            writeError.write("Barcode splitting went wrong for- "+str(Barcode)+'\n')
+            writeError.close()
+
     else:
         # File this into a "BadBarcode" folder for manual inspection and editing. 
         newPath = os.path.join(sourceFolder,"BadBarcode",FileName)
         newDir = os.path.join(sourceFolder,"BadBarcode")
     return newDir,newPath
 
-def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix):
+def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath):
 
     # Iterate through list of user defined organizing source folders, for LSU these are portal names 
     for folder in portalFolders:
@@ -123,7 +128,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     
                     # Get path to log file 
                     logFilePath=os.path.join(sourceFolder,"Logs",logFileName)
-                    
+
                     # Open log file and write destination file path 
                     writeLog = open(logFilePath,'a')
                     writeLog.write(destinationFilePath+'\n')
@@ -131,7 +136,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
-                    print(str(e)+" File failed to move "+str(sourceFilePath))
+                    writeError = open(errorFilePath,'a')
+                    writeError.write(str(e)+" File failed to move "+str(sourceFilePath)+'\n')
+                    writeError.close()
 
             # For files with incorrectly formated barcodes
             # File is moved to BadBarcode and not written to the log file
@@ -141,7 +148,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
-                    print(str(e)+" File failed to move "+str(sourceFilePath))
+                    writeError = open(errorFilePath,'a')
+                    writeError.write(str(e)+" File failed to move "+str(sourceFilePath)+'\n')
+                    writeError.close()
     
     # Iterate through list of user defined "other" folders, for LSU this is the folder "Random"               
     for folder in otherFolders:
@@ -209,6 +218,9 @@ def main():
     if not os.path.exists(BadPath):
         pathlib.Path(BadPath).mkdir(parents=True)
     
+    # Initiate a file path where errors will be stored. 
+    errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
+    
     # Maximum length for legitimate barcode, does not count anything trailing an underscore "_"
     
     barcodeMax=15
@@ -219,7 +231,7 @@ def main():
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     outLogsuffix="_workstation1.txt"
     
-    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix)
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath)
 
     '''
     Extra notes 
