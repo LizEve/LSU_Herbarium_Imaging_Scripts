@@ -12,7 +12,7 @@ source1='/mnt/LSUCollectionsWS1/'
 logfolder1='/mnt/LSUCollectionsWS1/Logs/'
 outlog1='/mnt/LSUCollections/Logs/rsync1.out' # Only need one because rsync writes over it each time rsync is called
 suffix1="_serverWS1.txt" # adding "_server" to end of log file so it is differentiated from files sorted locally
-source1='/mnt/LSUCollections/'
+
 
 
 # verbose and itemize changes, change ownership of moved files to match /data/
