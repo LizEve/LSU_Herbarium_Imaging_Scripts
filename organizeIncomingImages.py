@@ -11,21 +11,23 @@ def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
         for x in portalFolders+otherFolders:
             p1=os.path.join(sourceFolder,x)
             p2=os.path.join(destinationFolder,x)
+            print(p1,p2)
             if not os.path.exists(p1):
                 pathlib.Path(p1).mkdir(parents=True)
-            if not os.path.exists(p1):
-                pathlib.Path(p1).mkdir(parents=True)
+            if not os.path.exists(p2):
+                pathlib.Path(p2).mkdir(parents=True)
 
         # Also make folders named "BadBarcode" and "Logs" in your source folder
         LogPath=os.path.join(sourceFolder,"Logs")
         BadPath=os.path.join(sourceFolder,"BadBarcode")
+        print(LogPath,BadPath)
         if not os.path.exists(LogPath):
             pathlib.Path(LogPath).mkdir(parents=True)
         if not os.path.exists(BadPath):
             pathlib.Path(BadPath).mkdir(parents=True)
 
 
-def splitNumLet(b,f):
+def splitNumLet(b,f,errorFilePath):
     '''
     Takes barcode in the format ABC_12345 and splits it into numbers and letters
     If barcode isnt in this format, it returns the original barcode
@@ -60,7 +62,7 @@ def creationDate(path_to_file):
             # so we'll settle for when its content was last modified.
             return stat.st_mtime  
 
-def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin):
+def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath):
     '''
     Use old path to image, image file name, and destination parent folder (portal for LSU) to create a new path to move image. 
     Folder structure comes from barcode
@@ -69,10 +71,10 @@ def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,bar
     '''
     # Isolate barcode, remove anything that comes after . _ or -
     Barcode=FileName.split(".")[0].split("_")[0].split("-")[0]
-    if barcodeMax > len(Barcode) > barcodeMin: 
+    if barcodeMax >= len(Barcode) >= barcodeMin: 
         # Split letters and numbers in two, returning two strings. LSU12345678 = LSU, 12345678. 
         # If barcode has the wrong format, the whole barcode will be returned. 
-        splitBarcode=splitNumLet(Barcode,FileName)
+        splitBarcode=splitNumLet(Barcode,FileName,errorFilePath)
         # If the barcode is returned as a single string
         if len(splitBarcode) == 1:
             # File this into a "BadBarcode" folder for manual inspection and editing. 
@@ -128,7 +130,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             # Create destination file path and folder path 
             # The function newPathName also checks for barcode format and length
             # All files with incorrectly formatted barcodes will be moved to a "BadBarcode" folder NOT on the specified backup 
-            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin)
+            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath)
  
             # For files with correctly formated barcodes 
             if "BadBarcode" not in destinationFilePath:
@@ -207,7 +209,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 
 
 def main():
-
+    #wsl python3 /mnt/c/Users/Image/Documents/GitHub/HerbariumRA/organizeIncomingImages.py
     ############ BEGIN section to customize 
     # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
     # Folder of images on computer
@@ -216,7 +218,7 @@ def main():
     
     # Folder for long term storage 
     
-    destinationFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/'
+    destinationFolder='/mnt/e/CFLA-LSU-Station2/Test/'
 
     # List folders that correspond to how you want to store your images
     # For LSU images are stored based on the portal they will be uploaded to online.
@@ -248,7 +250,7 @@ def main():
     # Initiate a file path where errors will be stored. 
 
     errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
-    
+    print(errorFilePath)
     # Move the files!!! 
 
     moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath)
