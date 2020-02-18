@@ -6,6 +6,25 @@ import shutil
 import platform
 import datetime
 
+def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
+        # Create folders if needed in both source and destination 
+        for x in portalFolders+otherFolders:
+            p1=os.path.join(sourceFolder,x)
+            p2=os.path.join(destinationFolder,x)
+            if not os.path.exists(p1):
+                pathlib.Path(p1).mkdir(parents=True)
+            if not os.path.exists(p1):
+                pathlib.Path(p1).mkdir(parents=True)
+
+        # Also make folders named "BadBarcode" and "Logs" in your source folder
+        LogPath=os.path.join(sourceFolder,"Logs")
+        BadPath=os.path.join(sourceFolder,"BadBarcode")
+        if not os.path.exists(LogPath):
+            pathlib.Path(LogPath).mkdir(parents=True)
+        if not os.path.exists(BadPath):
+            pathlib.Path(BadPath).mkdir(parents=True)
+
+
 def splitNumLet(b,f):
     '''
     Takes barcode in the format ABC_12345 and splits it into numbers and letters
@@ -188,9 +207,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 
 
 def main():
-    # All of the following folders should already exist.                 
-    # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
 
+    ############ BEGIN section to customize 
+    # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
     # Folder of images on computer
     
     sourceFolder='/mnt/c/Users/Image/Desktop/Imaging/'
@@ -198,10 +217,8 @@ def main():
     # Folder for long term storage 
     
     destinationFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/'
-        
-    # The following folders should exist in both the source and destination folder 
-    
-    # List of folders that correspond to how you want to store your images
+
+    # List folders that correspond to how you want to store your images
     # For LSU images are stored based on the portal they will be uploaded to online.
     
     portalFolders=['Algae','Bryophyte','Fungi','Lichen','Vascular']
@@ -209,28 +226,31 @@ def main():
     # Extra folders for one time projects. Barcodes will not be checked, and any nested folders will be moved as is. 
     
     otherFolders=['Random']
-    
-    # As well as a folder named "BadBarcode" and one named "Logs" in your destination folder 
-    LogPath=os.path.join(sourceFolder,"Logs")
-    BadPath=os.path.join(sourceFolder,"BadBarcode")
-    if not os.path.exists(LogPath):
-        pathlib.Path(LogPath).mkdir(parents=True)
-    if not os.path.exists(BadPath):
-        pathlib.Path(BadPath).mkdir(parents=True)
-    
-    # Initiate a file path where errors will be stored. 
-    errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
-    
+
     # Maximum length for legitimate barcode, does not count anything trailing an underscore "_"
     
     barcodeMax=15
     barcodeMin=9
     
-    # String that will be appended to all out logs. Can customize for computer. 
-    # Make sure this is different from the string appended to your server logs. 
+    # String that will be appended to all out logs. Can customize for each computer. 
+    # Make sure this is different from the string appended to your server logs in the rsyncdaily.sh script. 
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
+    
     outLogsuffix="_workstation1.txt"
     
+    ############ END section to customize  
+
+    # Create folders if needed 
+    # This will also make folders named "BadBarcode" and "Logs" in your source folder
+
+    makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
+    
+    # Initiate a file path where errors will be stored. 
+
+    errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
+    
+    # Move the files!!! 
+
     moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath)
 
     '''
