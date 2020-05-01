@@ -209,7 +209,6 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 
 
 def main():
-    #wsl python3 /mnt/c/Users/Image/Documents/GitHub/HerbariumRA/organizeIncomingImages.py
     ############ BEGIN section to customize 
     # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
     # Folder of images on computer
