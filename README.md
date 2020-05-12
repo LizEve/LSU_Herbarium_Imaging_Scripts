@@ -1,5 +1,14 @@
-In progress collaboration with [Shirley C. Tucker Herbarium](http://www.herbarium.lsu.edu/) and [Center for Computing and Technology](https://www.cct.lsu.edu/) at Louisiana State University. 
+In collaboration with [Shirley C. Tucker Herbarium](http://www.herbarium.lsu.edu/) and [Center for Computing and Technology](https://www.cct.lsu.edu/) at Louisiana State University. 
 
-None of these scripts are guarenteed to work, they are all highly customized. Eventually there will be an official repo for our new pipeline for digital imaging of specimens. 
+See **WorkFlow.md** for description of scripts.
 
 
+**TestFilesOrganizeScript**
+
+Some nested folders for to test out organizing scripts on imaging computer. 
+
+**ResturcutringLSUCollections** 
+
+Scripts used to move files across servers and restructure the folder system for LSU. Generally not commented for public use, but feel free to browse for useful tidbits. 
+
+**Disclaimer** - This is all coded by a biologist. 

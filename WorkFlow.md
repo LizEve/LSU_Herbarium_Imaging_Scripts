@@ -35,8 +35,10 @@ Repeat 5. & 6. for all photos
 
 Task Scheduler set to run following scripts. 
 
-RunOrganize.sh - which runs organizeIncomingImages.py at 8PM every day. 
+RunOrganize.sh - runs organizeIncomingImages.py at 8PM every day. 
 
-organizeIncomingImages.py - checks barcodes in incoming folders, moves to appropriate folder on storage drive, based on barcode. Put files with names that are too long or too short in BadBarcode folder. 
+organizeIncomingImages.py - checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder.
 
 WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 10PM, this allows the server to connect to the storage drive, in order to copy over files. 
+
+rsyncDaily.sh - runs on server to copy files to server and create derivatives. Then it calls `LogtoCSV.py` to turn logs into csv files to upload to portals. 

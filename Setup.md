@@ -40,8 +40,6 @@ These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts shou
 
 - Put this script somewhere it is easy to find and hard to edit or move. It should stay in the same place forever. 
 
-    ex: LSU `C:Users\Image\Documents\PNWHerbaria\Scripts\renameimage\renameimage.exe`
-
 #### 1.4 Link `renameimage.exe` to EOS
 
 - EOS needs to link directly to `renameimage.exe`, so that when a photograph is taken, EOS passes the default file name to `renameimage.exe`. For each photo taken `renameimage.exe` will open and provide a window to rename the file manually or with a barcode reader.
@@ -174,6 +172,7 @@ Mount local backups onto server. Google or get help from departmental IT.
   - Run at 10:15 PM every day. `15 22 * * * /bin/sh /var/www/rsyncDaily.sh &> /data/LSUCollections/Logs/dailyrsynclog.txt`
 - Had to change some permissions so that when root writes to the log folder, the permissions stay the same as the rest of the /data/ folder. `sudo vim /etc/logrotate.d/apache2 rsyncDaily.sh`
 
+
 ### 4. Set wake up for imaging computers 
 
 - Set up workstations to wake up before rsync script is scheduled to start. 
@@ -181,19 +180,6 @@ Mount local backups onto server. Google or get help from departmental IT.
 - Use task scheduler - `https://www.thewindowsclub.com/wake-up-computer-from-sleep-windows`
 
 
-
-
-
-## TO DO after xyz 
-
-- enable rsync after QC on WS2 and WS1, and after WS1 box upload. 
-- set up actual rsync after WS1 is all on synology and then all on box 
-
-## Tail ends of things to wrap up? 
-
-- clean up computers - genna 
-- add extras to WS1 synology - genna 
-- Edit permissions on synology? - eric 
 
 ## Additional set up notes 
 
@@ -206,5 +192,3 @@ Install from Microsoft Store
 #### Mount network drives in Ubuntu 
 
 `https://docs.microsoft.com/en-us/archive/blogs/wsl/file-system-improvements-to-the-windows-subsystem-for-linux`
-
-

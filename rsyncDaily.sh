@@ -22,15 +22,19 @@ rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --e
 
 # File names are put into dated output logs based on their content modification date. 
 # from the outlog
-# get the time of last data modification of each file
+# get the time of last modification of each file
 # parse out year,month,date and write file path to that file.
+# create image derivatives
+# Get full path to original file and resize 
 while read g; 
 do
 fname=`stat -c %y% "$destination$g" | awk '{print $1}'` 
 echo $g >> $logfolder1$fname$suffix1
-todaysLogArray1+=,$logfolder1$fname$suffix1
+mvdPath=$destination$g
+convert $mvdPath -units pixelsperinch -density 80x80 -resize 1400x1400^ -quality 80 ${mvdPath%.JPG}_WR.JPG
+convert $mvdPath -units pixelsperinch -density 80x80 -resize 200x200^ -quality 80 ${mvdPath%.JPG}_TN.JPG
+convert $mvdPath -quality 95 ${mvdPath%.JPG}_L.JPG
 done < $outlog1
-
 
 
 # Repeat for second computer - WS2 
@@ -46,4 +50,10 @@ while read g;
 do
 fname=`stat -c %y% "$destination$g" | awk '{print $1}'`
 echo $g >> $logfolder2$fname$suffix2
+mvdPath=$destination$g
+convert $mvdPath -units pixelsperinch -density 80x80 -resize 1400x1400^ -quality 80 ${mvdPath%.JPG}_WR.JPG
+convert $mvdPath -units pixelsperinch -density 80x80 -resize 200x200^ -quality 80 ${mvdPath%.JPG}_TN.JPG
+convert $mvdPath -quality 95 ${mvdPath%.JPG}_L.JPG
 done < $outlog2
+
+python3 /home/ggmount/WorkflowScripts/LogtoCSV.py &>> /data/LSUCollections/Logs/dailycsvlog.txt
