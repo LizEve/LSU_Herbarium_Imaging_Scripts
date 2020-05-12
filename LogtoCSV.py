@@ -90,16 +90,16 @@ def main():
     # script - will need to run for both workstations. 
     # constants:
     # log folders where log files are
-    #logFolder1 = '/mnt/LSUCollectionsWS1/Logs/'
-    #logFolder2 = '/mnt/LSUCollections/Logs/'
-    logFolder1 = '/Users/ChatNoir/Projects/HerbariumRA/test/'
-    logFolder2 = '/Users/ChatNoir/Projects/HerbariumRA/test/test1/'
+    logFolder1 = '/mnt/LSUCollectionsWS1/Logs/'
+    logFolder2 = '/mnt/LSUCollections/Logs/'
+    #logFolder1 = '/Users/ChatNoir/Projects/HerbariumRA/test/'
+    #logFolder2 = '/Users/ChatNoir/Projects/HerbariumRA/test/test1/'
 
     logFolders = [logFolder1,logFolder2]
     
     # csv out folder - put all csv files on one computer for Jennie 
-    #csvFolder='/mnt/LSUCollections/CSVLogs/'
-    csvFolder='/Users/ChatNoir/Projects/HerbariumRA/test/csv/'
+    csvFolder='/mnt/LSUCollections/CSVLogs/'
+    #csvFolder='/Users/ChatNoir/Projects/HerbariumRA/test/csv/'
     # Web address for link
     webPath = 'http://cyberfloralouisiana.com/images' 
     # Header for csv file

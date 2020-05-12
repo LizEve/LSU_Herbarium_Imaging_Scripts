@@ -31,6 +31,11 @@ Repeat 5. & 6. for all photos
 8. Convert from CR2 to JPG
    1. Now you are done, make sure to record on paper what specimens you imaged
 
+9. Upload CSV 
+   1. CSV files ready for upload are on in the CSVLogs/ folder. On workstation 2 at LSU.
+   2. After uploading CSV files please move them to the CSVLogged/ folder. 
+   3. If file names are edited and re-uploaded a new CSV file will be made for the date the original file was uploaded. This CSV can be combined with or replace the older CSV in the CSVLogged folder. 
+
 # Behind the scenes 
 
 Task Scheduler set to run following scripts. 
@@ -41,4 +46,6 @@ organizeIncomingImages.py - checks barcodes in incoming folders, moves to approp
 
 WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 10PM, this allows the server to connect to the storage drive, in order to copy over files. 
 
-rsyncDaily.sh - runs on server to copy files to server and create derivatives. Then it calls `LogtoCSV.py` to turn logs into csv files to upload to portals. 
+rsyncDaily.sh - runs on server to copy files to server and create derivatives. Then it calls LogtoCSV.py to turn logs into csv files to upload to portals. 
+
+LogtoCSV.py - takes all rsync logs that were modified in the last 24 hours and creates or adds to csv files that have not been uploaded to a portal yet. 
