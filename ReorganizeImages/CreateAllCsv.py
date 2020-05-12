@@ -38,11 +38,12 @@ def makeCSV(inFilePath,f,r):
 
 
 def main():
-    col='Algae'
+    ##col='Algae'
+    col='lsus'
     #col='Bryophyte'
     #col='Fungi'
     #col='Lichen'
-    homeFolder='/Users/ChatNoir/Projects/HerbariumRA/test'
+    homeFolder='/Users/ChatNoir/Projects/HerbariumRA/AllCSVFiles'
     inFilePath=os.path.join(homeFolder,str(col)+'.p')
     outFilePath=os.path.join(homeFolder,str(col)+'.csv')
     # /data/LSUCollections/Algae/LSU/00/169/LSU00169318_1.JPG

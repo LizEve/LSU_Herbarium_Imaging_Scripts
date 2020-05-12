@@ -62,6 +62,8 @@ def reSize(root,tempTrash,unwanted,originalFileList,outFilePath,remove):
                     rPath=os.path.join(path,fileName+u)
                     try:
                         shutil.move(rPath,tempTrash)
+                    except:
+                        pass 
 
     # Save list into a pickle file for later use. 
     outFile = open(outFilePath,'wb')
