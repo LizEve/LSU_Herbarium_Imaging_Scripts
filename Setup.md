@@ -6,7 +6,7 @@
 ### Acronyms 
 
 DPP - Digital Photo Professional
-EOS - EOS Utility - a program to conect computer to camera
+EOS - EOS Utility - a program to connect computer to camera
 
 ### Programs/versions
 
@@ -14,11 +14,11 @@ Python3 and package downloader like pip.
 Ubuntu XXX
 Computer with Windows 10
 Local backup drives plugged into or mounted on the windows machines. 
-Remote server for long term storage and serving images. 
+Remote server for long-term storage and serving images. 
 
 ### System Requirements 
 
-These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts should work on any linux platform. However, the automation of running scripts daily will be different. 
+These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts should work on any Linux platform. However, the automation of running scripts daily will be different. 
 
 ## Download and edit scripts on imaging computer
 
@@ -42,7 +42,7 @@ These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts shou
 
 #### 1.4 Link `renameimage.exe` to EOS
 
-- EOS needs to link directly to `renameimage.exe`, so that when a photograph is taken, EOS passes the default file name to `renameimage.exe`. For each photo taken `renameimage.exe` will open and provide a window to rename the file manually or with a barcode reader.
+- EOS needs to link directly to `renameimage.exe`, so that when a photograph is taken; EOS passes the default file name to `renameimage.exe`. For each photo taken `renameimage.exe` will open and provide a window to rename the file manually or with a barcode reader.
 - Open EOS - Preferences > Linked Software > Register > Browse
   - Click **Preferences**
   - Click **Linked Software**
@@ -62,7 +62,7 @@ Running `organizeIncomingImages.py` will do the following-
 
 ##### 2.1a Log files
 
-- Output logs based on date created, or on date modified if creation date cannot be identified, a potential on linux machines. 
+- Output logs based on date created, or on date modified if creation date cannot be identified, a potential on Linux machines. 
 - If the source folders have images in them, a log will be written for that day. 
 - Each log will be named based on the date with the option to add an additional string of letters or numbers. 
 - For LSU the log names will contain the date and the computer they are imaged on. `date_workstation1` 
@@ -76,7 +76,7 @@ Running `organizeIncomingImages.py` will do the following-
 - All file names will be changed to all caps if they are not already. Except those files in the other/random folders
 - Folders will be created first using the letters, then using the numbers. Ex: /LSU/001/002/
 - **BadBarcode Folder** : Files with improperly formatting barcodes will be sent here. Edit file names in this folder and place in appropriate source folder so they will be uploaded properly. 
-- When barcode/filename is fixed, the file will be recorded in the log coresponding to the day the file was originally created. If you edit the file in DPP again the server logs may record the file as originating from the day you re-edited the photo. Make sure to record this in any paper logs.
+- When barcode/filename is fixed, the file will be recorded in the log corresponding to the day the file was originally created. If you edit the file in DPP again the server logs may record the file as originating from the day you re-edited the photo. Make sure to record this in any paper logs.
   
 #### 2.2 Download
 
@@ -87,12 +87,12 @@ Running `organizeIncomingImages.py` will do the following-
 #### 2.3 Store locally
 
 - Again put this folder somewhere it is easy to find and hard to edit or move.
-    ex: LSU `C:Users\Image\Documents\GitHub\HerbariumRA`
+    ex: LSU `C:Users\Image\Documents\GitHub\LSU_Herbarium_Imaging_Scripts`
 
 #### 2.4 Edit script 
 
 - `organizeIncomingImages.py` needs to be customized to your computer 
-- Open python script in a simple text editor like NotePad, NOT microsoft word. 
+- Open python script in a simple text editor like NotePad, NOT Microsoft word. 
 - Scroll down to the bottom of the file under `def main():` and edit the following variables:
 
 ##### 2.4a Variables to customize 
@@ -132,17 +132,17 @@ Mount local backups onto server. Google or get help from departmental IT.
 
 #### 2.1a Log files 
 
-- Files are written to output logs based on date modified. Modification date is the last time the contents of the file were altered, simply renaming the file itself should not change the modification date.
-- File creation date is complicated to aquire on Linux machines, so I am using modification date which should server our purposes.
+- Files are written to output logs based on date modified. Modification date is the last time the contents of the file were altered; simply renaming the file itself should not change the modification date.
+- File creation date is complicated to acquire on Linux machines, so I am using modification date which should server our purposes.
 - Rsync logs are similar to the organizing logs. They are named based on the date and a trailing custom string.
 - For LSU the log names will contain the date, the word 'server' to indicate they are logs for server upload, and the computer they are imaged on.
 
 ### 2.2 Download and store locally
 
 - `https://github.com/LizEve/HerbariumRA.git`
-  - Copy script from imagining computer or use github to clone 
+  - Copy script from imagining computer or use GitHub to clone 
 - Store script somewhere that is executable by root. 
-  - This is dependant on how your server and permissions are set up.
+  - This is dependent on how your server and permissions are set up.
   
 ### 2.3 Edit script 
 
@@ -166,7 +166,7 @@ Mount local backups onto server. Google or get help from departmental IT.
 ### 3. Set up cron job to run rsyncDaily.sh 
 
 - Cron info - https://www.adminschoice.com/crontab-quick-reference
-- Recomend running as root to avoid any file writing or permissions issues. 
+- Recommend running as root to avoid any file writing or permissions issues. 
 - Add rsyncDaily.sh to cron jobs 
   - Open root crontab for editing `sudo crontab -u root -e`
   - Run at 10:15 PM every day. `15 22 * * * /bin/sh /var/www/rsyncDaily.sh &> /data/LSUCollections/Logs/dailyrsynclog.txt`
@@ -192,3 +192,4 @@ Install from Microsoft Store
 #### Mount network drives in Ubuntu 
 
 `https://docs.microsoft.com/en-us/archive/blogs/wsl/file-system-improvements-to-the-windows-subsystem-for-linux`
+

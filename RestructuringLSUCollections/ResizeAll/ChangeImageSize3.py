@@ -73,16 +73,12 @@ def reSize(root,tempTrash,unwanted,originalFileList,outFilePath,remove):
 
 
 def main():
-    #col='Algae'
-    #col='Bryophyte'
-    #col='Fungi'
-    #col='Lichen'
-    col='lsus'
-    unwanted=["txt","tmp","csv","zip","_s","_m","_l","_S","_M","_L","WR","TN","CR2","cr2"]
-    remove=["_s.jpg","_m.jpg","_l.jpg"]
+    col='Vascular'
+    unwanted=["thumb","txt","tmp","csv","zip","_s","_m","_l","_S","_M","_L","WR","TN","CR2","cr2"]
+    remove=["_s.jpg","_m.jpg","_l.jpg","_thumb.jpg"]
     tempTrash='/data/lost+found/'
-    #root=os.path.join('/data/LSUCollections/',col)
-    root=os.path.join('/data/nfsshare/',col)
+    root=os.path.join('/data/LSUCollections/',col,"LSU")
+    #root=os.path.join('/data/nfsshare/',col)
     originalFileList=[]
     outFilePath=os.path.join('/home/ggmount/',str(col)+'.p')
 

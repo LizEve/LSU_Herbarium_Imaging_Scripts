@@ -39,13 +39,20 @@ def makeCSV(inFilePath,f,r):
 
 def main():
     ##col='Algae'
-    col='lsus'
-    #col='Bryophyte'
-    #col='Fungi'
-    #col='Lichen'
+    ##col='lsus'
+    ##col='thib'
+    ##col='sfrp'
+    ##col='uslh'
+    ##col='ltu'
+    ##col='selu'
+    ##col='laf'
+    ##col='Bryophyte'
+    ##col='Fungi'
+    ##col='Lichen'
+    col='Vascular'
     homeFolder='/Users/ChatNoir/Projects/HerbariumRA/AllCSVFiles'
-    inFilePath=os.path.join(homeFolder,str(col)+'.p')
-    outFilePath=os.path.join(homeFolder,str(col)+'.csv')
+    inFilePath=os.path.join(homeFolder,str(col)+'LSU.p')
+    outFilePath=os.path.join(homeFolder,str(col)+'LSU.csv')
     # /data/LSUCollections/Algae/LSU/00/169/LSU00169318_1.JPG
     f = '/data'
     r ='http://cyberfloralouisiana.com/images' 
