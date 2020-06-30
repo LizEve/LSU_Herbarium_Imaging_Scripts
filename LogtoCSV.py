@@ -3,13 +3,13 @@ import glob
 import datetime as dt
 import pandas as pd
 
-def makeLog(logFolders,csvFolder,webPath,header):
+def makeLog(logFolders,csvFolder,webPath,header,lastXdays):
 
     # Get list of all log files edited on todays date. in log both folders
     todaysFilesList=[]
 
     # Set times for the last day
-    now = dt.datetime.now()
+    now = dt.datetime.now()-dt.timedelta(days=lastXdays)
     ago = now-dt.timedelta(days=10000)
 
     # Make list of files from all log folders 
@@ -89,6 +89,7 @@ def makeLog(logFolders,csvFolder,webPath,header):
 def main():
     # script - will need to run for both workstations. 
     # constants:
+    lastXdays = 30
     # log folders where log files are
     logFolder1 = '/mnt/LSUCollectionsWS1/Logs/'
     logFolder2 = '/mnt/LSUCollections/Logs/'
@@ -106,7 +107,7 @@ def main():
     csvHeader = ['catalogNumber','large JPG','thumbnail','webview']
     header = ",".join(csvHeader)
     # Call function
-    makeLog(logFolders,csvFolder,webPath,header)
+    makeLog(logFolders,csvFolder,webPath,header,lastXdays)
 
 if __name__ == "__main__":
     main()
