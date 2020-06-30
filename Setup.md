@@ -132,8 +132,8 @@ Mount local backups onto server. Google or get help from departmental IT.
 
 #### 2.1a Log files 
 
-- Files are written to output logs based on date modified. Modification date is the last time the contents of the file were altered; simply renaming the file itself should not change the modification date.
-- File creation date is complicated to acquire on Linux machines, so I am using modification date which should server our purposes.
+- Files are written to output logs based on the date that the log is written.
+- If desired there is a depreciated version where logs are made based on the date the file was last modified. Modification date is the last time the contents of the file were altered; simply renaming the file itself should not change the modification date.
 - Rsync logs are similar to the organizing logs. They are named based on the date and a trailing custom string.
 - For LSU the log names will contain the date, the word 'server' to indicate they are logs for server upload, and the computer they are imaged on.
 
@@ -171,6 +171,7 @@ Mount local backups onto server. Google or get help from departmental IT.
   - Open root crontab for editing `sudo crontab -u root -e`
   - Run at 10:15 PM every day. `15 22 * * * /bin/sh /var/www/rsyncDaily.sh &> /data/LSUCollections/Logs/dailyrsynclog.txt`
 - Had to change some permissions so that when root writes to the log folder, the permissions stay the same as the rest of the /data/ folder. `sudo vim /etc/logrotate.d/apache2 rsyncDaily.sh`
+- Cron jobs need to be executable by root chmod 750
 
 
 ### 4. Set wake up for imaging computers 

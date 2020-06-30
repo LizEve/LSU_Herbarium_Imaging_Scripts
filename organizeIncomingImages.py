@@ -43,6 +43,7 @@ def splitNumLet(b,f,errorFilePath):
 
 def creationDate(path_to_file):
     """
+    NO Longer used, but can be used if needed. 
     Try to get the date that a file was created, falling back to when it was
     last modified if that isn't possible.
     See http://stackoverflow.com/a/39501288/1709587 for explanation.
@@ -122,7 +123,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             sourceFilePath=os.path.join(folderPath,filename)
 
             # Get creation date for source file, or last modification date if creation date cannot be recovered
-            birthDate=creationDate(sourceFilePath)
+            #birthDate=creationDate(sourceFilePath)
             
             # Get path to source folder 
             destinationPortalFolder = os.path.join(destinationFolder,folder)
@@ -143,9 +144,12 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     # Move file to destination    
                     shutil.move(sourceFilePath,destinationFilePath)
                     
-                    # Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
+                    # Create log file based on day script is run 
+                    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+outLogsuffix
+
+                    # Old version - Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
                     # Also add customized suffix and file extension to log file name 
-                    logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
+                    #logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
                     
                     # Get path to log file 
                     logFilePath=os.path.join(sourceFolder,"Logs",logFileName)

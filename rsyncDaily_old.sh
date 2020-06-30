@@ -20,15 +20,15 @@ csvfolder1=/mnt/LSUCollectionsWS1/CSVLogs/
 # From this outlog the modification date and file name are grabbed 
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --exclude '*Log*' $source1 $destination | grep '^>f' | cut -d' ' -f2 > $outlog1
 
-# File names are put into dated output logs based on the date of log written. 
-# from the rsync outlog
+# File names are put into dated output logs based on their content modification date. 
+# from the outlog
 # get the time of last modification of each file
 # parse out year,month,date and write file path to that file.
 # create image derivatives
 # Get full path to original file and resize 
 while read g; 
 do
-fname=`date +'%Y-%m-%d'`
+fname=`stat -c %y% "$destination$g" | awk '{print $1}'` 
 echo $g >> $logfolder1$fname$suffix1
 mvdPath=$destination$g
 convert $mvdPath -units pixelsperinch -density 80x80 -resize 1400x1400^ -quality 80 ${mvdPath%.JPG}_WR.JPG
@@ -48,7 +48,7 @@ rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --e
 
 while read g;
 do
-fname=`date +'%Y-%m-%d'`
+fname=`stat -c %y% "$destination$g" | awk '{print $1}'`
 echo $g >> $logfolder2$fname$suffix2
 mvdPath=$destination$g
 convert $mvdPath -units pixelsperinch -density 80x80 -resize 1400x1400^ -quality 80 ${mvdPath%.JPG}_WR.JPG
