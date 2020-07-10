@@ -11,7 +11,7 @@ destination=/data/LSUCollections/
 source1=/mnt/LSUCollectionsWS1/
 logfolder1=/mnt/LSUCollectionsWS1/Logs/
 outlog1=/mnt/LSUCollectionsWS1/Logs/rsync1.out # Only need one because rsync writes over it each time rsync is called
-suffix1=_serverWS1.txt # adding "_server" to end of log file so it is differentiated from log files sorted locally
+suffix1=_server_ws1.txt # adding "_server" to end of log file so it is differentiated from log files sorted locally
 # verbose and itemize changes, change ownership of moved files to match /data/
 # don't move CR2 files
 # pipe parses file paths that are moved 
@@ -40,7 +40,7 @@ done < $outlog1
 source2=/mnt/LSUCollections/
 logfolder2=/mnt/LSUCollections/Logs/
 outlog2=/mnt/LSUCollections/Logs/rsync2.out # Only need one because rsync writes over it each time rsync is called
-suffix2=_serverWS2.txt # adding "_server" to end of log file so it is differentiated from files sorted locally
+suffix2=_server_ws2.txt # adding "_server" to end of log file so it is differentiated from files sorted locally
 csvfolder2=/mnt/LSUCollections/CSVLogs/
 
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --exclude '*Log*' $source2 $destination | grep '^>f' | cut -d' ' -f2 > $outlog2

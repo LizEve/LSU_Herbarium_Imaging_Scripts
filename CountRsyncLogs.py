@@ -93,7 +93,7 @@ def main():
     # Path to a log file that counts the number of files etc in each csv file
     # This log is extremely customized for LSU, if you want to implement it, edit the function
 
-    masterLogFilePath = os.path.join(logFolder,'uploadLog.csv')
+    masterLogFilePath = os.path.join(logFolder,'serverLogWS2.csv')
 
     # Call function
     countImages(logFile,logFolder,masterLogFilePath)
