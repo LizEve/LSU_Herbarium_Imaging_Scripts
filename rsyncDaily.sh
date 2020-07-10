@@ -55,9 +55,6 @@ convert $mvdPath -units pixelsperinch -density 80x80 -resize 200x200^ -quality 8
 convert $mvdPath -quality 95 ${mvdPath%.JPG}_L.JPG
 done < $outlog2
 
-# Call script to change rsync log files to csv files ready for portal upload
-python3 /home/ggmount/WorkflowScripts/LogtoCSV.py &>> /data/LSUCollections/Logs/dailycsvlog.txt
-
 
 # Sync all csv files to sassafrass folder 
 csvRemote=/data/LSUCollections/Logs/

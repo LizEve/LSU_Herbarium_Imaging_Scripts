@@ -43,9 +43,15 @@ Task Scheduler set to run following scripts.
 RunOrganize.sh - runs organizeIncomingImages.py at 8PM every day. 
 
 organizeIncomingImages.py - checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder.
+Outputs one log file per day with all destination file paths. 
+Also writes to master log file with number of files,barcodes moved, also broken down by collection. This does not count files in the "Random" folder. 
 
 WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 10PM, this allows the server to connect to the storage drive, in order to copy over files. 
 
-rsyncDaily.sh - runs on server to copy files to server and create derivatives. Then it calls LogtoCSV.py to turn logs into csv files to upload to portals. 
+rsyncDaily.sh - runs on server to copy files to server and create derivatives. 
+Outputs one log file per day (per computer) with all destination file paths. 
+Passes current day's log file to CountRsyncLogs.py to count total files/barcodes moved.
+
+CountRsyncLogs.py- called by rsyncDaily. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
 
 LogtoCSV.py - takes all rsync logs that were modified in the last 24 hours and creates or adds to csv files that have not been uploaded to a portal yet. 

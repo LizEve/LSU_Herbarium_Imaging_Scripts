@@ -5,6 +5,45 @@ import pathlib
 import shutil 
 import platform
 import datetime
+import pandas as pd
+
+
+def countFiles(barcodes,files,portals,csvLogFilePath):
+
+    # All the info to keep track of and report 
+    numBarcodes=str(len(set(barcodes)))
+    numFiles=str(len(files))
+    numVascular=str(portals.count('Vascular'))
+    numAlgae=str(portals.count('Algae'))
+    numBryophyte=str(portals.count('Bryophyte'))
+    numFungi=str(portals.count('Fungi')) 
+    numLichen=str(portals.count('Lichen'))
+    todaysDate=str(datetime.date.today().strftime("%Y-%m-%d"))
+
+    # Header for log file
+    firstLine=['CSVDate','Barcodes','Files','Vascular','Algae','Bryophyte','Fungi','Lichen']
+    logHeader = ",".join(firstLine)
+    
+    # Get line to add to csv file
+    csvLine = [todaysDate,numBarcodes,numFiles,numVascular,numAlgae,numBryophyte,numFungi,numLichen]
+    csvLogLine=",".join(csvLine)
+
+    # If csv file does not exist, create with header 
+
+    if not os.path.exists(csvLogFilePath):
+        #print(header)
+        with open(csvLogFilePath,"w") as csvLogFile:
+            csvLogFile.write("%s\n" % logHeader)
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
+             
+    # If csv file exists, add new line 
+
+    elif os.path.exists(csvLogFilePath):
+        #print(csvLine)
+        with open(csvLogFilePath,"a") as csvLogFile:
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
 
 def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
         # Create folders if needed in both source and destination 
@@ -106,6 +145,11 @@ def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,bar
     return newDir,newPath
 
 def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath):
+    
+    # Create lists to calculate summary numbers
+    barcodes=[]
+    files=[]
+    portals=[]
 
     # Iterate through list of user defined organizing source folders, for LSU these are portal names 
     for folder in portalFolders:
@@ -131,9 +175,10 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             # Create destination file path and folder path 
             # The function newPathName also checks for barcode format and length
             # All files with incorrectly formatted barcodes will be moved to a "BadBarcode" folder NOT on the specified backup 
-            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath)
+            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
  
-            # For files with correctly formated barcodes 
+            # For files with CORRECTLY formated barcodes 
+
             if "BadBarcode" not in destinationFilePath:
                 
                 try:
@@ -145,7 +190,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     shutil.move(sourceFilePath,destinationFilePath)
                     
                     # Create log file based on day script is run 
-                    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+outLogsuffix
+                    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+folder+"_"+outLogsuffix
 
                     # Old version - Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
                     # Also add customized suffix and file extension to log file name 
@@ -170,13 +215,21 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             else:
                 try:
                     shutil.move(sourceFilePath,destinationFilePath)
+
+                    # Add to portal dict for reporting numbers
+                    barcodes.append(barCode)
+                    files.append(fileName)
+                    portals.append(portal)
                     
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
                     writeError = open(errorFilePath,'a')
                     writeError.write(str(e)+" File failed to move "+str(sourceFilePath)+'\n')
                     writeError.close()
-    
+
+    # Write out log file of all the files that got moved
+    countFiles(barcodes,files,portals,csvLogFilePath)
+
     # Iterate through list of user defined "other" folders, for LSU this is the folder "Random"               
     for folder in otherFolders:
         
@@ -241,7 +294,10 @@ def main():
     # Make sure this is different from the string appended to your server logs in the rsyncdaily.sh script. 
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     
-    outLogsuffix="_workstation1.txt"
+    outLogsuffix="_WS2.txt"
+    #outLogsuffix="_WS1.txt"
+
+    csvLogFilePath = os.path.join(csvFolder,'organizeLog.csv')
     
     ############ END section to customize  
 
@@ -256,7 +312,7 @@ def main():
     print(errorFilePath)
     # Move the files!!! 
 
-    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath)
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
 
     '''
     Extra notes 

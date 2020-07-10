@@ -1,41 +1,80 @@
 import os
 import glob
-import datetime as dt
+import datetime
 import pandas as pd
 
-def makeLog(logFolders,csvFolder,webPath,header,lastXdays):
 
-    # Get list of all log files edited on todays date. in log both folders
-    todaysFilesList=[]
+def countFiles(barcodes,files,portals,csvLogFilePath):
 
-    # Set times for the last day
-    now = dt.datetime.now()-dt.timedelta(days=lastXdays)
-    ago = now-dt.timedelta(days=10000)
+    # All the info to keep track of and report 
+    numBarcodes=str(len(set(barcodes)))
+    numFiles=str(len(files))
+    numVascular=str(portals.count('Vascular'))
+    numAlgae=str(portals.count('Algae'))
+    numBryophyte=str(portals.count('Bryophyte'))
+    numFungi=str(portals.count('Fungi')) 
+    numLichen=str(portals.count('Lichen'))
+    todaysDate=str(datetime.date.today().strftime("%Y-%m-%d"))
 
-    # Make list of files from all log folders 
-    for logFolder in logFolders:
+    # Header for log file
+    firstLine=['CSVDate','Barcodes','Files','Vascular','Algae','Bryophyte','Fungi','Lichen']
+    logHeader = ",".join(firstLine)
+    
+    # Get line to add to csv file
+    csvLine = [todaysDate,numBarcodes,numFiles,numVascular,numAlgae,numBryophyte,numFungi,numLichen]
+    csvLogLine=",".join(csvLine)
 
-        # Get all files in Log Folder
-        logFolderList = []
-        for file in os.listdir(logFolder):
-            if file.endswith(".txt"):
-                path = os.path.join(logFolder, file)
-                logFolderList.append(path)
+    # If csv file does not exist, create with header 
 
-        # Get all files that were modified today 
-        for p in logFolderList:
-            #print(path)
-            st = os.stat(p)    
-            mtime = dt.datetime.fromtimestamp(st.st_mtime)
-            if mtime > ago:
-                todaysFilesList.append(p)
-    print(todaysFilesList)
+    if not os.path.exists(csvLogFilePath):
+        #print(header)
+        with open(csvLogFilePath,"w") as csvLogFile:
+            csvLogFile.write("%s\n" % logHeader)
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
+             
+    # If csv file exists, add new line 
 
-    # Iterate through log files from today 
-    for logFile in todaysFilesList:
-        # Get the date from the log name 
-        logDate = os.path.basename(logFile).split("_")[0]
-        #print(logDate)
+    elif os.path.exists(csvLogFilePath):
+        #print(csvLine)
+        with open(csvLogFilePath,"a") as csvLogFile:
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
+
+def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
+
+    # Get list of all log files edited on specified dates. 
+    logFilesList=[]
+    #print(oldest,newest)
+
+    # Get all files in Log Folder
+    logFolderList = []
+    for file in os.listdir(logFolder):
+        if file.endswith(".txt"):
+            path = os.path.join(logFolder, file)
+            logFolderList.append(path)
+
+    # Get all files that were imaged on the specified dates 
+    for p in logFolderList:
+        #print(path)
+        st = os.stat(p)    
+        mtime = datetime.datetime.fromtimestamp(st.st_mtime)
+        # If mtime is greater(newer) than oldest date and smaller(older) than newest date
+        if mtime >= oldest and mtime <= newest:
+            #print(p)
+            #print(mtime)
+            logFilesList.append(p)
+
+    # Set date name for csv file - today's date 
+    logDate = str(datetime.date.today().strftime("%Y-%m-%d"))
+
+    # Create lists to calculate summary numbers
+    barcodes=[]
+    files=[]
+    portals=[]
+
+    # Iterate through log files 
+    for logFile in logFilesList:
 
         # Open the file 
         logF = open(logFile,"r")
@@ -48,9 +87,7 @@ def makeLog(logFolders,csvFolder,webPath,header,lastXdays):
             portal=oPath.split("/")[0]
 
             # Get path to csv file line will be written to.
-            #print(csvFolder,logDate,portal)
             csvPath = os.path.join(csvFolder,logDate+"_"+portal+".csv")
-            #print(csvPath)
 
             # Get path to original image
             path = os.path.split(oPath)[0]
@@ -75,6 +112,7 @@ def makeLog(logFolders,csvFolder,webPath,header,lastXdays):
                 #print(header)
                 with open(csvPath,"w") as csvFile:
                     csvFile.write("%s\n" % header)
+                    csvFile.write("%s\n" % csvLine)
                     csvFile.close()
                      
             # If csv file exists, add new line 
@@ -85,29 +123,48 @@ def makeLog(logFolders,csvFolder,webPath,header,lastXdays):
                     csvFile.close()
             else:
                 print("This should never happen")
+            
+            # Add to portal dict for reporting numbers
+            barcodes.append(barCode)
+            files.append(fileName)
+            portals.append(portal)
+
+    # Write out log file of all the files that got csv'd
+    countFiles(barcodes,files,portals,csvLogFilePath)
 
 def main():
-    # script - will need to run for both workstations. 
-    # constants:
-    lastXdays = 30
-    # log folders where log files are
-    logFolder1 = '/mnt/LSUCollectionsWS1/Logs/'
-    logFolder2 = '/mnt/LSUCollections/Logs/'
-    #logFolder1 = '/Users/ChatNoir/Projects/HerbariumRA/test/'
-    #logFolder2 = '/Users/ChatNoir/Projects/HerbariumRA/test/test1/'
-
-    logFolders = [logFolder1,logFolder2]
+    # Set times for the days that you want logs from
+    # Days begin and end at midnight. 
+    # Ex: Logs from June 3rd-July 10th. 
+    # newest = datetime.datetime(year=2020,month=7,day=11)
+    # oldest = datetime.datetime(year=2020,month=6,day=3)
     
-    # csv out folder - put all csv files on one computer for Jennie 
-    csvFolder='/mnt/LSUCollections/CSVLogs/'
+    newest = datetime.datetime(year=2020,month=7,day=3)
+    oldest = datetime.datetime(year=2020,month=7,day=1)
+
+    # Path to log files that are made when images are uploaded to server
+    logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+    #logFolder = '/Users/ChatNoir/Projects/HerbariumRA/test/'
+    
+    # Path to folder where CSV files will be made
+    csvFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/CSVLogs/'
     #csvFolder='/Users/ChatNoir/Projects/HerbariumRA/test/csv/'
-    # Web address for link
+
+    # Web address for linking images 
     webPath = 'http://cyberfloralouisiana.com/images' 
-    # Header for csv file
+
+    # Header for csv file, compatable with Symbiota
+
     csvHeader = ['catalogNumber','large JPG','thumbnail','webview']
     header = ",".join(csvHeader)
+
+    # Path to a log file that counts the number of files etc in each csv file
+    # This log is extremely customized for LSU, if you want to implement it, edit the function
+
+    csvLogFilePath = os.path.join(csvFolder,'csvLog.csv')
+
     # Call function
-    makeLog(logFolders,csvFolder,webPath,header,lastXdays)
+    makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath)
 
 if __name__ == "__main__":
     main()
