@@ -151,7 +151,7 @@ def main():
     #csvFolder='/Users/ChatNoir/Projects/HerbariumRA/test/csv/'
 
     # Web address for linking images 
-    webPath = 'http://cyberfloralouisiana.com/images' 
+    webPath = 'http://cyberfloralouisiana.com/images/LSUCollections/' 
 
     # Header for csv file, compatable with Symbiota
 
