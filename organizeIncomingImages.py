@@ -194,9 +194,10 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     # Add to portal dict for reporting numbers
                     barcodes.append(barCode)
                     files.append(FileName)
-                    portals.append(folder)
-                    #print(destinationFilePath)
-                    #print(barCode,FileName,folder)
+                    # Only count jpg files for counting files in portals. 
+                    jpg = FileName.split(".")[-1]
+                    if jpg == 'JPG':
+                        portals.append(folder)
                     
                     # Create log file based on day script is run 
                     logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+folder+"_"+outLogsuffix

@@ -31,14 +31,43 @@ Repeat 5. & 6. for all photos
 8. Convert from CR2 to JPG
    1. Now you are done, make sure to record on paper what specimens you imaged
 
-9. Upload CSV 
+Weekly 
+
+1. Upload CSV 
    1. CSV files ready for upload are on in the CSVLogs/ folder. On workstation 2 at LSU.
    2. After uploading CSV files please move them to the CSVLogged/ folder. 
    3. If file names are edited and re-uploaded a new CSV file will be made for the date the original file was uploaded. This CSV can be combined with or replace the older CSV in the CSVLogged folder. 
 
-# Behind the scenes 
+## Behind the scenes
 
-Task Scheduler set to run following scripts. 
+### 6PM
+
+- Files get moved from the desktop to the LaCie
+- Long form logs are written to the Desktop in the folder Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
+- Tally of files moved are appended to the file 'organizeLog.csv' in CFLA-LSU-Station2/LSUCollections/CSVLogs/
+- Scripts run: RunOrganize.sh, organizeIncomingImages.py
+
+### 8PM 
+
+- Wakeup script runs on workstation
+- Sassafrass pulls files from LaCie using scripts on Sassafrass
+- Long form logs are written in CFLA-LSU-Station2/LSUCollections/Logs/ on the LaCie with the extention '_server_ws2.txt'
+- Desktop uses long form logs to tally the total number of files uploaded and writes the results to the file 'serverLogWS2.csv' on the LaCie in the folder CFLA-LSU-Station2/LSUCollections/Logs/
+- Scripts run: WakeUp.sh, rsyncDaily.sh, CountRsyncLogs.py
+
+### Check 
+organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and files per portal. Total number of files should be double in organizeLog.csv because CR2 files are counted. 
+
+### Weekly 
+- CSV files are made from the long form upload logs created in the last week. 
+- The total files in each csv file are written to the file 'csvLog.csv' on the LaCie in the folder CFLA-LSU-Station2/LSUCollections/CSVLogs/
+- These csv logs will also be synced to the Sassafrass log folder accessible at - https://cyberfloralouisiana.com/images/LSUCollections/Logs/
+- Scripts run: LogtoCSV.py
+
+
+## Scripts 
+
+### Run on Desktop with Task Scheduler
 
 RunOrganize.sh - runs organizeIncomingImages.py at 8PM every day. 
 
@@ -46,12 +75,14 @@ organizeIncomingImages.py - checks barcodes in incoming folders, moves to approp
 Outputs one log file per day with all destination file paths. 
 Also writes to master log file with number of files,barcodes moved, also broken down by collection. This does not count files in the "Random" folder. 
 
-WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 10PM, this allows the server to connect to the storage drive, in order to copy over files. 
+WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 8PM, this allows the server to connect to the storage drive, in order to copy over files. 
+
+CountRsyncLogs.py- called by Task Scheduler. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
+
+LogtoCSV.py - Takes all rsync logs that were modified in the last week hours and creates or adds to csv files that have not been uploaded to a portal yet. 
+
+### Run on server by crontab: 
 
 rsyncDaily.sh - runs on server to copy files to server and create derivatives. 
 Outputs one log file per day (per computer) with all destination file paths. 
 Passes current day's log file to CountRsyncLogs.py to count total files/barcodes moved.
-
-CountRsyncLogs.py- called by rsyncDaily. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
-
-LogtoCSV.py - takes all rsync logs that were modified in the last 24 hours and creates or adds to csv files that have not been uploaded to a portal yet. 
