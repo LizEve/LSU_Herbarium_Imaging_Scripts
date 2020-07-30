@@ -7,7 +7,7 @@ import platform
 import datetime
 import pandas as pd
 
-## Add "if file name ends with jpg" add to portal list. to filter out cr2 for portal counts
+
 def countFiles(barcodes,files,portals,csvLogFilePath):
 
     # All the info to keep track of and report 
@@ -26,34 +26,31 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
     
     # Get line to add to csv file
     csvLine = [todaysDate,numBarcodes,numFiles,numVascular,numAlgae,numBryophyte,numFungi,numLichen]
-    print(csvLine)
     csvLogLine=",".join(csvLine)
 
     # If csv file does not exist, create with header 
-    if numFiles != 0:
-        if not os.path.exists(csvLogFilePath):
-            #print(header)
-            with open(csvLogFilePath,"w") as csvLogFile:
-                csvLogFile.write("%s\n" % logHeader)
-                csvLogFile.write("%s\n" % csvLogLine)
-                csvLogFile.close()
-                 
-        # If csv file exists, add new line 
 
-        elif os.path.exists(csvLogFilePath):
-            #print(csvLine)
-            with open(csvLogFilePath,"a") as csvLogFile:
-                csvLogFile.write("%s\n" % csvLogLine)
-                csvLogFile.close()
-    else:
-        print("no images today")
+    if not os.path.exists(csvLogFilePath):
+        #print(header)
+        with open(csvLogFilePath,"w") as csvLogFile:
+            csvLogFile.write("%s\n" % logHeader)
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
+             
+    # If csv file exists, add new line 
+
+    elif os.path.exists(csvLogFilePath):
+        #print(csvLine)
+        with open(csvLogFilePath,"a") as csvLogFile:
+            csvLogFile.write("%s\n" % csvLogLine)
+            csvLogFile.close()
 
 def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
         # Create folders if needed in both source and destination 
         for x in portalFolders+otherFolders:
             p1=os.path.join(sourceFolder,x)
             p2=os.path.join(destinationFolder,x)
-            #print(p1,p2)
+            print(p1,p2)
             if not os.path.exists(p1):
                 pathlib.Path(p1).mkdir(parents=True)
             if not os.path.exists(p2):
@@ -62,11 +59,12 @@ def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
         # Also make folders named "BadBarcode" and "Logs" in your source folder
         LogPath=os.path.join(sourceFolder,"Logs")
         BadPath=os.path.join(sourceFolder,"BadBarcode")
-        #print(LogPath,BadPath)
+        print(LogPath,BadPath)
         if not os.path.exists(LogPath):
             pathlib.Path(LogPath).mkdir(parents=True)
         if not os.path.exists(BadPath):
             pathlib.Path(BadPath).mkdir(parents=True)
+
 
 def splitNumLet(b,f,errorFilePath):
     '''
@@ -104,7 +102,7 @@ def creationDate(path_to_file):
             # so we'll settle for when its content was last modified.
             return stat.st_mtime  
 
-def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath):
+def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath):
     '''
     Use old path to image, image file name, and destination parent folder (portal for LSU) to create a new path to move image. 
     Folder structure comes from barcode
@@ -144,9 +142,9 @@ def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,bar
         # File this into a "BadBarcode" folder for manual inspection and editing. 
         newPath = os.path.join(sourceFolder,"BadBarcode",FileName)
         newDir = os.path.join(sourceFolder,"BadBarcode")
-    return newDir,newPath,Barcode
+    return newDir,newPath
 
-def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath):
+def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath):
     
     # Create lists to calculate summary numbers
     barcodes=[]
@@ -177,7 +175,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             # Create destination file path and folder path 
             # The function newPathName also checks for barcode format and length
             # All files with incorrectly formatted barcodes will be moved to a "BadBarcode" folder NOT on the specified backup 
-            destinationFolderPath,destinationFilePath,barCode = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
+            destinationFolderPath,destinationFilePath = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
  
             # For files with CORRECTLY formated barcodes 
 
@@ -190,13 +188,6 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                         
                     # Move file to destination    
                     shutil.move(sourceFilePath,destinationFilePath)
-                    
-                    # Add to portal dict for reporting numbers
-                    barcodes.append(barCode)
-                    files.append(FileName)
-                    portals.append(folder)
-                    #print(destinationFilePath)
-                    #print(barCode,FileName,folder)
                     
                     # Create log file based on day script is run 
                     logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+folder+"_"+outLogsuffix
@@ -225,6 +216,11 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 try:
                     shutil.move(sourceFilePath,destinationFilePath)
 
+                    # Add to portal dict for reporting numbers
+                    barcodes.append(barCode)
+                    files.append(fileName)
+                    portals.append(portal)
+                    
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
                     writeError = open(errorFilePath,'a')
@@ -232,7 +228,6 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     writeError.close()
 
     # Write out log file of all the files that got moved
-
     countFiles(barcodes,files,portals,csvLogFilePath)
 
     # Iterate through list of user defined "other" folders, for LSU this is the folder "Random"               
@@ -279,7 +274,7 @@ def main():
     
     # Folder for long term storage 
     
-    destinationFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/'
+    destinationFolder='/mnt/e/CFLA-LSU-Station2/Test/'
 
     # List folders that correspond to how you want to store your images
     # For LSU images are stored based on the portal they will be uploaded to online.
@@ -300,22 +295,21 @@ def main():
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     
     outLogsuffix="organize_ws2.txt"
-    
+
     csvFolder='/mnt/c/Users/Image/Desktop/Imaging/Logs/'
-    
-    csvLogFilePath = os.path.join(csvFolder,'organizeLog.csv')
+    csvLogFilePath = os.path.join(csvFolder,'organizeLogWS2.csv')
     
     ############ END section to customize  
 
     # Create folders if needed 
     # This will also make folders named "BadBarcode" and "Logs" in your source folder
-    # Best to hash this out after setup
-    # makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
+
+    makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
     
     # Initiate a file path where errors will be stored. 
 
     errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
-
+    print(errorFilePath)
     # Move the files!!! 
 
     moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
@@ -334,4 +328,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print("Done")
