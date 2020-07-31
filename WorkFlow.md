@@ -71,17 +71,15 @@ organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and
 
 RunOrganize.sh - runs organizeIncomingImages.py at 6PM every day. 
 
-organizeIncomingImages.py - Checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder.
-Outputs one log file per day with all destination file paths. 
-Also writes to master log file with number of files,barcodes moved, also broken down by collection. This does not count files in the "Random" folder. 
+organizeIncomingImages.py - Checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder. Outputs one long form log file per day with all destination file paths. Writes to master log file with number of files and barcodes moved to LaCie, also broken down by collection. Uses long form of logs to count files. This does not count files in the "Random" folder. 
 
 WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 7:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
 
-RunCountServer.sh - runs CountUploadLogs.py.py at XX every day. 
+RunCountServer.sh - runs CountUploadLogs.py.py at 5AM every day. 
 
-CountServerLogs.py- Called by Task Scheduler. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
+CountServerLogs.py - Called by Task Scheduler. Writes to master log file with number of files and barcodes moved to the server, also broken down by colletion. Uses long form of log for each day to count files. This does not count files in the "Random" folder. 
 
-RunWeeklyCSV.sh - runs LogtoCSV.py at XX every day. 
+RunWeeklyCSV.sh - runs LogtoCSV.py at XX every week on Saturday.
 
 WeeklyCSV.py - Takes all rsync logs that were modified in the last week hours and creates or adds to csv files that have not been uploaded to a portal yet. 
 

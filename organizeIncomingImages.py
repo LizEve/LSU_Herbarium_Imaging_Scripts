@@ -200,7 +200,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                         portals.append(folder)
                     
                     # Create log file based on day script is run 
-                    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+folder+"_"+outLogsuffix
+                    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+outLogsuffix
 
                     # Old version - Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
                     # Also add customized suffix and file extension to log file name 

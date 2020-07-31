@@ -58,7 +58,7 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
     for p in logFolderList:
         #print(path)
         st = os.stat(p)    
-        mtime = datetime.datetime.fromtimestamp(st.st_mtime)
+        mtime = datetime.date.fromtimestamp(st.st_mtime)
         # If mtime is greater(newer) than oldest date and smaller(older) than newest date
         if mtime >= oldest and mtime <= newest:
             #print(p)
@@ -139,8 +139,8 @@ def main():
     # newest = datetime.datetime(year=2020,month=7,day=11)
     # oldest = datetime.datetime(year=2020,month=6,day=3)
     
-    newest = datetime.datetime(year=2020,month=7,day=3)
-    oldest = datetime.datetime(year=2020,month=7,day=1)
+    newest = datetime.date.today()
+    oldest = newest - date.timedelta(days=7)
 
     # Path to log files that are made when images are uploaded to server
     logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'

@@ -82,10 +82,12 @@ def countImages(logFolder,logFile,csvLogFilePath):
 
 def main():
 
-    # Get today's log file from user input - in our case the rsyncDaily.sh script
-    # Pass entire path - $logfolder2$fname$suffix2
-    
-    logFile = sys.argv
+    # Get today's log file from the date and extension
+    outLogsuffix = 'server_ws2.txt'
+    logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+outLogsuffix
+
+    # If you need to get a count from an old file, delete hash mark and enter in file name
+    #logFileName = _server_ws2.txt
 
     # Path to log files that are made when images are uploaded to server
     logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
@@ -96,7 +98,7 @@ def main():
     masterLogFilePath = os.path.join(logFolder,'serverLogWS2.csv')
 
     # Call function
-    countImages(logFile,logFolder,masterLogFilePath)
+    countImages(logFileName,logFolder,masterLogFilePath)
 
 if __name__ == "__main__":
     main()
