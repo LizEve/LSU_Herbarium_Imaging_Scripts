@@ -69,20 +69,25 @@ organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and
 
 ### Run on Desktop with Task Scheduler
 
-RunOrganize.sh - runs organizeIncomingImages.py at 8PM every day. 
+RunOrganize.sh - runs organizeIncomingImages.py at 6PM every day. 
 
-organizeIncomingImages.py - checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder.
+organizeIncomingImages.py - Checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder.
 Outputs one log file per day with all destination file paths. 
 Also writes to master log file with number of files,barcodes moved, also broken down by collection. This does not count files in the "Random" folder. 
 
-WakeUp.sh - wakes up the computer to sit and wait for 5 minutes at 8PM, this allows the server to connect to the storage drive, in order to copy over files. 
+WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 7:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
 
-CountRsyncLogs.py- called by Task Scheduler. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
+RunCountServer.sh - runs CountUploadLogs.py.py at XX every day. 
 
-LogtoCSV.py - Takes all rsync logs that were modified in the last week hours and creates or adds to csv files that have not been uploaded to a portal yet. 
+CountServerLogs.py- Called by Task Scheduler. Writes to master log file with number of files,barcodes moved, also broken down by colletion. This does not count files in the "Random" folder. 
+
+RunWeeklyCSV.sh - runs LogtoCSV.py at XX every day. 
+
+WeeklyCSV.py - Takes all rsync logs that were modified in the last week hours and creates or adds to csv files that have not been uploaded to a portal yet. 
 
 ### Run on server by crontab: 
 
 rsyncDaily.sh - runs on server to copy files to server and create derivatives. 
 Outputs one log file per day (per computer) with all destination file paths. 
 Passes current day's log file to CountRsyncLogs.py to count total files/barcodes moved.
+errors written to - /data/LSUCollections/Logs/dailyrsynclog.txt
