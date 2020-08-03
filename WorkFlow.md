@@ -75,7 +75,7 @@ organizeIncomingImages.py - Checks barcodes in incoming folders, moves to approp
 
 WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 7:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
 
-RunCountServer.sh - runs CountUploadLogs.py.py at 5AM every day. 
+RunCountServer.sh - runs CountUploadLogs.py.py at 11PM every day. 
 
 CountServerLogs.py - Called by Task Scheduler. Writes to master log file with number of files and barcodes moved to the server, also broken down by colletion. Uses long form of log for each day to count files. This does not count files in the "Random" folder. 
 

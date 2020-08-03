@@ -30,7 +30,7 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
     csvLogLine=",".join(csvLine)
 
     # If csv file does not exist, create with header 
-    if numFiles != 0:
+    if len(numFiles) != 0:
         if not os.path.exists(csvLogFilePath):
             #print(header)
             with open(csvLogFilePath,"w") as csvLogFile:
@@ -217,7 +217,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
                     writeError = open(errorFilePath,'a')
-                    writeError.write(str(e)+" File failed to move "+str(sourceFilePath)+'\n')
+                    writeError.write(str(e)+" File failed to move from "+str(sourceFilePath)+' to '+str(destinationFilePath)+'\n')
                     writeError.close()
 
             # For files with incorrectly formated barcodes
