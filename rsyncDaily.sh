@@ -9,15 +9,23 @@ destination=/data/LSUCollections/
 
 # Repeat for second computer - WS2 
 source=/mnt/LSUCollections/
-logfolder=/data/LSUCollections/Logs/
-outlog=/data/LSUCollections/Logs/rsync2.out # Only need one because rsync writes over it each time rsync is called
+logfolder=/data/LSUCollections/Logs/server_ws2_logs/
+outlog=/data/LSUCollections/Logs/server_ws2_logs/rsync2.out # Only need one because rsync writes over it each time rsync is called
 suffix=_server_ws2.txt # adding "_server" to end of log file so it is differentiated from files sorted locally
 csvfolder=/mnt/LSUCollections/CSVLogs/
+
+# Name today's log after the date
 fname=`date +'%Y-%m-%d'`
-todaylog=$logfolder2$fname$suffix2
+todaylog=$logfolder$fname$suffix
+
+# print date so i can see how long rsync takes 
+echo "starting rsync"
+date +"%T"
 
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --exclude '*Log*' $source $destination | grep '^>f' | cut -d' ' -f2 > $outlog
 
+echo "starting file resizing"
+date +"%T"
 
 while read g;
 do
@@ -27,6 +35,10 @@ convert $mvdPath -units pixelsperinch -density 80x80 -resize 1400x1400^ -quality
 convert $mvdPath -units pixelsperinch -density 80x80 -resize 200x200^ -quality 80 ${mvdPath%.JPG}_TN.JPG
 convert $mvdPath -quality 95 ${mvdPath%.JPG}_L.JPG
 done < $outlog
+
+echo "starting log copy"
+date +"%T"
+
 
 # Sync all csv files to sassafrass folder 
 csvRemote=/data/LSUCollections/Logs/
