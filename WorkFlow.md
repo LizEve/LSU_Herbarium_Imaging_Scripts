@@ -40,20 +40,25 @@ Weekly
 
 ## Behind the scenes
 
-### 6PM
+### 6PM - RunOrganize.sh, organizeIncomingImages.py, task manager reboot ubuntu
 
 - Files get moved from the desktop to the LaCie
 - Long form logs are written to the Desktop in the folder Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
 - Tally of files moved are appended to the file 'organizeLog.csv' in CFLA-LSU-Station2/LSUCollections/CSVLogs/
-- Scripts run: RunOrganize.sh, organizeIncomingImages.py
+- Scripts run: RunOrganize.sh, organizeIncomingImages.py, task manager reboot ubuntu
 
-### 8PM 
+### 8PM - WakeUp.sh, rsyncDaily.sh
 
 - Wakeup script runs on workstation
 - Sassafrass pulls files from LaCie using scripts on Sassafrass
 - Long form logs are written in CFLA-LSU-Station2/LSUCollections/Logs/ on the LaCie with the extention '_server_ws2.txt'
-- Desktop uses long form logs to tally the total number of files uploaded and writes the results to the file 'serverLogWS2.csv' on the LaCie in the folder CFLA-LSU-Station2/LSUCollections/Logs/
-- Scripts run: WakeUp.sh, rsyncDaily.sh, CountRsyncLogs.py
+- Scripts run: WakeUp.sh, rsyncDaily.sh
+
+### 11 PM - RunCountServer.sh, CountServerLogs.py, task manager reboot ubuntu
+
+- Use long form logs from 8PM syncing to tally the total number of files uploaded and writes the results to the file 'serverLogWS2.csv' on the LaCie in the folder CFLA-LSU-Station2/LSUCollections/Logs/
+- Scripts run: RunCountServer.sh, CountServerLogs.py, task manager reboot ubuntu
+
 
 ### Check 
 organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and files per portal. Total number of files should be double in organizeLog.csv because CR2 files are counted. 
