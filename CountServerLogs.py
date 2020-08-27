@@ -27,22 +27,24 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
     csvLogLine=",".join(csvLine)
 
     # If csv file does not exist, create with header 
+    if len(numFiles) != 0:
+        if not os.path.exists(csvLogFilePath):
+            #print(header)
+            with open(csvLogFilePath,"w") as csvLogFile:
+                csvLogFile.write("%s\n" % logHeader)
+                csvLogFile.write("%s\n" % csvLogLine)
+                csvLogFile.close()
+                
+        # If csv file exists, add new line 
 
-    if not os.path.exists(csvLogFilePath):
-        #print(header)
-        with open(csvLogFilePath,"w") as csvLogFile:
-            csvLogFile.write("%s\n" % logHeader)
-            csvLogFile.write("%s\n" % csvLogLine)
-            csvLogFile.close()
-             
-    # If csv file exists, add new line 
-
-    elif os.path.exists(csvLogFilePath):
-        #print(csvLine)
-        with open(csvLogFilePath,"a") as csvLogFile:
-            csvLogFile.write("%s\n" % csvLogLine)
-            csvLogFile.close()
-
+        elif os.path.exists(csvLogFilePath):
+            #print(csvLine)
+            with open(csvLogFilePath,"a") as csvLogFile:
+                csvLogFile.write("%s\n" % csvLogLine)
+                csvLogFile.close()
+    else:
+        print("no images today")
+        
 def countImages(logFolder,logFile,csvLogFilePath):
 
 
