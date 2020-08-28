@@ -40,12 +40,13 @@ Weekly
 
 ## Behind the scenes
 
-### 6PM - RunOrganize.sh, organizeIncomingImages.py, task manager reboot ubuntu
+### 6PM - RunOrganize.sh, organizeIncomingImages.py, ReBoot Ubuntu
 
+- Ubuntu gets rebooted from Task Scheduler
 - Files get moved from the desktop to the LaCie
 - Long form logs are written to the Desktop in the folder Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
 - Tally of files moved are appended to the file 'organizeLog.csv' in CFLA-LSU-Station2/LSUCollections/CSVLogs/
-- Scripts run: RunOrganize.sh, organizeIncomingImages.py, task manager reboot ubuntu
+- Scripts run: RunOrganize.sh, organizeIncomingImages.py, 
 
 ### 8PM - WakeUp.sh, rsyncDaily.sh
 

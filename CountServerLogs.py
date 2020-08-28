@@ -45,7 +45,7 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
     else:
         print("no images today")
         
-def countImages(logFolder,logFile,csvLogFilePath):
+def countImages(logFile,logFolder,csvLogFilePath):
 
 
     # Today's date 
@@ -94,13 +94,16 @@ def main():
     # Path to log files that are made when images are uploaded to server
     logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
     
+    # Log file Path
+    logFilePath=os.path.join(logFolder,logFileName)
+
     # Path to a log file that counts the number of files etc in each csv file
     # This log is extremely customized for LSU, if you want to implement it, edit the function
 
     masterLogFilePath = os.path.join(logFolder,'serverLogWS2.csv')
 
     # Call function
-    countImages(logFileName,logFolder,masterLogFilePath)
+    countImages(logFilePath,logFolder,masterLogFilePath)
 
 if __name__ == "__main__":
     main()
