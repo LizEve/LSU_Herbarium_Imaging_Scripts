@@ -1,0 +1,5 @@
+for f in *.JPG
+do
+newname=$(echo "$f" | cut -c3-)
+cp $f $newname
+done

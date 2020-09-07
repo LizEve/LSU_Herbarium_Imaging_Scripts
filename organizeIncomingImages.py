@@ -30,7 +30,7 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
     csvLogLine=",".join(csvLine)
 
     # If csv file does not exist, create with header 
-    if len(numFiles) != 0:
+    if len(files) != 0:
         if not os.path.exists(csvLogFilePath):
             #print(header)
             with open(csvLogFilePath,"w") as csvLogFile:
