@@ -1,14 +1,14 @@
-##### Still in development ####
-
 # Imaging Workflow 
+https://github.com/LizEve/LSU_Herbarium_Imaging_Scripts
 
 1. Turn on camera
 
 2. Wait for EOS to open
 
-3. Check EOS settings
+3. Check EOS preferences
    1. Confirm that `renameimage.exe` is 'registered' to EOS 
       1. Preferences > Linked Software > Register > Browse - select `renameimage.exe`
+         a. Make sure "CR2" is checked 
       2. Full path - `C:Users\Image\Documents\PNWHerbaria\Scripts\renameimage\renameimage.exe`
 
 4. Select portal folder 
@@ -16,19 +16,23 @@
    2. Select one of the portal folders `C:Users\Image\Desktop\Imaging\`
    3. Personal projects and other special collections that are not going on Symbiota should be imaged in the **Random** folder if you want the images backed up to the server (Sassafrass). Any folders in **Random** will be moved as is to the local backup drive, not sorted into portal folders. 
 
-5. Take photo 
-   1. A small box should pop up with the current file name and an place to enter the new name
+5. Open DPP in Imaging folder `C:Users\Image\Desktop\Imaging\`
+   1. Filter on 
 
-6. Scan barcode
-   1. Barcode should appear as new file name 
+6. Take photo 
+   1. A small box will pop up with the current file name and a place to enter the new name
+
+7. Scan barcode
+   1. Barcode should appear as new file name - edit with _1 or other number if needed
    2. Click the "rename" button to rename the file 
-   3. The small window will close after the file is renamed. 
+   3. The small window will close after the file is renamed. If needed you can edit the names later in DPP
 
 Repeat 5. & 6. for all photos
 
-7. Batch edit photos in DPP 
+8. Batch edit photos in DPP 
+   - if needed, can rename files in DPP using the barcode scanner
 
-8. Convert from CR2 to JPG
+9. Convert from CR2 to JPG
    1. Now you are done, make sure to record on paper what specimens you imaged
 
 Weekly 
@@ -38,7 +42,22 @@ Weekly
    2. After uploading CSV files please move them to the CSVLogged/ folder. 
    3. If file names are edited and re-uploaded a new CSV file will be made for the date the original file was uploaded. This CSV can be combined with or replace the older CSV in the CSVLogged folder. 
 
-## Behind the scenes
+Log Files 
+
+Logs for files transfered from Imaging to LaCie Drive 
+- Daily lists of files are in Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
+- Daily counts of files are in Desktop/Imaging/Logs/organizeLog.csv
+
+Logs for files transfered from LaCie Drive to Sassafras Server 
+- Daily lists of files are in CFLA-LSU-Station2/LSUCollections/Logs/ on the LaCie with the extention '_server_ws2.txt'
+- Daily counts of files are in CFLA-LSU-Station2/LSUCollections/Logs/serverLogWS2.csv
+
+The total number of barcodes should match between organizeLog.csv and serverLogWS2.csv. The number of files will be doubled in organizeLog.csv because it counts both JPG and CR2 files. 
+
+
+
+
+## Behind the scenes process
 
 ### 6PM - RunOrganize.sh, organizeIncomingImages.py, ReBoot Ubuntu
 
@@ -61,9 +80,6 @@ Weekly
 - Scripts run: RunCountServer.sh, CountServerLogs.py, task manager reboot ubuntu
 
 
-### Check 
-organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and files per portal. Total number of files should be double in organizeLog.csv because CR2 files are counted. 
-
 ### Weekly 
 - CSV files are made from the long form upload logs created in the last week. 
 - The total files in each csv file are written to the file 'csvLog.csv' on the LaCie in the folder CFLA-LSU-Station2/LSUCollections/CSVLogs/
@@ -78,16 +94,22 @@ organizeLog.csv and serverLogWS2.csv should have the same number of barcodes and
 RunOrganize.sh - runs organizeIncomingImages.py at 6PM every day. 
 
 organizeIncomingImages.py - Checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder. Outputs one long form log file per day with all destination file paths. Writes to master log file with number of files and barcodes moved to LaCie, also broken down by collection. Uses long form of logs to count files. This does not count files in the "Random" folder. 
+Edits: Barcode maximum and minimum number of characters. Folder paths for any folder used. The name of log files and which folder they are in. 
 
 WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 7:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
+Edits: None. for debugging. 
 
 RunCountServer.sh - runs CountUploadLogs.py at 11PM every day. 
+Edits: Path to script and log for debugging.
 
 CountServerLogs.py - Called by Task Scheduler. Writes to master log file with number of files and barcodes moved to the server, also broken down by colletion. Uses long form of log for each day to count files. This does not count files in the "Random" folder. 
+Edits: Input file name. Directions in script on where to add file name. This can be used if you need to re-run a count on a list form log file. All paths are editable. 
 
-RunWeeklyCSV.sh - runs LogtoCSV.py at XX every week on Saturday.
+RunWeeklyCSV.sh - runs LogtoCSV.py at 3PM every week on Sunday.
+Edits: Path to script and log for debugging. 
 
-WeeklyCSV.py - Takes all rsync logs that were modified in the last week hours and creates or adds to csv files that have not been uploaded to a portal yet. 
+WeeklyCSV.py - Takes all rsync logs that were modified in the last week and creates csv files to upload to Symbiota. 
+Edits: Can edit how many days back you want to pull log files from to create a csv for upload to Symbiota. Can also input specific date range to make a csv file for. All paths are editable. 
 
 ### Run on server by crontab: 
 
@@ -95,3 +117,4 @@ rsyncDaily.sh - runs on server to copy files to server and create derivatives.
 Outputs one log file per day (per computer) with all destination file paths. 
 Passes current day's log file to CountRsyncLogs.py to count total files/barcodes moved.
 errors written to - /data/LSUCollections/Logs/dailyrsynclog.txt
+Edits: Only by professional. Except paths of where files come from and go to. 
