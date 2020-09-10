@@ -35,20 +35,20 @@ Repeat 5. & 6. for all photos
    1. Now you are done, make sure to record on paper what specimens you imaged
 
 
-   Weekly 
+Weekly - 3PM on Sunday
 
 1. Upload CSV 
    1. CSV files ready for upload are on in the CSVLogs/ folder. On workstation 2 at LSU.
    2. After uploading CSV files please move them to the CSVLogged/ folder. 
-   3. If file names are edited and re-uploaded a new CSV file will be made for the date the original file was uploaded. This CSV can be combined with or replace the older CSV in the CSVLogged folder. 
+   3. If file names are edited and re-uploaded a new CSV file will be made and the file will be under the date it was renamed.
 
 Log Files 
 
-Logs for files transfered from Imaging to LaCie Drive 
+Logs for files transfered from Imaging to LaCie Drive - 9PM every day
 - Daily lists of files are in Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
 - Daily counts of files are in Desktop/Imaging/Logs/organizeLog.csv
 
-Logs for files transfered from LaCie Drive to Sassafras Server 
+Logs for files transfered from LaCie Drive to Sassafras Server - 10PM every day for transfer 11PM for log counts
 - Daily lists of files are in CFLA-LSU-Station2/LSUCollections/Logs/ on the LaCie with the extention '_server_ws2.txt'
 - Daily counts of files are in CFLA-LSU-Station2/LSUCollections/Logs/serverLogWS2.csv
 

@@ -311,7 +311,7 @@ def main():
     # Create folders if needed 
     # This will also make folders named "BadBarcode" and "Logs" in your source folder
     # Best to hash this out after setup
-    # makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
+    #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
     
     # Initiate a file path where errors will be stored. 
 

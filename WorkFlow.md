@@ -34,20 +34,20 @@ Repeat 5. & 6. for all photos
 9. Convert from CR2 to JPG
    1. Now you are done, make sure to record on paper what specimens you imaged
 
-Weekly 
+Weekly - 3PM on Sunday
 
 1. Upload CSV 
    1. CSV files ready for upload are on in the CSVLogs/ folder. On workstation 2 at LSU.
    2. After uploading CSV files please move them to the CSVLogged/ folder. 
-   3. If file names are edited and re-uploaded a new CSV file will be made for the date the original file was uploaded. This CSV can be combined with or replace the older CSV in the CSVLogged folder. 
+   3. If file names are edited and re-uploaded a new CSV file will be made and the file will be under the date it was renamed.
 
 Log Files 
 
-Logs for files transfered from Imaging to LaCie Drive 
+Logs for files transfered from Imaging to LaCie Drive - 9PM every day
 - Daily lists of files are in Desktop/Imaging/Logs/ with the extension '_organize_ws2.txt'
 - Daily counts of files are in Desktop/Imaging/Logs/organizeLog.csv
 
-Logs for files transfered from LaCie Drive to Sassafras Server 
+Logs for files transfered from LaCie Drive to Sassafras Server - 10PM every day for transfer 11PM for log counts
 - Daily lists of files are in CFLA-LSU-Station2/LSUCollections/Logs/ on the LaCie with the extention '_server_ws2.txt'
 - Daily counts of files are in CFLA-LSU-Station2/LSUCollections/Logs/serverLogWS2.csv
 
@@ -58,7 +58,7 @@ The total number of barcodes should match between organizeLog.csv and serverLogW
 
 ## Behind the scenes process
 
-### 6PM - RunOrganize.sh, organizeIncomingImages.py, ReBoot Ubuntu
+### 9PM - RunOrganize.sh, organizeIncomingImages.py, ReBoot Ubuntu
 
 - Ubuntu gets rebooted from Task Scheduler
 - Files get moved from the desktop to the LaCie
@@ -66,7 +66,7 @@ The total number of barcodes should match between organizeLog.csv and serverLogW
 - Tally of files moved are appended to the file 'organizeLog.csv' in CFLA-LSU-Station2/LSUCollections/CSVLogs/
 - Scripts run: RunOrganize.sh, organizeIncomingImages.py, 
 
-### 8PM - WakeUp.sh, rsyncDaily.sh
+### 10PM - WakeUp.sh, rsyncDaily.sh
 
 - Wakeup script runs on workstation
 - Sassafrass pulls files from LaCie using scripts on Sassafrass
@@ -87,6 +87,13 @@ The total number of barcodes should match between organizeLog.csv and serverLogW
 
 
 ## Scripts 
+
+Documents/WorkflowSckriptsWS2
+Right click - open with notepad 
+
+CSV change dates - WeeklyCSV.py
+
+
 
 ### Run on Desktop with Task Scheduler
 

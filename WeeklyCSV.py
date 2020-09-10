@@ -136,11 +136,19 @@ def main():
     # Set times for the days that you want logs from
     # Days begin and end at midnight. 
     # Ex: Logs from June 3rd-July 10th. 
-    # newest = datetime.datetime(year=2020,month=7,day=11)
-    # oldest = datetime.datetime(year=2020,month=6,day=3)
+    # Ex: newest = datetime.datetime(year=2020,month=7,day=11)
+    # Ex: oldest = datetime.datetime(year=2020,month=6,day=3)
     
+    # Hash out the newest/oldest lines that you do NOT want to use
+    # Edit either the exact dates or the number of days wanted. For exact dates see example above
+    
+    # Span of days (default)
     newest = datetime.date.today()
     oldest = newest - date.timedelta(days=7)
+
+    # Exact dates 
+    #newest = datetime.datetime(year=2020,month=7,day=11)
+    #oldest = datetime.datetime(year=2020,month=6,day=3)
 
     # Path to log files that are made when images are uploaded to server
     logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
