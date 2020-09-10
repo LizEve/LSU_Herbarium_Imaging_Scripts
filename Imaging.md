@@ -17,7 +17,6 @@ https://github.com/LizEve/LSU_Herbarium_Imaging_Scripts
    3. Personal projects and other special collections that are not going on Symbiota should be imaged in the **Random** folder if you want the images backed up to the server (Sassafrass). Any folders in **Random** will be moved as is to the local backup drive, not sorted into portal folders. 
 
 5. Open DPP in Imaging folder `C:Users\Image\Desktop\Imaging\`
-   1. Filter on 
 
 6. Take photo 
    1. A small box will pop up with the current file name and a place to enter the new name

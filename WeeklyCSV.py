@@ -41,7 +41,7 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
             csvLogFile.write("%s\n" % csvLogLine)
             csvLogFile.close()
 
-def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
+def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,ws):
 
     # Get list of all log files edited on specified dates. 
     logFilesList=[]
@@ -87,7 +87,7 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
             portal=oPath.split("/")[0]
 
             # Get path to csv file line will be written to.
-            csvPath = os.path.join(csvFolder,logDate+"_"+portal+".csv")
+            csvPath = os.path.join(csvFolder,logDate+"_"+portal+'_'+ws+".csv")
 
             # Get path to original image
             path = os.path.split(oPath)[0]
@@ -163,8 +163,10 @@ def main():
 
     csvLogFilePath = os.path.join(csvFolder,'csvLog.csv')
 
+    workstation = 'ws2'
+
     # Call function
-    makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath)
+    makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,workstation)
 
 if __name__ == "__main__":
     main()
