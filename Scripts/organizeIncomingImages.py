@@ -300,11 +300,11 @@ def main():
     # Make sure this is different from the string appended to your server logs in the rsyncdaily.sh script. 
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     
-    outLogsuffix="organize_ws2.txt"
+    outLogsuffix="local_ws2.txt"
     
-    csvFolder='/mnt/c/Users/Image/Desktop/Imaging/Logs/'
+    csvFolder='/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/'
     
-    csvLogFilePath = os.path.join(csvFolder,'organizeLog.csv')
+    csvLogFilePath = os.path.join(csvFolder,'DailyLocalLog.csv')
     
     ############ END section to customize  
 

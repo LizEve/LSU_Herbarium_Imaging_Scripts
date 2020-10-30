@@ -10,21 +10,23 @@
 # Set custom extension for log file names
 suffix=_server_ws2.txt # adding "_server" to end of log file so it is differentiated from files sorted locally
 
-# Set custom folders 
-# Where the image files are coming from and going to
+# Set image source and destination folders
+# mnt is local long term storage, data is server
 source=/mnt/LSUCollections/
 destination=/data/LSUCollections/
 
-# Where the log files are written to and the temporary daily log file
-logfolder=/data/LSUCollections/Logs/server_ws2_logs/
-outlog=/data/LSUCollections/Logs/server_ws2_logs/rsync2.out 
+# Daily log folder on server
+logfolder=/data/LSUCollections/Logs/DailyWS2/
 
-# Where the log files get moved to for further counting and processing
-wsLogs=/mnt/LSUCollections/Logs/
+# Temp log file used to make file lists
+outlog=/data/LSUCollections/Logs/DailyServerWS2/rsync2.out 
 
-# Workstation and server csv folders for syncing 
-csvfolder=/mnt/LSUCollections/CSVLogs/
-csvRemote=/data/LSUCollections/Logs/
+# Local folder to put long form file lists into
+wsLogs=/mnt/LSUCollections/ServerLogs/
+
+# Backup portal csv files 
+csvfolder=/mnt/LSUCollections/PortalMaps/
+csvRemote=/data/LSUCollections/Logs/PortalMaps/
 
 
 # Name today's log after the date

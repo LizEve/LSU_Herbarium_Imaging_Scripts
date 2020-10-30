@@ -4,12 +4,12 @@ https://github.com/LizEve/LSU_Herbarium_Imaging_Scripts
 
 ## Run on Desktop with Task Scheduler
 
-RunOrganize.sh - runs organizeIncomingImages.py at 6PM every day. 
+RunOrganize.sh - runs organizeIncomingImages.py at 9PM every day. 
 
 organizeIncomingImages.py - Checks barcodes in incoming folders, moves to appropriate folder(based on barcode) on storage drive. Put files with names that are too long or too short in BadBarcode folder. Outputs one long form log file per day with all destination file paths. Writes to master log file with number of files and barcodes moved to LaCie, also broken down by collection. Uses long form of logs to count files. This does not count files in the "Random" folder. 
 Edits: Barcode maximum and minimum number of characters. Folder paths for any folder used. The name of log files and which folder they are in. 
 
-WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 7:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
+WakeUp.sh - wakes up the computer to sit and wait for 13 hours at 9:55 PM, this allows the server to connect to the storage drive, in order to copy over files. 
 Edits: None. for debugging. 
 
 RunCountServer.sh - runs CountUploadLogs.py at 11PM every day. 
