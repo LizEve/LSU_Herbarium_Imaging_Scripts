@@ -92,7 +92,7 @@ def main():
     #logFileName = _server_ws2.txt
 
     # Path to log files that are made when images are uploaded to server
-    logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+    logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/'
     
     # Log file Path
     logFilePath=os.path.join(logFolder,logFileName)
@@ -100,7 +100,7 @@ def main():
     # Path to a log file that counts the number of files etc in each csv file
     # This log is extremely customized for LSU, if you want to implement it, edit the function
 
-    masterLogFilePath = os.path.join(logFolder,'serverLogWS2.csv')
+    masterLogFilePath = os.path.join(logFolder,'DailyServerLogWS2.csv')
 
     # Call function
     countImages(logFilePath,logFolder,masterLogFilePath)
