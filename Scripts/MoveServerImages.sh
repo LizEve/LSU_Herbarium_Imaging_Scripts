@@ -59,7 +59,7 @@ date +"%T"
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update $logfolder $wsLogs 
 
 
-# Sync all csv files to sassafrass folder 
+# Sync all csv files to sassafras folder 
 rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update $csvfolder $csvRemote 
 
 # checking if script is running

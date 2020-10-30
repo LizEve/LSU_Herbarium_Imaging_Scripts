@@ -150,13 +150,11 @@ def main():
     #newest = datetime.datetime(year=2020,month=7,day=11)
     #oldest = datetime.datetime(year=2020,month=6,day=3)
 
-    # Path to log files that are made when images are uploaded to server
-    logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
-    #logFolder = '/Users/ChatNoir/Projects/HerbariumRA/test/'
+    # Path to daily long form log files
+    logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/'
     
-    # Path to folder where CSV files will be made
-    csvFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/CSVLogs/'
-    #csvFolder='/Users/ChatNoir/Projects/HerbariumRA/test/csv/'
+    # Path to folder where CSV files for portal mapping will be made
+    csvFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/PortalMaps/'
 
     # Web address for linking images 
     webPath = 'http://cyberfloralouisiana.com/images/LSUCollections/' 
@@ -167,7 +165,7 @@ def main():
     header = ",".join(csvHeader)
 
     # Path to a log file that counts the number of files etc in each csv file
-    # This log is extremely customized for LSU, if you want to implement it, edit the function
+    # This script is extremely customized for LSU, if you want to implement it, edit the function
 
     csvLogFilePath = os.path.join(csvFolder,'csvLog.csv')
 

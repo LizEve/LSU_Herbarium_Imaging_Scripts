@@ -1,5 +1,7 @@
 # Notes on what scripts get edited 
 
+Last update - 10.30.20
+
 ## Rename output csv and txt files 
 
 organizeimages
