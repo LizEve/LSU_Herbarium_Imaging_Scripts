@@ -1,0 +1,688 @@
+Mon Aug  3 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Wed Aug  5 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Thu Aug  6 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug  7 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Sat Aug  8 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Sun Aug  9 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Mon Aug 10 23:00:37 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Tue Aug 11 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Wed Aug 12 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Thu Aug 13 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug 14 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Sat Aug 15 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Sun Aug 16 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Mon Aug 24 23:01:11 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Tue Aug 25 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Wed Aug 26 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Thu Aug 27 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 104, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 101, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 58, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug 28 13:49:56 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 103, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug 28 13:55:04 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 103, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug 28 13:59:19 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 103, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '2020-08-28_server_ws2.txt'
+Fri Aug 28 14:03:12 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 103, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+IsADirectoryError: [Errno 21] Is a directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/'
+Fri Aug 28 14:04:42 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 103, in main
+    countImages(logFileName,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '2020-08-28_server_ws2.txt'
+Fri Aug 28 14:06:00 CDT 2020
+Fri Aug 28 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 83, in countImages
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 42, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/serverLogWS2.csv'
+Sat Aug 29 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-08-29_server_ws2.txt'
+Sun Aug 30 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-08-30_server_ws2.txt'
+Mon Aug 31 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-08-31_server_ws2.txt'
+Tue Sep  1 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-01_server_ws2.txt'
+Wed Sep  2 23:00:01 CDT 2020
+Thu Sep  3 23:00:02 CDT 2020
+Fri Sep  4 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-04_server_ws2.txt'
+Sat Sep  5 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-05_server_ws2.txt'
+Sun Sep  6 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-06_server_ws2.txt'
+Mon Sep  7 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-07_server_ws2.txt'
+Tue Sep  8 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-08_server_ws2.txt'
+Wed Sep  9 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-09_server_ws2.txt'
+Thu Sep 10 23:00:02 CDT 2020
+Fri Sep 11 23:00:02 CDT 2020
+Sat Sep 12 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-12_server_ws2.txt'
+Sun Sep 13 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-13_server_ws2.txt'
+Mon Sep 14 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-14_server_ws2.txt'
+Tue Sep 15 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-15_server_ws2.txt'
+Wed Sep 16 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-16_server_ws2.txt'
+Thu Sep 17 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-17_server_ws2.txt'
+Fri Sep 18 23:00:01 CDT 2020
+Sat Sep 19 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-19_server_ws2.txt'
+Sun Sep 20 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-20_server_ws2.txt'
+Mon Sep 21 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-21_server_ws2.txt'
+Tue Sep 22 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-22_server_ws2.txt'
+Wed Sep 23 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-23_server_ws2.txt'
+Thu Sep 24 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-24_server_ws2.txt'
+Fri Sep 25 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-25_server_ws2.txt'
+Sat Sep 26 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-26_server_ws2.txt'
+Sun Sep 27 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-27_server_ws2.txt'
+Mon Sep 28 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-28_server_ws2.txt'
+Tue Sep 29 23:00:01 CDT 2020
+Wed Sep 30 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-09-30_server_ws2.txt'
+Thu Oct  1 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-01_server_ws2.txt'
+Fri Oct  2 23:00:02 CDT 2020
+Sat Oct  3 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-03_server_ws2.txt'
+Sun Oct  4 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-04_server_ws2.txt'
+Mon Oct  5 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-05_server_ws2.txt'
+Tue Oct  6 23:00:01 CDT 2020
+Wed Oct  7 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-07_server_ws2.txt'
+Thu Oct  8 23:00:01 CDT 2020
+Fri Oct  9 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-09_server_ws2.txt'
+Sat Oct 10 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-10_server_ws2.txt'
+Sun Oct 11 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-11_server_ws2.txt'
+Mon Oct 12 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-12_server_ws2.txt'
+Tue Oct 13 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-13_server_ws2.txt'
+Wed Oct 14 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-14_server_ws2.txt'
+Thu Oct 15 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-15_server_ws2.txt'
+Fri Oct 16 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-16_server_ws2.txt'
+Sat Oct 17 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-17_server_ws2.txt'
+Sun Oct 18 23:00:01 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-18_server_ws2.txt'
+Mon Oct 19 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-19_server_ws2.txt'
+Tue Oct 20 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-20_server_ws2.txt'
+Wed Oct 21 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-21_server_ws2.txt'
+Thu Oct 22 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-22_server_ws2.txt'
+Fri Oct 23 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-23_server_ws2.txt'
+Sat Oct 24 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-24_server_ws2.txt'
+Sun Oct 25 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-25_server_ws2.txt'
+Mon Oct 26 23:00:02 CDT 2020
+Tue Oct 27 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-27_server_ws2.txt'
+Wed Oct 28 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-28_server_ws2.txt'
+Thu Oct 29 23:00:02 CDT 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-29_server_ws2.txt'

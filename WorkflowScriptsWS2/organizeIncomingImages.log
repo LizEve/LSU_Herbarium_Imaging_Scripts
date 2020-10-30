@@ -1,0 +1,278 @@
+Fri Aug 28 18:00:02 CDT 2020
+['2020-08-28', '0', '0', '0', '0', '0', '0', '0']
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 337, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 322, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 237, in moveFiles
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 45, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/c/Users/Image/Desktop/Imaging/Logs/organizeLog.csv'
+Sat Aug 29 18:00:02 CDT 2020
+['2020-08-29', '0', '0', '0', '0', '0', '0', '0']
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 337, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 322, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 237, in moveFiles
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 45, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/c/Users/Image/Desktop/Imaging/Logs/organizeLog.csv'
+Sun Aug 30 18:00:02 CDT 2020
+['2020-08-30', '0', '0', '0', '0', '0', '0', '0']
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 337, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 322, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 237, in moveFiles
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 45, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/c/Users/Image/Desktop/Imaging/Logs/organizeLog.csv'
+Mon Aug 31 18:00:02 CDT 2020
+['2020-08-31', '0', '0', '0', '0', '0', '0', '0']
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 337, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 322, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 237, in moveFiles
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 45, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/c/Users/Image/Desktop/Imaging/Logs/organizeLog.csv'
+Tue Sep  1 18:00:02 CDT 2020
+['2020-09-01', '0', '0', '0', '0', '0', '0', '0']
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 337, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 322, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 237, in moveFiles
+    countFiles(barcodes,files,portals,csvLogFilePath)
+  File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/organizeIncomingImages.py", line 45, in countFiles
+    with open(csvLogFilePath,"a") as csvLogFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/c/Users/Image/Desktop/Imaging/Logs/organizeLog.csv'
+Wed Sep  2 18:00:02 CDT 2020
+['2020-09-02', '27', '54', '27', '0', '0', '0', '0']
+Done
+Thu Sep  3 18:00:02 CDT 2020
+['2020-09-03', '378', '756', '378', '0', '0', '0', '0']
+Done
+Fri Sep  4 18:00:02 CDT 2020
+['2020-09-04', '0', '0', '0', '0', '0', '0', '0']
+Done
+Sat Sep  5 18:00:01 CDT 2020
+['2020-09-05', '0', '0', '0', '0', '0', '0', '0']
+Done
+Sun Sep  6 18:00:01 CDT 2020
+['2020-09-06', '0', '0', '0', '0', '0', '0', '0']
+Done
+Mon Sep  7 18:00:01 CDT 2020
+['2020-09-07', '0', '0', '0', '0', '0', '0', '0']
+Done
+Tue Sep  8 18:00:01 CDT 2020
+['2020-09-08', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Sep  9 18:00:02 CDT 2020
+['2020-09-09', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Sep 10 21:00:02 CDT 2020
+['2020-09-10', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Sep 11 21:00:01 CDT 2020
+['2020-09-11', '7', '18', '9', '0', '0', '0', '0']
+Done
+Sat Sep 12 21:00:01 CDT 2020
+['2020-09-12', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Sep 13 21:00:01 CDT 2020
+['2020-09-13', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Sep 14 21:00:37 CDT 2020
+['2020-09-14', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Sep 15 21:00:01 CDT 2020
+['2020-09-15', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Sep 16 21:00:01 CDT 2020
+['2020-09-16', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Sep 17 21:00:01 CDT 2020
+['2020-09-17', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Sep 18 21:00:01 CDT 2020
+['2020-09-18', '3', '12', '0', '0', '0', '2', '4']
+Done
+Sat Sep 19 21:00:01 CDT 2020
+['2020-09-19', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Sep 20 21:00:01 CDT 2020
+['2020-09-20', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Sep 21 21:00:01 CDT 2020
+['2020-09-21', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Sep 22 21:00:01 CDT 2020
+['2020-09-22', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Sep 23 21:00:13 CDT 2020
+['2020-09-23', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Sep 24 21:00:13 CDT 2020
+['2020-09-24', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Sep 25 21:00:13 CDT 2020
+['2020-09-25', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sat Sep 26 21:00:13 CDT 2020
+['2020-09-26', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Sep 27 21:00:01 CDT 2020
+['2020-09-27', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Sep 28 21:00:13 CDT 2020
+['2020-09-28', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Sep 29 21:00:01 CDT 2020
+['2020-09-29', '14', '28', '14', '0', '0', '0', '0']
+Done
+Wed Sep 30 21:00:01 CDT 2020
+['2020-09-30', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Oct  1 21:00:01 CDT 2020
+['2020-10-01', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Oct  2 21:00:01 CDT 2020
+['2020-10-02', '108', '266', '0', '0', '0', '133', '0']
+Done
+Sat Oct  3 21:00:01 CDT 2020
+['2020-10-03', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Oct  4 21:00:01 CDT 2020
+['2020-10-04', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Oct  5 21:00:01 CDT 2020
+['2020-10-05', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Oct  6 21:00:01 CDT 2020
+['2020-10-06', '129', '258', '129', '0', '0', '0', '0']
+Done
+Wed Oct  7 21:00:01 CDT 2020
+['2020-10-07', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Oct  8 21:00:01 CDT 2020
+['2020-10-08', '84', '174', '87', '0', '0', '0', '0']
+Done
+Fri Oct  9 21:00:01 CDT 2020
+['2020-10-09', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sat Oct 10 21:00:37 CDT 2020
+['2020-10-10', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Oct 11 21:00:01 CDT 2020
+['2020-10-11', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Oct 12 21:00:01 CDT 2020
+['2020-10-12', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Oct 13 21:00:01 CDT 2020
+['2020-10-13', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Oct 14 21:00:01 CDT 2020
+['2020-10-14', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Oct 15 21:00:01 CDT 2020
+['2020-10-15', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Oct 16 21:00:01 CDT 2020
+['2020-10-16', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sat Oct 17 21:00:01 CDT 2020
+['2020-10-17', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Oct 18 21:01:17 CDT 2020
+['2020-10-18', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Oct 19 21:00:02 CDT 2020
+['2020-10-19', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Tue Oct 20 21:00:02 CDT 2020
+['2020-10-20', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Oct 21 21:01:18 CDT 2020
+['2020-10-21', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Oct 22 21:00:02 CDT 2020
+['2020-10-22', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Fri Oct 23 21:00:02 CDT 2020
+['2020-10-23', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sat Oct 24 21:01:14 CDT 2020
+['2020-10-24', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Sun Oct 25 21:00:02 CDT 2020
+['2020-10-25', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Mon Oct 26 21:00:02 CDT 2020
+['2020-10-26', '23', '66', '3', '0', '0', '1', '29']
+Done
+Tue Oct 27 21:00:29 CDT 2020
+['2020-10-27', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Wed Oct 28 21:00:01 CDT 2020
+['2020-10-28', '0', '0', '0', '0', '0', '0', '0']
+no images today
+Done
+Thu Oct 29 21:00:01 CDT 2020
+['2020-10-29', '94', '187', '93', '0', '0', '0', '0']
+Done
