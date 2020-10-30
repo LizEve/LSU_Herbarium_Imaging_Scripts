@@ -1,3 +1,4 @@
+# This was used to edit NLU images with some weird extra letters
 for f in *.JPG
 do
 newname=$(echo "$f" | cut -c3-)
