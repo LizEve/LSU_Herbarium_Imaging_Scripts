@@ -18,7 +18,7 @@ organize - local move
 rsync - move to server 
 etc
 
-## Simplify workflow notes 
+## Simple workflow notes
 
 Images folder -> LaCie drive 9PM
 Output - Imaging/LocalLogs
@@ -33,3 +33,10 @@ Moves daily file lists to Local - /mnt/LSUCollections/ServerLogs/
 Count server files 11PM 
 In LaCie drive - LSUCollections/ServerLogs/
 Add file count to - DailyServerLogWS2.csv
+
+## Running everything directly through github folder
+
+but each computer has their own folder
+editing crontab too
+
+00 22 * * * /bin/sh /home/ggmount/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/MoveServerImages.sh &> /data/LSUCollections/Logs/DailyWS2/debuggingrsynclog.txt
