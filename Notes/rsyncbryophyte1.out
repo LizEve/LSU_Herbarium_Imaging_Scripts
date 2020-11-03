@@ -1,0 +1,8 @@
+
+Command 'sudo' not found, did you mean:
+
+  command 'sudo' from deb sudo (1.8.31-1ubuntu1)
+  command 'sudo' from deb sudo-ldap (1.8.31-1ubuntu1)
+
+Try: sudo apt install <deb name>
+
