@@ -19,7 +19,7 @@ destination=/data/LSUCollections/
 logfolder=/data/LSUCollections/Logs/DailyWS2/
 
 # Temp log file used to make file lists
-outlog=/data/LSUCollections/Logs/DailyServerWS2/rsync2.out 
+outlog=/data/LSUCollections/Logs/DailyWS2/rsync2.out 
 
 # Local folder to put long form file lists into
 wsLogs=/mnt/LSUCollections/ServerLogs/
