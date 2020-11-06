@@ -59,8 +59,8 @@ def makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders):
             if not os.path.exists(p2):
                 pathlib.Path(p2).mkdir(parents=True)
 
-        # Also make folders named "BadBarcode" and "Logs" in your source folder
-        LogPath=os.path.join(sourceFolder,"Logs")
+        # Also make folders named "BadBarcode" and "LocalLogs" in your source folder
+        LogPath=os.path.join(sourceFolder,"LocalLogs")
         BadPath=os.path.join(sourceFolder,"BadBarcode")
         #print(LogPath,BadPath)
         if not os.path.exists(LogPath):
@@ -207,7 +207,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     #logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
                     
                     # Get path to log file 
-                    logFilePath=os.path.join(sourceFolder,"Logs",logFileName)
+                    logFilePath=os.path.join(sourceFolder,"LocalLogs",logFileName)
 
                     # Open log file and write destination file path 
                     writeLog = open(logFilePath,'a')
@@ -309,7 +309,7 @@ def main():
     ############ END section to customize  
 
     # Create folders if needed 
-    # This will also make folders named "BadBarcode" and "Logs" in your source folder
+    # This will also make folders named "BadBarcode" and "LocalLogs" in your source folder
     # Best to hash this out after setup
     #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
     
