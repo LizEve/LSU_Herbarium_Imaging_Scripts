@@ -315,7 +315,7 @@ def main():
     
     # Initiate a file path where errors will be stored. 
 
-    errorFilePath=os.path.join(sourceFolder,"Logs",str(datetime.date.today())+"-ERRORS.txt")
+    errorFilePath=os.path.join(sourceFolder,"LocalLogs",str(datetime.date.today())+"-ERRORS.txt")
 
     # Move the files!!! 
 

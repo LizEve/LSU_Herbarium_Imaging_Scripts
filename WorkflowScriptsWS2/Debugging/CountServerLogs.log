@@ -686,3 +686,12 @@ Traceback (most recent call last):
   File "/mnt/c/Users/Image/Documents/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
     logF = open(logFile,"r")
 FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/Logs/2020-10-29_server_ws2.txt'
+Thu Nov  5 23:00:01 CST 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/2020-11-05_server_ws2.txt'

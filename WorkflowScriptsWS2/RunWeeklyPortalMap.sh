@@ -1,6 +1,6 @@
 #!/bin/bash
 # Set error log for debugging
-elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyCSV.log
+elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/Debugging/WeeklyCSV.log
 # Write date to error log 
 echo "$(date)" &>> $elog
 # Path to your python script 
