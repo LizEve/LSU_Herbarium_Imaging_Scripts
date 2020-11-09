@@ -695,3 +695,22 @@ Traceback (most recent call last):
   File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
     logF = open(logFile,"r")
 FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/2020-11-05_server_ws2.txt'
+Fri Nov  6 23:00:01 CST 2020
+Sat Nov  7 23:00:01 CST 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/2020-11-07_server_ws2.txt'
+Sun Nov  8 23:00:01 CST 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 109, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 106, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 60, in countImages
+    logF = open(logFile,"r")
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/2020-11-08_server_ws2.txt'
