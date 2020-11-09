@@ -56,31 +56,34 @@ def countImages(logFile,logFolder,csvLogFilePath):
     files=[]
     portals=[]
 
-    # Open the file 
-    logF = open(logFile,"r")
+    try:
+        # Open the file 
+        logF = open(logFile,"r")
 
-    # Loop through lines in log file 
-    for oPath in logF:
+        # Loop through lines in log file 
+        for oPath in logF:
 
-        # Get portal name 
-        portal=oPath.split("/")[0]
+            # Get portal name 
+            portal=oPath.split("/")[0]
 
-        # Get path to original image
-        path = os.path.split(oPath)[0]
+            # Get path to original image
+            path = os.path.split(oPath)[0]
 
-        # Get file name without extension
-        fileName=os.path.basename(oPath).split(".")[0]
+            # Get file name without extension
+            fileName=os.path.basename(oPath).split(".")[0]
 
-        # Get barcode 
-        barCode=fileName.split("_")[0]
+            # Get barcode 
+            barCode=fileName.split("_")[0]
 
-        # Add to portal dict for reporting numbers
-        barcodes.append(barCode)
-        files.append(fileName)
-        portals.append(portal)
+            # Add to portal dict for reporting numbers
+            barcodes.append(barCode)
+            files.append(fileName)
+            portals.append(portal)
 
-    # Write out log file of all the files that got csv'd
-    countFiles(barcodes,files,portals,csvLogFilePath)
+        # Write out log file of all the files that got csv'd
+        countFiles(barcodes,files,portals,csvLogFilePath)
+    except FileNotFoundError:
+        print("No files moved today")
 
 def main():
 
