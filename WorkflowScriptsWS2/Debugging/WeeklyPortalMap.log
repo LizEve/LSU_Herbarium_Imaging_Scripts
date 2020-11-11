@@ -31,3 +31,12 @@ Traceback (most recent call last):
   File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyPortalMap.py", line 121, in makeCSV
     with open(csvPath,"a") as csvFile:
 PermissionError: [Errno 13] Permission denied: '/mnt/e/CFLA-LSU-Station2/LSUCollections/PortalMaps/2020-11-09_Vascular_ws2.csv'
+Wed Nov 11 16:51:37 CST 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyPortalMap.py", line 178, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyPortalMap.py", line 175, in main
+    makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,workstation)
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyPortalMap.py", line 121, in makeCSV
+    with open(csvPath,"a") as csvFile:
+PermissionError: [Errno 13] Permission denied: '/mnt/e/CFLA-LSU-Station2/LSUCollections/PortalMaps/2020-11-11_Vascular_ws2.csv'
