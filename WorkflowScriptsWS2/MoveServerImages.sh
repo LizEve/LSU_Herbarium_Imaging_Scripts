@@ -37,7 +37,7 @@ todaylog=$logfolder$fname$suffix
 echo "starting rsync"
 date +"%T"
 
-rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --exclude '*CR2' --exclude '*Log*' $source $destination | grep '^>f' | cut -d' ' -f2 > $outlog
+rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update --include='*/' --include '*JPG' --exclude '*' $source $destination | grep '^>f' | cut -d' ' -f2 > $outlog
 
 echo "starting file resizing"
 date +"%T"
