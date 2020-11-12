@@ -16,17 +16,17 @@ source=/mnt/LSUCollections/
 destination=/data/LSUCollections/
 
 # Daily log folder on server
-logfolder=/data/LSUCollections/Logs/DailyWS2/
+logfolder=/data/LSUCollections/ServerLogs/
 
 # Temp log file used to make file lists
-outlog=/data/LSUCollections/Logs/DailyWS2/rsync2.out 
+outlog=/data/LSUCollections/ServerLogs/rsync2.out 
 
 # Local folder to put long form file lists into
 wsLogs=/mnt/LSUCollections/ServerLogs/
 
 # Backup portal csv files 
 csvfolder=/mnt/LSUCollections/PortalMaps/
-csvRemote=/data/LSUCollections/Logs/PortalMaps/
+csvRemote=/data/LSUCollections/PortalMaps/
 
 
 # Name today's log after the date
