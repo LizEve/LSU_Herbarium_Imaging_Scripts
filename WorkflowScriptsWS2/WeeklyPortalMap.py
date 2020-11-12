@@ -62,7 +62,6 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,ws):
         # If mtime is greater(newer) than oldest date and smaller(older) than newest date
         if mtime >= oldest and mtime <= newest:
             #print(p)
-            #print(mtime)
             logFilesList.append(p)
 
     # Set date name for csv file - today's date 
@@ -143,12 +142,12 @@ def main():
     # Edit either the exact dates or the number of days wanted. For exact dates see example above
     
     # Span of days (default)
-    #newest = datetime.date.today()
-    #oldest = newest - datetime.timedelta(days=7)
+    newest = datetime.date.today()
+    oldest = newest - datetime.timedelta(days=7)
 
     # Exact dates 
-    newest = datetime.datetime(year=2020,month=11,day=10)
-    oldest = datetime.datetime(year=2020,month=10,day=11)
+    #newest = datetime.datetime(year=2020,month=11,day=10)
+    #oldest = datetime.datetime(year=2020,month=10,day=4)
 
     # Path to daily long form log files
     logFolder = '/mnt/e/CFLA-LSU-Station2/LSUCollections/ServerLogs/'
@@ -173,6 +172,8 @@ def main():
 
     # Call function
     makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,workstation)
+    
+    print("done")
 
 if __name__ == "__main__":
     main()
