@@ -58,7 +58,7 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath,ws):
     for p in logFolderList:
         #print(path)
         st = os.stat(p)    
-        mtime = datetime.datetime.fromtimestamp(st.st_mtime)
+        mtime = datetime.date.fromtimestamp(st.st_mtime)
         # If mtime is greater(newer) than oldest date and smaller(older) than newest date
         if mtime >= oldest and mtime <= newest:
             #print(p)
