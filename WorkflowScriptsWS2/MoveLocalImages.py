@@ -158,13 +158,13 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
     
         # Get full folder path 
         folderPath=os.path.join(sourceFolder,folder)
-        
+        print(os.listdir(folderPath))
         # Iterate through files in folder 
         for filename in os.listdir(folderPath):
 
             # Change file names to uppercase for consistancy later on
             FileName=filename.upper()
-            
+            print(FileName+" - "+str(datetime.datetime.now()))
             # Get full path to source file 
             sourceFilePath=os.path.join(folderPath,filename)
 
