@@ -149,34 +149,44 @@ def newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,bar
 def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath):
     
     # Create lists to calculate summary numbers
+    
     barcodes=[]
     files=[]
     portals=[]
 
     # Iterate through list of user defined organizing source folders, for LSU these are portal names 
+    
     for folder in portalFolders:
     
         # Get full folder path 
+        
         folderPath=os.path.join(sourceFolder,folder)
         print(os.listdir(folderPath))
+        
         # Iterate through files in folder 
+        
         for filename in os.listdir(folderPath):
 
             # Change file names to uppercase for consistancy later on
+            
             FileName=filename.upper()
             print(FileName+" - "+str(datetime.datetime.now()))
+            
             # Get full path to source file 
+            
             sourceFilePath=os.path.join(folderPath,filename)
 
             # Get creation date for source file, or last modification date if creation date cannot be recovered
-            #birthDate=creationDate(sourceFilePath)
+            #birthDate=creationDate(sourceFilePath) # depreciated
             
-            # Get path to source folder 
+            # Get path to source folder
+            
             destinationPortalFolder = os.path.join(destinationFolder,folder)
             
             # Create destination file path and folder path 
             # The function newPathName also checks for barcode format and length
             # All files with incorrectly formatted barcodes will be moved to a "BadBarcode" folder NOT on the specified backup 
+            
             destinationFolderPath,destinationFilePath,barCode = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
  
             # For files with CORRECTLY formated barcodes 
@@ -184,22 +194,29 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             if "BadBarcode" not in destinationFilePath:
                 
                 try:
+                
                     # If destination nested folders do not exist, create them
+                    
                     if not os.path.exists(destinationFolderPath):
                         pathlib.Path(destinationFolderPath).mkdir(parents=True)
                         
                     # Move file to destination    
+                    
                     shutil.move(sourceFilePath,destinationFilePath)
                     
                     # Add to portal dict for reporting numbers
+                    
                     barcodes.append(barCode)
                     files.append(FileName)
+                    
                     # Only count jpg files for counting files in portals. 
+                    
                     jpg = FileName.split(".")[-1]
                     if jpg == 'JPG':
                         portals.append(folder)
                     
                     # Create log file based on day script is run 
+                    
                     logFileName=str(datetime.date.today().strftime("%Y-%m-%d"))+"_"+outLogsuffix
 
                     # Old version - Create log file name using the day that the file was created or modified(Ex 2019-06-07) 
@@ -207,14 +224,17 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     #logFileName=str(datetime.datetime.fromtimestamp(int(birthDate))).split()[0]+outLogsuffix
                     
                     # Get path to log file 
+                    
                     logFilePath=os.path.join(sourceFolder,"LocalLogs",logFileName)
 
                     # Open log file and write destination file path 
+                    
                     writeLog = open(logFilePath,'a')
                     writeLog.write(destinationFilePath+'\n')
                     writeLog.close()
                     
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
+                
                 except Exception as e:
                     writeError = open(errorFilePath,'a')
                     writeError.write(str(e)+" File failed to move from "+str(sourceFilePath)+' to '+str(destinationFilePath)+'\n')
