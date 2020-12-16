@@ -156,7 +156,7 @@ def main():
     csvFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/PortalMaps/'
 
     # Web address for linking images 
-    webPath = 'http://cyberfloralouisiana.com/images/LSUCollections/' 
+    webPath = 'https://cyberfloralouisiana.com/images/LSUCollections/' 
 
     # Header for csv file, compatable with Symbiota
 
