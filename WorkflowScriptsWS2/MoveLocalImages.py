@@ -6,6 +6,7 @@ import shutil
 import platform
 import datetime
 import pandas as pd
+import argparse
 
 ## Add "if file name ends with jpg" add to portal list. to filter out cr2 for portal counts
 def countFiles(barcodes,files,portals,csvLogFilePath):
@@ -194,7 +195,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             if "BadBarcode" not in destinationFilePath:
                 
                 try:
-                
+                    #print(str(sourceFilePath)+" "+str(destinationFilePath))
                     # If destination nested folders do not exist, create them
                     
                     if not os.path.exists(destinationFolderPath):
@@ -279,50 +280,83 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 destinationFolderPath=os.path.dirname(destinationFilePath)
                 
                 try:
+                    print(str(sourceFilePath)+" "+str(destinationFilePath + " " + destinationFolderPath))
                     # Create desination folders if needed. 
-                    if not os.path.exists(destinationFolderPath):
-                        pathlib.Path(destinationFolderPath).mkdir(parents=True)  
+                    #if not os.path.exists(destinationFolderPath):
+                    #    pathlib.Path(destinationFolderPath).mkdir(parents=True)  
                     
                     # Move file to destination
-                    shutil.move(sourceFilePath,destinationFilePath)
-                
+                    shutil.copyfile(sourceFilePath,destinationFilePath)
+                    #os.unlink(sourceFilePath)
+                    #os.system('cp %s %s' % (sourceFilePath,destinationFilePath))
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
-                        print(str(e)+" File failed to move "+str(sourceFilePath))
+                        print(str(e)+" >:[ File failed to move from "+str(sourceFilePath)+" to "+str(destinationFilePath)+'\n')
                 
 
+def getArgs():
+    parser = argparse.ArgumentParser("Move files from local to remote storage")
+    
+    # Add arguments
+    parser.add_argument("-l", "--outLogsuffix", help="String that will be appended to all out logs", required = True)
+    parser.add_argument("-s", "--sourceFolder", help="Path to local image folder", required = False, default = '/mnt/c/Users/Image/Desktop/Imaging/')
+    parser.add_argument("-d", "--destinationFolder", help="Path to remote storage image folder", required = False, default = '/mnt/Collection/LSUCollections/')
+    parser.add_argument("-p", "--portalFolders", help="List folders that correspond to how you want to store your images", nargs='+', required = False, default = ['Algae','Bryophyte','Fungi','Lichen','Vascular'])
+    parser.add_argument("-o", "--otherFolders", help="Extra folders for one time projects.", nargs='+',required = False, default = ['Random'])
+    parser.add_argument("-x", "--barcodeMax", help="Maximum length for legitimate barcode", required = False, default = 15)
+    parser.add_argument("-n", "--barcodeMin", help="Minimum length for legitimate barcode", required = False, default = 9)
+    parser.add_argument("-c", "--csvFolder", help="Path to folder for csv logs", required = False, default = '/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/')
+    
+    # List of all arguments passed to script
+    args = parser.parse_args()
+    
+    # Assign arguments to variables 
+    outLogsuffix = args.outLogsuffix
+    sourceFolder = args.sourceFolder
+    destinationFolder = args.destinationFolder
+    portalFolders = args.portalFolders
+    otherFolders = args.otherFolders
+    barcodeMax = args.barcodeMax
+    barcodeMin = args.barcodeMin
+    csvFolder = args.csvFolder
+    
+    # Return variable values 
+    return outLogsuffix, sourceFolder, destinationFolder, portalFolders, otherFolders, barcodeMax, barcodeMin, csvFolder
+
+
 def main():
+    outLogsuffix, sourceFolder, destinationFolder, portalFolders, otherFolders, barcodeMax, barcodeMin, csvFolder = getArgs()
     ############ BEGIN section to customize 
     # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
     # Folder of images on computer
     
-    sourceFolder='/mnt/c/Users/Image/Desktop/Imaging/'
+    #sourceFolder='/mnt/c/Users/Image/Desktop/Imaging/'
     
     # Folder for long term storage 
     
-    destinationFolder='/mnt/e/CFLA-LSU-Station2/LSUCollections/'
+    #destinationFolder='/mnt/Collection/LSUCollections/'
 
     # List folders that correspond to how you want to store your images
     # For LSU images are stored based on the portal they will be uploaded to online.
     
-    portalFolders=['Algae','Bryophyte','Fungi','Lichen','Vascular']
+    #portalFolders=['Algae','Bryophyte','Fungi','Lichen','Vascular']
     
     # Extra folders for one time projects. Barcodes will not be checked, and any nested folders will be moved as is. 
     
-    otherFolders=['Random']
+    #otherFolders=['Random']
 
     # Maximum length for legitimate barcode, does not count anything trailing an underscore "_"
     
-    barcodeMax=15
-    barcodeMin=9
+    #barcodeMax=15
+    #barcodeMin=9
     
     # String that will be appended to all out logs. Can customize for each computer. 
     # Make sure this is different from the string appended to your server logs in the rsyncdaily.sh script. 
     # Add whatever file extension you want. ".txt" is reccomended so simple text editors can open the files.
     
-    outLogsuffix="local_ws2.txt"
+    #outLogsuffix="local_ws2.txt"
     
-    csvFolder='/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/'
+    #csvFolder='/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/'
     
     csvLogFilePath = os.path.join(csvFolder,'DailyLocalLog.csv')
     
