@@ -159,6 +159,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
     
     for folder in portalFolders:
     
+        # Clean folder name 
+        folder=folder.strip()
+        
         # Get full folder path 
         
         folderPath=os.path.join(sourceFolder,folder)
@@ -203,7 +206,11 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                         
                     # Move file to destination    
                     
-                    shutil.move(sourceFilePath,destinationFilePath)
+                    shutil.copyfile(sourceFilePath,destinationFilePath)
+                    
+                    # Remove original 
+                    
+                    os.unlink(sourceFilePath)
                     
                     # Add to portal dict for reporting numbers
                     
@@ -245,7 +252,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             # File is moved to BadBarcode and not written to the log file
             else:
                 try:
-                    shutil.move(sourceFilePath,destinationFilePath)
+                    shutil.copyfile(sourceFilePath,destinationFilePath)
+                    
+                    os.unlink(sourceFilePath)
 
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
@@ -259,6 +268,9 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
 
     # Iterate through list of user defined "other" folders, for LSU this is the folder "Random"               
     for folder in otherFolders:
+        
+        # Clean folder name 
+        folder=folder.strip()
         
         # Get full folder path 
         folderPath=os.path.join(sourceFolder,folder)
@@ -282,13 +294,13 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 try:
                     print(str(sourceFilePath)+" "+str(destinationFilePath + " " + destinationFolderPath))
                     # Create desination folders if needed. 
-                    #if not os.path.exists(destinationFolderPath):
-                    #    pathlib.Path(destinationFolderPath).mkdir(parents=True)  
+                    if not os.path.exists(destinationFolderPath):
+                        pathlib.Path(destinationFolderPath).mkdir(parents=True)  
                     
                     # Move file to destination
                     shutil.copyfile(sourceFilePath,destinationFilePath)
+                    # Random files don't get automatically deleted from Workstation
                     #os.unlink(sourceFilePath)
-                    #os.system('cp %s %s' % (sourceFilePath,destinationFilePath))
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
                         print(str(e)+" >:[ File failed to move from "+str(sourceFilePath)+" to "+str(destinationFilePath)+'\n')
@@ -299,26 +311,27 @@ def getArgs():
     
     # Add arguments
     parser.add_argument("-l", "--outLogsuffix", help="String that will be appended to all out logs", required = True)
-    parser.add_argument("-s", "--sourceFolder", help="Path to local image folder", required = False, default = '/mnt/c/Users/Image/Desktop/Imaging/')
-    parser.add_argument("-d", "--destinationFolder", help="Path to remote storage image folder", required = False, default = '/mnt/Collection/LSUCollections/')
-    parser.add_argument("-p", "--portalFolders", help="List folders that correspond to how you want to store your images", nargs='+', required = False, default = ['Algae','Bryophyte','Fungi','Lichen','Vascular'])
-    parser.add_argument("-o", "--otherFolders", help="Extra folders for one time projects.", nargs='+',required = False, default = ['Random'])
-    parser.add_argument("-x", "--barcodeMax", help="Maximum length for legitimate barcode", required = False, default = 15)
-    parser.add_argument("-n", "--barcodeMin", help="Minimum length for legitimate barcode", required = False, default = 9)
-    parser.add_argument("-c", "--csvFolder", help="Path to folder for csv logs", required = False, default = '/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/')
+    parser.add_argument("-s", "--sourceFolder", help="Path to local image folder", required = True)
+    parser.add_argument("-d", "--destinationFolder", help="Path to remote storage image folder", required = True)
+    parser.add_argument("-x", "--barcodeMax", help="Maximum length for legitimate barcode", required = True)
+    parser.add_argument("-n", "--barcodeMin", help="Minimum length for legitimate barcode", required = True)
+    parser.add_argument("-c", "--csvFolder", help="Path to folder for csv logs", required = True)
+    parser.add_argument("-p", "--portalFolders", help="List folders that correspond to how you want to store your images",required = True)
+    parser.add_argument("-o", "--otherFolders", help="Extra folders for one time projects.", required = True)
+
     
     # List of all arguments passed to script
     args = parser.parse_args()
     
     # Assign arguments to variables 
-    outLogsuffix = args.outLogsuffix
-    sourceFolder = args.sourceFolder
-    destinationFolder = args.destinationFolder
-    portalFolders = args.portalFolders
-    otherFolders = args.otherFolders
-    barcodeMax = args.barcodeMax
-    barcodeMin = args.barcodeMin
-    csvFolder = args.csvFolder
+    outLogsuffix = args.outLogsuffix.strip()
+    sourceFolder = args.sourceFolder.strip()
+    destinationFolder = args.destinationFolder.strip()
+    portalFolders = args.portalFolders.split(',')
+    otherFolders = args.otherFolders.split(',')
+    barcodeMax = args.barcodeMax.strip()
+    barcodeMin = args.barcodeMin.strip()
+    csvFolder = args.csvFolder.strip()
     
     # Return variable values 
     return outLogsuffix, sourceFolder, destinationFolder, portalFolders, otherFolders, barcodeMax, barcodeMin, csvFolder

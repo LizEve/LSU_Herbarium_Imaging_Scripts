@@ -49,3 +49,12 @@ Sun Dec 27 23:00:01 CST 2020
 No files moved today
 Mon Dec 28 23:00:01 CST 2020
 No files moved today
+Wed Dec 30 13:34:54 CST 2020
+Traceback (most recent call last):
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 112, in <module>
+    main()
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 109, in main
+    countImages(logFilePath,logFolder,masterLogFilePath)
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/CountServerLogs.py", line 61, in countImages
+    logF = open(logFile,"r")
+PermissionError: [Errno 13] Permission denied: '/mnt/Collection/LSUCollections/ServerLogs/2020-12-30_server.txt'
