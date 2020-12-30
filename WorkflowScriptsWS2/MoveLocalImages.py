@@ -326,7 +326,26 @@ def getArgs():
 
 def main():
     outLogsuffix, sourceFolder, destinationFolder, portalFolders, otherFolders, barcodeMax, barcodeMin, csvFolder = getArgs()
-    ############ BEGIN section to customize 
+
+    
+    csvLogFilePath = os.path.join(csvFolder,'DailyLocalLog.csv')
+    
+    # Initiate a file path where errors will be stored. 
+
+    errorFilePath=os.path.join(sourceFolder,"LocalLogs",str(datetime.date.today())+"-ERRORS.txt")
+
+    # Move the files!!! 
+
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+
+
+    # Create folders if needed 
+    # This will also make folders named "BadBarcode" and "LocalLogs" in your source folder
+    # Best to hash this out after setup
+    #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
+
+
+    ############ Extra Notes
     # Make sure paths have a trailing forward slash at the end '/'. otherwise everything will fail. 
     # Folder of images on computer
     
@@ -357,23 +376,8 @@ def main():
     #outLogsuffix="local_ws2.txt"
     
     #csvFolder='/mnt/c/Users/Image/Desktop/Imaging/LocalLogs/'
-    
-    csvLogFilePath = os.path.join(csvFolder,'DailyLocalLog.csv')
-    
     ############ END section to customize  
-
-    # Create folders if needed 
-    # This will also make folders named "BadBarcode" and "LocalLogs" in your source folder
-    # Best to hash this out after setup
-    #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
     
-    # Initiate a file path where errors will be stored. 
-
-    errorFilePath=os.path.join(sourceFolder,"LocalLogs",str(datetime.date.today())+"-ERRORS.txt")
-
-    # Move the files!!! 
-
-    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
 
     '''
     Extra notes 
