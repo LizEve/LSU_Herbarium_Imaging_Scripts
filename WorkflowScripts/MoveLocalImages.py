@@ -339,6 +339,11 @@ def getArgs():
 
 def main():
     outLogsuffix, sourceFolder, destinationFolder, portalFolders, otherFolders, barcodeMax, barcodeMin, csvFolder = getArgs()
+    
+    # Create folders if needed 
+    # This will also make folders named "BadBarcode" and "LocalLogs" in your source folder
+    # Best to hash this out after setup
+    #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
 
     
     csvLogFilePath = os.path.join(csvFolder,'DailyLocalLog.csv')
@@ -352,10 +357,6 @@ def main():
     moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
 
 
-    # Create folders if needed 
-    # This will also make folders named "BadBarcode" and "LocalLogs" in your source folder
-    # Best to hash this out after setup
-    #makeFolders(sourceFolder,destinationFolder,portalFolders,otherFolders)
 
 
     ############ Extra Notes

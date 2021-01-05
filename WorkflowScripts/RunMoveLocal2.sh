@@ -1,6 +1,6 @@
 #!/bin/bash
 # Set error log for debugging
-elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/Debugging/MoveLocalImages.log
+elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/Debugging/MoveLocalImages2.log
 # Write date to error log 
 echo "$(date)" &>> $elog
 # Set variables 
@@ -18,8 +18,15 @@ otherFolders="Random"
 #python3.8 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/MoveLocalImages.py -l "local_ws2.txt" &>> $elog
 #python3.8 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/MoveLocalImages.py -l "local_ws2.txt" -d "/mnt/e/CFLA-LSU-Station2/LSUCollections/" &>> $elog
 #python3.8 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/MoveLocalImages.py -l $outLogsuffix -s $sourceFolder -d $destinationFolder -x $barcodeMax -n $barcodeMin -c $csvFolder &>> $elog
-python3.8 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/MoveLocalImages.py -l $outLogsuffix -s $sourceFolder -d $destinationFolder -p $portalFolders -o $otherFolders -x $barcodeMax -n $barcodeMin -c $csvFolder &>> $elog
-
+python3.8 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py  \
+-l $outLogsuffix \
+-s $sourceFolder \
+-d $destinationFolder \
+-p $portalFolders \
+-o $otherFolders \
+-x $barcodeMax \
+-n $barcodeMin \
+-c $csvFolder &>> $elog
 
 # Add extra wait time, a probably unneeded 
 sleep 5m
