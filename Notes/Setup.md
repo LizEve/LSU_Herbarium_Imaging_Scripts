@@ -90,6 +90,8 @@ RunCountServer.sh - not yet set up to input variables - edit CountServerLogs.py 
 
 ##### 2.3 Set up task scheduler 
 
+Task Scheduler Library > ImagingWorkflow
+
 General:
 Run whether user is logged in or not
 Run with highest privileges
@@ -111,64 +113,18 @@ Wake computer to run this task
 Settings:
 Allow to be run on demand
 Run as soon as possible if missed
-If fails restart
+
+(On restart)
+Mount Collection Network Drive - C:\Users\Image\Documents\GitHub\LSU_Herbarium_Imaging_Scripts\WorkflowScripts\MountCollectionNetworkDrive.bat
 
 
 (Everyday)
-5:55PM: ReBoot Ubuntu - Program: PowerShell.exe Arguments: Get-Service LxssManager | Restart-Service 
-9PM: Run  - Run Move Local - RunMoveLocal.sh
-xxxx9:55PM: Wake Up for Sync - WakeUp.sh x dont need this anymore
-10:55PM: ReBoot Ubuntu  
+9PM: Move Local Images - RunMoveLocal.sh
 11PM: Run Counter Server Logs - RunCountServer.sh
 
 (Sundays)
-2:55 PM: Reboo Ubuntu
 3 PM: Make CSV for upload - RunWeeklyPortalMap.sh
 
-- File names are expected to start with a barcode. This barcode should start with letters followed by ONLY numbers.
-- Extra notes or tags, such as numbering multiple files should come after an underscore "_" 
-  - Ex: LSU01234567.JPG or LSU01234567_1.JPG
-- All file names will be changed to all caps if they are not already. Except those files in the other/random folders
-- Folders will be created first using the letters, then using the numbers. Ex: /LSU/001/002/
-- **BadBarcode Folder** : Files with improperly formatting barcodes will be sent here. Edit file names in this folder and place in appropriate source folder so they will be uploaded properly. 
-- When barcode/filename is fixed, the file will be recorded in the log corresponding to the day the file was originally created. If you edit the file in DPP again the server logs may record the file as originating from the day you re-edited the photo. Make sure to record this in any paper logs.
-  
-#### 2.2 Download
-
-- `https://github.com/LizEve/HerbariumRA.git`
-- Click blue button **Clone or download**
-  - Click **DownloadZIP**
-
-#### 2.3 Store locally
-
-- Again put this folder somewhere it is easy to find and hard to edit or move.
-    ex: LSU `C:Users\Image\Documents\GitHub\LSU_Herbarium_Imaging_Scripts`
-
-#### 2.4 Edit script 
-
-- `organizeIncomingImages.py` needs to be customized to your computer 
-- Open python script in a simple text editor like NotePad, NOT Microsoft word. 
-- Scroll down to the bottom of the file under `def main():` and edit the following variables:
-
-##### 2.4a Variables to customize 
-
-- **sourceFolder** - Folder of images on computer `/mnt/c/Users/Image/Desktop/Imaging/`
-
-- **destinationFolder** - Folder for long term storage `/mnt/e/CFLA-LSU-Station2/LSUCollections/`
-
-- **portalFolders** - List of folders that correspond to how you want to store your images. These will be automatically created if they don't already exist. `['Algae','Bryophyte','Fungi','Lichen''Vascular']`
-
-- **otherFolders** - Extra folders for one time projects. Barcodes will not be checked, and any nested folders will be moved as is. These will be automatically created if they don't already exist. `['Random']`
-
-- **barcodeMax/Min** - Maximum and minimum length for legitimate barcode, does not count anything trailing an underscore "_" `15` `9`
-
-- **outLogsuffix** - Log files are named by date, this is whatever string you want trailing the date. LSU log files will reference the computer they are imaged on. 
-
-### 2.5 Set up auto run of organizeIncomingImages.py
-
-- Use this tutorial to set up the task to run every day. 
-- `https://www.thewindowsclub.com/wake-up-computer-from-sleep-windows`
-- Ex LSU - Run at 7PM `wsl python3 /mnt/c/Users/Image/Documents/GitHub/HerbariumRA/organizeIncomingImages.py` 
 
 ## Server
 
