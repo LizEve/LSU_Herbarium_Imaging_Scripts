@@ -300,7 +300,6 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     # Move file to destination
                     shutil.copyfile(sourceFilePath,destinationFilePath)
                     # Random files don't get automatically deleted from Workstation
-                    #os.unlink(sourceFilePath)
                 # If anything under the try statement cannot be completed, an error will be printed to screen.
                 except Exception as e:
                         print(str(e)+" >:[ File failed to move from "+str(sourceFilePath)+" to "+str(destinationFilePath)+'\n')
