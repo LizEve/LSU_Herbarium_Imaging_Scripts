@@ -90,6 +90,8 @@ RunCountServer.sh - not yet set up to input variables - edit CountServerLogs.py 
 
 ##### 2.3 Set up task scheduler 
 
+XML files are in the github folder for import. Remember to change file paths to customize
+
 Task Scheduler Library > ImagingWorkflow
 
 General:
@@ -116,7 +118,6 @@ Run as soon as possible if missed
 
 (On restart)
 Mount Collection Network Drive - C:\Users\Image\Documents\GitHub\LSU_Herbarium_Imaging_Scripts\WorkflowScripts\MountCollectionNetworkDrive.bat
-
 
 (Everyday)
 9PM: Move Local Images - RunMoveLocal.sh
