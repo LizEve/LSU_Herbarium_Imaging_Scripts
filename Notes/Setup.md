@@ -11,14 +11,14 @@ EOS - EOS Utility - a program to connect computer to camera
 ### Programs/versions
 
 Python3 and package downloader like pip. 
-Ubuntu XXX
+Ubuntu 20.04 LTS
 Computer with Windows 10
-Local backup drives plugged into or mounted on the windows machines. 
+Local backup drives mounted on the window machine. 
 Remote server for long-term storage and serving images. 
 
 ### System Requirements 
 
-These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts should work on any Linux platform. However, the automation of running scripts daily will be different. 
+These scripts have been tested using Windows 10, Ubuntu 20.04, and Python 3. All scripts should work on any Linux platform. However, the automation of running scripts daily will be different. 
 
 ## Download and edit scripts on imaging computer
 
@@ -49,26 +49,81 @@ These scripts have been tested using Windows 10 and Ubuntu XXX. All scripts shou
   - Click **Register**
   - Click **Browse** and link to `renameimage.exe`
 
-### 2. Organize and move image files script - organizeIncomingImages.py
+### 2. Setup Automated scripts 
 
-#### 2.1 Function description
+#### 2.1 Download ubuntu 
 
-Running `organizeIncomingImages.py` will do the following-
+Google a help page or ask IT. 
 
-- Each file will be checked for the appropriate barcode format and length. 
-- Files with inaccurate barcodes will be placed in a folder called `BadBarcode` in the source folder provided to the script. These file names will need to be manually edited and placed in the appropriate portal folders in the source folder. 
-- Accurate barcodes will be moved to the destination folder, which should be on an external harddrive or other backup. 
-- As files are moved to the destination/backup drive they will be filed based on their barcode and which source folder they are found in. 
+https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab
 
-##### 2.1a Log files
 
-- Output logs based on date created, or on date modified if creation date cannot be identified, a potential on Linux machines. 
-- If the source folders have images in them, a log will be written for that day. 
-- Each log will be named based on the date with the option to add an additional string of letters or numbers. 
-- For LSU the log names will contain the date and the computer they are imaged on. `date_workstation1` 
-- Be careful when re-editing photos in DPP after the day they are taken, this may cause their log date to change on the server sync logs.
+#### 2.2 Download python and pip and packages
 
-##### 2.1b File name restrictions
+Download from website or package manager. Again google or ask IT. 
+
+https://www.python.org/downloads/
+Help I used - https://linuxize.com/post/how-to-install-pip-on-ubuntu-20.04/
+
+```bash
+sudo apt update 
+sudo apt install python3-pip
+```
+
+Install python packages - os, glob, datetime, pandas, itertools, pathlib, shutil, platform, argparse, sys
+```bash
+python3 -m pip install pandas
+```
+
+
+##### 2.3 Download github folder 
+
+Set up github desktop
+Github desktop - https://desktop.github.com/
+
+Clone/download scripts folder
+Scripts folder - https://github.com/LizEve/LSU_Herbarium_Imaging_Scripts
+
+Edit "Run*.sh" scripts with appropriate file paths. 
+RunCountServer.sh - not yet set up to input variables - edit CountServerLogs.py directly
+
+
+##### 2.3 Set up task scheduler 
+
+General:
+Run whether user is logged in or not
+Run with highest privileges
+Configure for Windows 10
+
+Triggers:
+Daily/Weekly  
+Stop task if it runs longer than 1 hour
+
+Actions:
+Start a program
+Program/script: bash.exe
+Add arguments: /mnt/c/Users/Image/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/*sh
+Start in: C:\Windows\System32
+
+Conditions:
+Wake computer to run this task 
+
+Settings:
+Allow to be run on demand
+Run as soon as possible if missed
+If fails restart
+
+
+(Everyday)
+5:55PM: ReBoot Ubuntu - Program: PowerShell.exe Arguments: Get-Service LxssManager | Restart-Service 
+9PM: OrganizeImagesDaily - Run
+9:55PM: Wake Up for Sync - WakeUp.sh
+10:55PM: ReBoot Ubuntu  
+11PM: Run Counter Server Logs - RunCountServer.sh
+
+(Sundays)
+2:55 PM: Reboo Ubuntu
+3 PM: Make CSV for upload - RunWeeklyPortalMap.sh
 
 - File names are expected to start with a barcode. This barcode should start with letters followed by ONLY numbers.
 - Extra notes or tags, such as numbering multiple files should come after an underscore "_" 
