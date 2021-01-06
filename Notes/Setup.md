@@ -102,7 +102,7 @@ Stop task if it runs longer than 1 hour
 Actions:
 Start a program
 Program/script: bash.exe
-Add arguments: /mnt/c/Users/Image/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/*sh
+Add arguments: /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/*sh
 Start in: C:\Windows\System32
 
 Conditions:
