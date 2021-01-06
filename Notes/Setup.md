@@ -116,8 +116,8 @@ If fails restart
 
 (Everyday)
 5:55PM: ReBoot Ubuntu - Program: PowerShell.exe Arguments: Get-Service LxssManager | Restart-Service 
-9PM: OrganizeImagesDaily - Run
-9:55PM: Wake Up for Sync - WakeUp.sh
+9PM: Run  - Run Move Local - RunMoveLocal.sh
+xxxx9:55PM: Wake Up for Sync - WakeUp.sh x dont need this anymore
 10:55PM: ReBoot Ubuntu  
 11PM: Run Counter Server Logs - RunCountServer.sh
 
