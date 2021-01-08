@@ -174,7 +174,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
             # Change file names to uppercase for consistancy later on
             
             FileName=filename.upper()
-            print(FileName+" - "+str(datetime.datetime.now()))
+            #print(FileName+" - "+str(datetime.datetime.now()))
             
             # Get full path to source file 
             
@@ -202,7 +202,12 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                     # If destination nested folders do not exist, create them
                     
                     if not os.path.exists(destinationFolderPath):
-                        pathlib.Path(destinationFolderPath).mkdir(parents=True)
+                        try:
+                            pathlib.Path(destinationFolderPath).mkdir(parents=True)
+                        except Exception as e:
+                            writeError = open(errorFilePath,'a')
+                            writeError.write(str(e)+": Failed path"+destinationFolderPath+'\n')
+                            writeError.close()
                         
                     # Move file to destination    
                     
@@ -292,7 +297,7 @@ def moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeM
                 destinationFolderPath=os.path.dirname(destinationFilePath)
                 
                 try:
-                    print(str(sourceFilePath)+" "+str(destinationFilePath + " " + destinationFolderPath))
+                    #print(str(sourceFilePath)+" "+str(destinationFilePath + " " + destinationFolderPath))
                     # Create desination folders if needed. 
                     if not os.path.exists(destinationFolderPath):
                         pathlib.Path(destinationFolderPath).mkdir(parents=True)  
@@ -328,8 +333,8 @@ def getArgs():
     destinationFolder = args.destinationFolder.strip()
     portalFolders = args.portalFolders.split(',')
     otherFolders = args.otherFolders.split(',')
-    barcodeMax = args.barcodeMax.strip()
-    barcodeMin = args.barcodeMin.strip()
+    barcodeMax = int(args.barcodeMax.strip())
+    barcodeMin = int(args.barcodeMin.strip())
     csvFolder = args.csvFolder.strip()
     
     # Return variable values 
