@@ -6,7 +6,7 @@ echo "$(date)" &>> $elog
 # Set variables 
 outLogsuffix="local_ws1.txt"
 sourceFolder='/mnt/c/Users/image/Desktop/Imaging/'
-destinationFolder='/mnt/Collection/sparklefarts/'
+destinationFolder='/mnt/Collection/LSUCollections/'
 barcodeMax=15
 barcodeMin=9
 csvFolder='/mnt/c/Users/image/Desktop/Imaging/LocalLogs/'
