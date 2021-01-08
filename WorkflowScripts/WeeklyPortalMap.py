@@ -58,12 +58,15 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
     for p in logFolderList:
         #print(path)
         st = os.stat(p)    
-        mtime = datetime.date.fromtimestamp(st.st_mtime)
+        mtime = datetime.datetime.fromtimestamp(st.st_mtime)
+        #print(p,mtime,oldest,newest)
+        #print(mtime>=oldest)
         # If mtime is greater(newer) than oldest date and smaller(older) than newest date
         if mtime >= oldest and mtime <= newest:
-            #print(p)
+            print(p)
             logFilesList.append(p)
-
+            
+    #print(logFilesList)
     # Set date name for csv file - today's date 
     logDate = str(datetime.date.today().strftime("%Y-%m-%d"))
 
@@ -132,8 +135,7 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
     countFiles(barcodes,files,portals,csvLogFilePath)
 
 def getArgs():
-    parser = argparse.ArgumentParser("Move files from local to remote storage")
-    
+    parser = argparse.ArgumentParser("Create CSV file to map images to online portal")
     # Add arguments
     parser.add_argument("-l", "--logFolder", help="Path to daily long form log files", required = True)
     parser.add_argument("-c", "--csvFolder", help="Path to folder where CSV files for portal mapping will be made", required = True)
@@ -151,7 +153,7 @@ def getArgs():
     csvFolder = args.csvFolder.strip()
     webPath = args.webPath.strip()
     regular = args.regular.strip()
-    nDays = args.nDays.strip()
+    nDays = int(args.nDays.strip())
     newDate = args.newDate.split(',')
     oldDate = args.oldDate.split(',')
 
@@ -161,28 +163,28 @@ def getArgs():
 def main():
     logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate = getArgs()
 
-    # Set times for the days that you want logs from
+    # Set times for the days that you want logs from - this is the ugliest coding ever, please forgive me and suggest a better way
     # Days begin and end at midnight. 
     # Ex: Logs from June 3rd-July 10th. 
     # Ex: newest = datetime.datetime(year=2020,month=7,day=11)
     # Ex: oldest = datetime.datetime(year=2020,month=6,day=3)
-    ny = newDate[0]
-    nm = newDate[1]
-    nd = newDate[2]
-    oy = oldDate[0]
-    om = oldDate[1]
-    od = oldDate[2]
+    ny = int(newDate[0])
+    nm = int(newDate[1])
+    nd = int(newDate[2])
+    oy = int(oldDate[0])
+    om = int(oldDate[1])
+    od = int(oldDate[2])
 
-    if regular == True:
+    if regular == 'True':
         # Span of days (default)
-        newest = datetime.date.today()
+        newest = datetime.datetime.today()
         oldest = newest - datetime.timedelta(days=nDays)
-    elif regular == False:
+    elif regular == 'False':
         # Exact dates 
         newest = datetime.datetime(year=ny,month=nm,day=nd)
         oldest = datetime.datetime(year=oy,month=om,day=od)
     else:
-        print('Enter True or False for -r')
+        print('Enter exactly "True" or "False" for -r')
 
     # Header for csv file, compatable with Symbiota
 

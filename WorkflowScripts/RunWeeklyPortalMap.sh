@@ -9,14 +9,14 @@ logFolder='/mnt/Collection/LSUCollections/ServerLogs/'
 # Path to folder where CSV files for portal mapping will be made
 csvFolder='/mnt/Collection/LSUCollections/PortalMaps/'
 # Web address for linking images 
-webPath='https://cyberfloralouisiana.com/images/LSUCollections/' 
+webPath="https://cyberfloralouisiana.com/images/LSUCollections/"
 # 'True'- Regular log (default is past 7 days but can be edited with nDays flag). 
 # 'False' - input specified dates with newDate and oldDate flags
 regular='True'
 nDays=7
 # Year,month,day
-newDate='2020,1,1'
-oldDate='2021,1,1'
+oldDate='2020,11,11'
+newDate='2021,1,1'
 # Path to your python script 
 python3 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/WeeklyPortalMap.py -l $logFolder -c $csvFolder -w $webPath -r $regular -d $nDays -n $newDate -o $oldDate &>> $elog
 

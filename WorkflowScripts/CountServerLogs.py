@@ -38,7 +38,7 @@ def countFiles(barcodes,files,portals,csvLogFilePath):
         # If csv file exists, add new line 
 
         elif os.path.exists(csvLogFilePath):
-            #print(csvLine)
+            print(csvLine)
             with open(csvLogFilePath,"a") as csvLogFile:
                 csvLogFile.write("%s\n" % csvLogLine)
                 csvLogFile.close()
