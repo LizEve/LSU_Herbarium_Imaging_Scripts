@@ -12,3 +12,13 @@ Traceback (most recent call last):
   File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/WeeklyPortalMap.py", line 162, in main
     logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate
 NameError: name 'logFolder' is not defined
+Fri Jan  8 14:50:59 CST 2021
+  File "/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/WeeklyPortalMap.py", line 159
+    return logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate = getArgs()
+                                                                     ^
+SyntaxError: invalid syntax
+Fri Jan  8 14:51:37 CST 2021
+usage: Move files from local to remote storage [-h] -l LOGFOLDER -c CSVFOLDER
+                                               -w WEBPATH -r REGULAR -d NDAYS
+                                               [-n NEWDATE] [-o OLDDATE]
+Move files from local to remote storage: error: argument -w/--webPath: expected one argument

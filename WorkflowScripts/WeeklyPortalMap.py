@@ -156,10 +156,10 @@ def getArgs():
     oldDate = args.oldDate.split(',')
 
     # Return variable values 
-    return logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate = getArgs()
+    return logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate
 
 def main():
-    logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate
+    logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate = getArgs()
 
     # Set times for the days that you want logs from
     # Days begin and end at midnight. 
