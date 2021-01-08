@@ -1,9 +1,8 @@
 #!/bin/bash
 # Set error log for debugging
-elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/Debugging/WeeklyPortalMap.log
+elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/Debugging/WeeklyPortalMap.log
 # Write date to error log 
 echo "$(date)" &>> $elog
-
 # Set variables 
 # Path to daily long form log files
 logFolder='/mnt/Collection/LSUCollections/ServerLogs/'
@@ -18,16 +17,8 @@ nDays=7
 # Year,month,day
 newDate='2020,1,1'
 oldDate='2021,1,1'
-
 # Path to your python script 
-python3 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScriptsWS2/WeeklyPortalMap.py 
--l $logFolder \
--c $csvFolder \
--w $webPath \
--r $regular \
--d $nDays \
--n $newDate \
--o $oldDate &>> $elog
+python3 /mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/WeeklyPortalMap.py -l $logFolder -c $csvFolder -w $webPath -r $regular -d $nDays -n $newDate -o $oldDate &>> $elog
 
 # Add extra wait time, a probably unneeded 
 sleep 5m
