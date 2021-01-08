@@ -1,6 +1,6 @@
 #!/bin/bash
 # Set error log for debugging
-elog=/mnt/c/Users/Image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/Debugging/MoveLocalImages1.log
+elog=/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/Debugging/MoveLocalImages1.log
 # Write date to error log 
 echo "$(date)" &>> $elog
 # Set variables 

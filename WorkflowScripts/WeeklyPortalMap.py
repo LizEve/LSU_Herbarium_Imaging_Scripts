@@ -2,7 +2,7 @@ import os
 import glob
 import datetime
 import pandas as pd
-
+import argparse
 
 def countFiles(barcodes,files,portals,csvLogFilePath):
 
@@ -131,7 +131,6 @@ def makeCSV(logFolder,csvFolder,webPath,header,newest,oldest,csvLogFilePath):
     # Write out log file of all the files that got csv'd
     countFiles(barcodes,files,portals,csvLogFilePath)
 
-
 def getArgs():
     parser = argparse.ArgumentParser("Move files from local to remote storage")
     
@@ -144,6 +143,8 @@ def getArgs():
     parser.add_argument("-n", "--newDate", help="Most recent date +1 day. ie June 3rd 2020, '2020,6,4'", required = False)
     parser.add_argument("-o", "--oldDate", help="Oldest date for log. Exacty date ie October 18th 1988, '1988,10,18'", required = False)
 
+    # List of all arguments passed to script
+    args = parser.parse_args() 
 
     # Assign arguments to variables 
     logFolder = args.logFolder.strip()
@@ -155,7 +156,7 @@ def getArgs():
     oldDate = args.oldDate.split(',')
 
     # Return variable values 
-    return logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate
+    return logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate = getArgs()
 
 def main():
     logFolder,csvFolder,webPath,regular,nDays,newDate,oldDate
