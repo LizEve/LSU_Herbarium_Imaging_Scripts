@@ -66,3 +66,4 @@ rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update $csvfolder $csvRemot
 echo $fname
 echo $todaylog
 
+date +"%T"
