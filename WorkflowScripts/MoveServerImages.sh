@@ -55,8 +55,8 @@ done < $outlog
 echo "starting log copy"
 date +"%T"
 
-# Copy logs to workstation 
-rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=r --update $logfolder $wsLogs 
+# Copy logs to workstation - keep open permissions for 
+rsync -avi -og --chown=root:adm --chmod=ug=rwx,o=rwx --update $logfolder $wsLogs 
 
 
 # Sync all csv files to sassafras folder 
