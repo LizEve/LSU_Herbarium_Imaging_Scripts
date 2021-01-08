@@ -1,0 +1,34 @@
+Wed Jan  6 21:00:00 CST 2021
+[]
+[]
+[]
+[]
+['LSU99999998.CR2', 'LSU99999998.jpg', 'LSU99999999.CR2', 'LSU99999999.jpg']
+LSU99999998.CR2 - 2021-01-06 21:00:03.233086
+Traceback (most recent call last):
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 408, in <module>
+    main()
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 356, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 194, in moveFiles
+    destinationFolderPath,destinationFilePath,barCode = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 117, in newPathName
+    if barcodeMax >= len(Barcode) >= barcodeMin: 
+TypeError: '>=' not supported between instances of 'str' and 'int'
+Thu Jan  7 21:00:01 CST 2021
+[]
+[]
+[]
+[]
+['LSU99999998.CR2', 'LSU99999998.jpg', 'LSU99999999.CR2', 'LSU99999999.jpg']
+LSU99999998.CR2 - 2021-01-07 21:00:03.838657
+Traceback (most recent call last):
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 408, in <module>
+    main()
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 356, in main
+    moveFiles(sourceFolder,destinationFolder,portalFolders,otherFolders,barcodeMax,barcodeMin,outLogsuffix,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 194, in moveFiles
+    destinationFolderPath,destinationFilePath,barCode = newPathName(sourceFolder,FileName,sourceFilePath,destinationPortalFolder,barcodeMax,barcodeMin,errorFilePath,csvLogFilePath)
+  File "/mnt/c/Users/image/Documents/GitHub/LSU_Herbarium_Imaging_Scripts/WorkflowScripts/MoveLocalImages.py", line 117, in newPathName
+    if barcodeMax >= len(Barcode) >= barcodeMin: 
+TypeError: '>=' not supported between instances of 'str' and 'int'

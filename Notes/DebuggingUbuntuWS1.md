@@ -15,6 +15,3 @@ cifs is giving issues
 
 
 
-STHerbariumLSU  
-gmount1@lsu.edu - need to add Jennie 
-sassafrasLSU#1

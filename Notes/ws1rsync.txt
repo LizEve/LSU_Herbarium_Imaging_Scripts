@@ -17,3 +17,7 @@ sudo rsync --update -rzavvP /mnt/e/CFLA-LSU-Station1/LSUCollections/Vascular/ /m
 
 
 http://130.39.124.15:5000/
+
+
+
+sudo rsync --update -rzavvP /mnt/e/CFLA-LSU-Station1/LSUCollections/Vascular/ /mnt/cflabkup/LSUCollectionsWS1/Vascular/ &> /mnt/c/Users/image/Desktop/rsyncvasculara1.out
